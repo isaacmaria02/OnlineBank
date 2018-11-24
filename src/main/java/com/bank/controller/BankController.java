@@ -20,18 +20,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bank.dao.RegistrationDAO;
+import com.bank.dao.AccountDao;
 import com.bank.model.Account;
 import com.bank.model.Address;
 import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
 import com.bank.model.Login;
+import com.bank.service.IAccountService;
 
 @Controller
-public class RegistrationController
+public class BankController
 {
 	@Autowired
-	RegistrationDAO edao;
+	private IAccountService accountService;
 	
 	@RequestMapping("/open")
 	public ModelAndView openAccount(ModelAndView model, @ModelAttribute Customer customer, Account account, Address address)
@@ -42,7 +43,9 @@ public class RegistrationController
 		System.out.println(account);
 		System.out.println(address);
 		
-		int i = edao.createAccount(customer, account, address);
+	   int i =  accountService.openAccount(customer,account,address);
+		
+	//	int i = edao.createAccount(customer, account, address);
 		
 		model.setViewName("Dashboard");
 		
@@ -58,8 +61,9 @@ public class RegistrationController
 	public ModelAndView register(ModelAndView model, @ModelAttribute InternetBankingUser ibu)
 	{
 		
-
-		int i = edao.register(ibu);
+      
+		
+		int i = accountService.registerOnline(ibu);
 		
 		if(i>0)
 		model.setViewName("Login");
@@ -79,8 +83,9 @@ public class RegistrationController
 	public ModelAndView login(ModelAndView model, @ModelAttribute Login login)
 	{
 		
+		
 
-		if(edao.Login(login))
+		if(accountService.validateUser(login))
 		{
 			model.setViewName("Dashboard");
 

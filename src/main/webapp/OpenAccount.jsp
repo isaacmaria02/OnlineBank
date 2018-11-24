@@ -39,7 +39,7 @@
  
 
 <label for="Date Of Birth"><b>Date Of Birth</b></label>
-    <input type="date"  name="date_of_birth" required><br>
+    <input type="date"  name="date_of_birth" ><br>
     
     <label for="Annual_Income"><b>Annual Income</b></label>
     <input type="number"  name="annual_income" required><br><br>

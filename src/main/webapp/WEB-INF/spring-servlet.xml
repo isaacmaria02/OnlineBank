@@ -6,7 +6,8 @@
 
 	<context:component-scan base-package="com.bank.controller">
 	</context:component-scan>
-
+<context:component-scan base-package="com.bank.service">
+	</context:component-scan>
 	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -26,9 +27,8 @@
 		<property name="dataSource" ref="ds"></property>
 	</bean>
 
-	<bean id="edao" class="com.bank.dao.RegistrationDAO">
-		<property name="jdbcTemplate" ref="jdbcTemplate">
-		</property>
+	<bean id="edao" class="com.bank.dao.AccountDao">	
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
 	</bean>
 	
 		
