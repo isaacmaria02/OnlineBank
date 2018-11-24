@@ -1,4 +1,6 @@
-package com.registration_login.model;
+package com.bank.model;
+
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,6 +19,12 @@ public class Customer {
 	
 	
 	
+	public String getDate_of_birth() {
+		return date_of_birth;
+	}
+	public void setDate_of_birth(String date_of_birth) {
+		this.date_of_birth = date_of_birth;
+	}
 	public long getMobile_number() {
 		return mobile_number;
 	}
@@ -67,12 +75,7 @@ public class Customer {
 	}
 	
 	
-	public String getDate_of_birth() {
-		return date_of_birth;
-	}
-	public void setDate_of_birth(String date_of_birth) {
-		this.date_of_birth = date_of_birth;
-	}
+	
 	public int getAnnual_income() {
 		return annual_income;
 	}

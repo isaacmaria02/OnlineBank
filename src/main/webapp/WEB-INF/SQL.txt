@@ -15,3 +15,34 @@ CREATE SEQUENCE G13_ADDRESS_SEQ
 START WITH 1000
 INCREMENT BY 1
 NOCYCLE;
+
+
+create table G13_accounts
+(account_number number primary key,
+balance number not null,account_type varchar2(255) not null,
+customer_id number references G13_customers(customer_id));
+
+drop table G13_accounts
+
+create table G13_transactions
+(reference_id number primary key,
+type varchar2(255) not null,amount number not null,
+from_account number references g13_accounts(account_number) ,
+to_account number,timestamp date not null,remarks varchar2(255));
+drop table transactions
+
+
+create table G13_addresses
+(address_id number primary key,address_line_1 varchar2(255) not null,address_line_2 varchar2(255),pin_code number not null,city varchar2(255) not null,state varchar2(255) not null,customer_id number references g13_customers(customer_id));
+
+create table G13_payee
+(payee_account_number number primary key,
+name varchar2(255) not null,nickname varchar2(255) not null,customer_account_number number references g13_accounts(account_number)); 
+
+create table G13_Internet_Banking_users
+(user_id varchar2(255) primary key,login_password varchar2(255) not null,transaction_password varchar2(255) not null,attempts number not null,status varchar2(255) not null, security_questions varchar2(255), security_answers varchar2(255), account_number number references g13_accounts(account_number) );
+
+create table G13_customers
+(customer_id number primary key,first_name varchar2(255) not null,middle_name varchar2(255),last_name varchar2(255) not null,father_name varchar2(255) not null,email_id varchar2(255),mobile_no number,aadhar_card number not null,date_of_birth date not null,annual_income number);
+
+drop table G13_customers

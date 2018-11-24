@@ -1,4 +1,4 @@
-package com.registration_login.model;
+package com.bank.model;
 
 import java.util.List;
 

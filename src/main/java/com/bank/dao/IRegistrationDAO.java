@@ -1,4 +1,4 @@
-package com.registration_login.dao;
+package com.bank.dao;
 
 import java.util.List;
 import java.util.Map;

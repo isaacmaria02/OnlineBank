@@ -1,4 +1,4 @@
-package com.registration_login.dao;
+package com.bank.dao;
 
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -16,10 +16,11 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataAccessException.*; 
 import org.springframework.jdbc.core.ResultSetExtractor;import org.springframework.jdbc.core.RowMapper;
 
-import com.registration_login.model.Account;
-import com.registration_login.model.Address;
-import com.registration_login.model.Customer;
-import com.registration_login.model.InternetBankingUser;
+import com.bank.model.Account;
+import com.bank.model.Address;
+import com.bank.model.Customer;
+import com.bank.model.InternetBankingUser;
+import com.bank.model.Login;
 
 
 public class RegistrationDAO 
@@ -34,21 +35,21 @@ public class RegistrationDAO
 	public int createAccount(Customer customer, Account account, Address address)
 	{
 		int i=0;
-		System.out.println("in save data..");
-		String customerTableQuery="insert into g13_customers values('+g13_customer_seq.nextval+','"+customer.getFirst_name()+"','"+customer.getMiddle_name()+"','"+customer.getLast_name()+"','"+customer.getFather_name()+"','"+customer.getEmail_id()+"','"+customer.getMobile_number()+"','"+customer.getAadhar_card()+"','"+customer.getDate_of_birth()+"','"+customer.getAnnual_income()+"')";
+		
+		String customerTableQuery="insert into GR13_customers values(GR13_customer_seq.nextval,'"+customer.getFirst_name()+"','"+customer.getMiddle_name()+"','"+customer.getLast_name()+"','"+customer.getFather_name()+"','"+customer.getEmail_id()+"',"+customer.getMobile_number()+","+customer.getAadhar_card()+",'11-APR-1996',"+customer.getAnnual_income()+")";
 
 		i= jdbcTemplate.update(customerTableQuery);
 		
 		
 	    
 		
-		String accountTableQuery="insert into g13_accounts values('+g13_account_seq.nextval+','"+account.getAccount_type()+"','"+50000+"','+g13_customer_seq.currval')";
+		String accountTableQuery="insert into GR13_accounts values(GR13_account_seq.nextval,'SAVINGS','+50000+',GR13_customer_seq.currval)";
 
 		i =  jdbcTemplate.update(accountTableQuery);
 	     
 		
 		
-		String addressTableQuery="insert into g13_addresses values('+g13_address_seq.nextval+','"+address.getAddress_line_1()+"','"+address.getAddress_line_2()+"','"+address.getCity()+"','"+address.getPin_code()+"','"+address.getState()+"','+g13_customer_seq.currval')";
+		String addressTableQuery="insert into GR13_addresses values(GR13_address_seq.nextval,'"+address.getAddress_line_1()+"','"+address.getAddress_line_2()+"','"+address.getCity()+"',"+address.getPin_code()+",'"+address.getState()+"',GR13_customer_seq.currval)";
 		
 	//	String query="insert into customers values('"+rf.getUserId()+"','"+rf.getMobileNo()+"','"+rf.getAmount()+"','"+rf.getOperator()+"')";
 		
@@ -63,13 +64,23 @@ public class RegistrationDAO
 	public int register(InternetBankingUser ibu)
 	{
 		int i =0;
-		String register="insert into g13_internet_banking_users values('"+ibu.getUser_id()+"','"+ibu.getLogin_password()+"','"+ibu.getTransaction_password()+"','"+ibu.getAttempts()+"','"+ibu.getStatus()+"','"+ibu.getSecurity_questions()+"','"+ibu.getSecurity_answers()+"','"+ibu.getAccount_number()+"')";
+		String register="insert into GR13_internet_banking_users values('"+ibu.getUser_id()+"','"+ibu.getLogin_password()+"','"+ibu.getTransaction_password()+"',0,'enabled','"+ibu.getSecurity_questions()+"','"+ibu.getSecurity_answers()+"',"+ibu.getAccount_number()+")";
 
-	//	i= jdbcTemplate.update(register);
+		i= jdbcTemplate.update(register);
 		
 		
 		
 		return i;
+		
+	}
+	
+	
+	public boolean Login(Login login)
+	{
+		boolean isValidate= validateUser(login);
+		
+		
+		return isValidate;
 		
 	}
 	/*
@@ -107,4 +118,31 @@ public class RegistrationDAO
 	}  
 	
 */
+	
+	
+	
+	 public boolean validateUser(Login login) {
+		    String sql = "select * from GR13_internet_banking_users where user_id='" + login.getUser_id() + "' and login_password='" + login.getPassword()
+		    + "'";
+		    List<InternetBankingUser> users = jdbcTemplate.query(sql, new UserMapper());
+		    return users.size() > 0 ? true : false;
+		    }
+	 
+	 class UserMapper implements RowMapper<InternetBankingUser> {
+		  public InternetBankingUser mapRow(ResultSet rs, int arg1) throws SQLException {
+			  InternetBankingUser user = new InternetBankingUser();
+		    //user.setUsername(rs.getString("username"));
+		  //  user.setPassword(rs.getString("password"));
+		    
+		    user.setUser_id(rs.getString(1));
+		    user.setLogin_password(rs.getString(2));
+		   
+		
+		    return user;
+		  }
+		  
+	 }
+
+	 
 }  
+

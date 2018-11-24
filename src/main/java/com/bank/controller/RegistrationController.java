@@ -1,4 +1,4 @@
-package com.registration_login.controller;
+package com.bank.controller;
 
 import java.io.IOException;
 import java.rmi.ServerException;
@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.registration_login.dao.RegistrationDAO;
-import com.registration_login.model.Account;
-import com.registration_login.model.Address;
-import com.registration_login.model.Customer;
+import com.bank.dao.RegistrationDAO;
+import com.bank.model.Account;
+import com.bank.model.Address;
+import com.bank.model.Customer;
+import com.bank.model.InternetBankingUser;
+import com.bank.model.Login;
 
 @Controller
 public class RegistrationController
@@ -50,6 +52,58 @@ public class RegistrationController
 		
 		
 	}
+	
+	
+	@RequestMapping("/register")
+	public ModelAndView register(ModelAndView model, @ModelAttribute InternetBankingUser ibu)
+	{
+		
+
+		int i = edao.register(ibu);
+		
+		if(i>0)
+		model.setViewName("Login");
+		
+		else
+			model.setViewName("Register");
+		
+		
+		return model;
+		
+		
+		
+		
+	}
+	
+	@RequestMapping("/login")
+	public ModelAndView login(ModelAndView model, @ModelAttribute Login login)
+	{
+		
+
+		if(edao.Login(login))
+		{
+			model.setViewName("Dashboard");
+
+		}
+		else
+		{
+			model.setViewName("Login");
+
+		}
+		
+		
+		
+		
+		
+		return model;
+		
+		
+		
+		
+	}
+	
+	
+	
 	
 	/*
 	@RequestMapping("/checkBal")	

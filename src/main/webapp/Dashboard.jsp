@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>Hello User</h1>
 
+<a href="">Add Payee</a><br>
+<a href="">Initiate a Fund Transfer</a>
 </body>
 </html>
