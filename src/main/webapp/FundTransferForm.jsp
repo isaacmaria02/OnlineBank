@@ -25,7 +25,7 @@ $(document).ready(function(){
       $('#transfer').hide();
       
       
-      $('.readonly').attr("disabled", true) 
+      $('.readonly').prop('disabled', true) 
 
 	  
   });
@@ -36,11 +36,20 @@ $(document).ready(function(){
       $('#transfer').show();
       
       
-      $('.readonly').attr("disabled", false) 
+      $('.readonly').prop('disabled', false) 
 
 	  
   });
   
+  
+  
+  $('#fundtransfer').on('submit', function() {
+	    $('.readonly').prop('disabled', false);
+	});
+  
+  
+  
+
   
 });
 </script>
@@ -52,14 +61,14 @@ $(document).ready(function(){
 <body>
 
 
-<form action="ConfirmPayment">
+<form id="fundtransfer" action="ConfirmPayment">
 Select Payee : <select class="readonly" name="payee_name">
         <c:forEach items="${PayeeList}" var="payee">
    
         <option value="${payee.getName()}">${payee.getName()}</option>
      </c:forEach>
         
-      </select class="readonly">
+      </select>
       <br>
 Transaction Type :   <select class="readonly" name="type">
      <option value="IMPS">IMPS</option>
@@ -74,7 +83,7 @@ Remarks (Optional) : <input class="readonly" type="text" name="remark">
 
 <input id="transfer" type="button" value="Transfer">
 <input id="backbtn" class="hidden" style="display:none;" type="button" value="Back">
-<input class="hidden" style="display:none;" type="submit" value="Confirm">
+<input id="submitbtn" class="hidden" style="display:none;" type="submit" value="Confirm">
 
 </form>
 
