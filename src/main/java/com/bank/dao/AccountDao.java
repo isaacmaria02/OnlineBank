@@ -203,6 +203,16 @@ public class AccountDao implements IAccountDao
 		  
 	 }
 
+	 public float checkBalance(long customerAccountNumber){  
+			//System.out.println("inside dao"+rf.getUserId());
+			 String getBalanceQuery="select ga_balance from gr13_accounts where ga_account_number="+customerAccountNumber; 
+			 
+			 
+			 
+			 float balance = jdbcTemplate.queryForObject(getBalanceQuery, Float.class); 	 
+			 
+			 return balance;
+		 }
 	
 	 
 	

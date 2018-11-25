@@ -1,5 +1,8 @@
 package com.bank.service;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -38,6 +41,28 @@ public class FundTransferService implements IFundTransferService {
 
 	public synchronized boolean confirmTransaction(Transaction tr, long userAccountNumber) {
 		
+		//FINDING TRANSACTION CHARGES
+				float charges = calculateCharges(tr);		
+				System.out.println("charges "+charges);
+				tr.setCharges(charges);
+		
+		//CHECKING BALANCE
+		float balance = edao.checkBalance(userAccountNumber);
+		
+		
+		System.out.println("balance in service "+balance);
+		
+		if(balance<(tr.getAmount()+charges))
+		{
+			return false;
+		}
+		
+		
+		
+		
+		
+		
+		
 		//GENERATING REFERENCE ID
 		long referenceId = generateRandom(12);
 		tr.setReference_id(referenceId);
@@ -45,17 +70,23 @@ public class FundTransferService implements IFundTransferService {
 		
 		//FINDING PAYEE ACCOUNT NUMBER
 	   long accountNumber=tdao.payeeAccountNumber(tr, userAccountNumber);
-		System.out.println(accountNumber);
-		
-		
-		//FINDING TRANSACTION CHARGES
+       tr.setTo_account(accountNumber);		
 		
 		
 		
 		//GENERATING TIMESTAMP		
+		String timestamp = getTimeStamp();
+		System.out.println("Timestamp "+timestamp);
+		tr.setTimestamp(timestamp);
 		
-		return false;
-		//return tdao.confirmTransaction(tr);
+		//
+		tr.setFrom_account(userAccountNumber);
+		
+		
+		
+		System.out.println(tr);
+		
+		return tdao.confirmTransaction(tr);
 	}
 
 
@@ -67,6 +98,65 @@ public class FundTransferService implements IFundTransferService {
 	        digits[i] = (char) (random.nextInt(10) + '0');
 	    }
 	    return Long.parseLong(new String(digits));
+	}
+	
+	public static float calculateCharges(Transaction tr)	
+	{
+		float charges=0.0f;
+		long amount = tr.getAmount();
+		
+		if(tr.getType().equals("IMPS"))
+		{
+			if(amount<100000) {
+				charges = 5+18/100*5;
+				
+			}
+			else if(amount<200000)
+			{
+				charges = 15+18/100*15;
+			}
+		}
+		
+		else  if(tr.getType().equals("RTGS"))
+		{
+			if(amount<500000 && amount>200000) {
+				charges = 25+18/100*25;
+				
+			}
+			else if(amount>500000)
+			{
+				charges = 50+18/100*50;
+			}
+		}
+		
+		return charges;
+	}
+	
+	public static String getTimeStamp()
+	{
+	     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+
+		
+		//method 1
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        System.out.println(timestamp);
+
+        //method 2 - via Date
+        Date date = new Date();
+        System.out.println(new Timestamp(date.getTime()));
+
+        //return number of milliseconds since January 1, 1970, 00:00:00 GMT
+        System.out.println(timestamp.getTime());
+
+        //format timestamp
+      return sdf.format(timestamp);
+	}
+
+	public boolean confirmTransaction(Transaction tr, Long accountNumber) {
+		// TODO Auto-generated method stub
+		
+		
+		return false;
 	}
 
 	

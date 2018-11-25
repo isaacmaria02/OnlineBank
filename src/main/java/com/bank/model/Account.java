@@ -6,8 +6,14 @@ import java.util.List;
 
 public class Account {
 	
-   private long  account_number;	
-	private int balance;
+	
+	
+	
+   public Account() {
+		super();
+	}
+private long  account_number;	
+	private float balance;
 	private String account_type;
 	long customer_id;
 	
@@ -36,10 +42,10 @@ public class Account {
 	public void setCustomer_id(long customer_id) {
 		this.customer_id = customer_id;
 	}
-	public int getBalance() {
+	public float getBalance() {
 		return balance;
 	}
-	public void setBalance(int balance) {
+	public void setBalance(float balance) {
 		this.balance = balance;
 	}
 	public String getAccount_type() {

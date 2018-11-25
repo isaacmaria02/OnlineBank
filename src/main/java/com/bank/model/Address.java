@@ -8,6 +8,12 @@ public class Address {
 
 
 
+	public Address() {
+		super();
+	}
+
+
+
 	private int address_id;
 
 	private String address_line_1;

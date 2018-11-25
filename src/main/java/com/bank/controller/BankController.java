@@ -237,8 +237,14 @@ public class BankController
 		
         boolean isSuccessful = fundTransferService.confirmTransaction(tr, (Long)session.getAttribute("account_number"));
 	    
-		
-		model.setViewName("Dashboard");
+        
+		if(isSuccessful) {
+		model.setViewName("TransactionSucess");
+		}
+		else
+		{
+			model.setViewName("TransactionFailure");
+		}
 		
 	//	model.setViewName(viewName);
 		
