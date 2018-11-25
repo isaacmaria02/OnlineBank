@@ -10,6 +10,8 @@ public class Transaction {
 	private int to_account;
 	private String timestamp;
 	private String remark;
+	
+	
 	public int getReference_id() {
 		return reference_id;
 	}
