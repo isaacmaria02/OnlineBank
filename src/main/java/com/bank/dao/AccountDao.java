@@ -89,13 +89,15 @@ public class AccountDao implements IAccountDao
 	}
 	
 	
-	public boolean Login(Login login)
+	public boolean login(Login login)
 	{
-		boolean isValidate= validateUser(login);
+	
+		
+		 String validateUserQuery = "select * from GR13_internet_banking_users where GIBU_USER_ID='" + login.getUser_id() + "' and GIBU_LOGIN_PASSWORD='" + login.getPassword() +"'";
+		    List<InternetBankingUser> users = jdbcTemplate.query(validateUserQuery, new UserMapper());
+		    return users.size() > 0 ? true : false;
 		
 		
-		
-		return isValidate;
 		
 	}
 	
@@ -163,12 +165,12 @@ public class AccountDao implements IAccountDao
 		return res;
 	}
 	
-	     public boolean validateUser(Login login) {
+	  /*   public boolean validateUser(Login login) {
 		    String sql = "select * from GR13_internet_banking_users where GIBU_USER_ID='" + login.getUser_id() + "' and GIBU_LOGIN_PASSWORD='" + login.getPassword()
 		    + "'";
 		    List<InternetBankingUser> users = jdbcTemplate.query(sql, new UserMapper());
 		    return users.size() > 0 ? true : false;
-		    }
+		    }*/
 	 
 	 class UserMapper implements RowMapper<InternetBankingUser> {
 		  public InternetBankingUser mapRow(ResultSet rs, int arg1) throws SQLException {

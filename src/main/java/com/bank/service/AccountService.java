@@ -67,7 +67,7 @@ public class AccountService implements IAccountService {
 	@Transactional
 	public boolean validateUser(Login login) {
 		// TODO Auto-generated method stub
-		return edao.validateUser(login);
+		return edao.login(login);
 	}
 
 	public long getAccountNumber(Login login) {

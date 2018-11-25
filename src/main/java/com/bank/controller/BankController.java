@@ -147,6 +147,56 @@ public class BankController
 		
 	}
 	
+	@RequestMapping("/DeletePayee")
+	public ModelAndView deletePayee(HttpServletRequest request, HttpServletResponse response, ModelAndView model, HttpSession session)
+	{
+		
+		System.out.println("in controller "+session.getAttribute("account_number"));
+
+		
+		
+		int i = fundTransferService.deletePayee(request.getParameter("payee_name"), (Long)session.getAttribute("account_number"));
+		
+		if(i>0)
+		{
+			model.addObject("msg","Deleted Successfully");
+
+			model.setViewName("Dashboard");
+		}	
+		else
+		{
+			model.addObject("msg","Does not exist");
+		model.setViewName("Dashboard");
+		}
+		
+		return model;
+		
+		
+		
+		
+	}
+	
+	
+	@RequestMapping("/DisplayPayee")
+	public ModelAndView displayPayee(HttpServletRequest request, HttpServletResponse response, ModelAndView model, HttpSession session)
+	{
+		
+//		System.out.println("in controller "+session.getAttribute("account_number"));
+
+		
+		
+		List<Payee> payeeList= fundTransferService.displayPayee((Long)session.getAttribute("account_number"));
+		
+
+		model.addObject("PayeeList",payeeList);
+		model.setViewName("Dashboard");
+		
+		return model;
+		
+		
+		
+		
+	}
 	
 	
 	

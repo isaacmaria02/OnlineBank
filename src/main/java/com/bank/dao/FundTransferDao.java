@@ -1,6 +1,11 @@
 package com.bank.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import com.bank.model.Payee;
 import com.bank.service.IFundTransferService;
@@ -29,5 +34,51 @@ public class FundTransferDao implements IFundTransferService {
 			
 			return i;
 	 }
+	 
+	 
+	 
+	 public int deletePayee(String name, long customerAccountNumber)
+	 {
+			int i =0;
+			
+			
+			
+			
+			String deletePayeeQuery="delete from gr13_payee where gp_name='"+name+"' and GP_GC_CUSTOMER_ACCOUNT_NUMBER="+customerAccountNumber;
+			i= jdbcTemplate.update(deletePayeeQuery);		
+			
+			
+			return i;
+	 }
+	 
+	public List<Payee> displayPayee(long accountNumber) {
+		// TODO Auto-generated method stub
+	
+		 String getPayeeQuery="select * from gr13_payee where GP_GC_CUSTOMER_ACCOUNT_NUMBER="+accountNumber; 
 
-}
+
+		 
+		 
+		 
+		 
+		 return jdbcTemplate.query(getPayeeQuery, new RowMapper<Payee>(){  
+			    public Payee mapRow(ResultSet rs, int rownumber) throws SQLException {  
+			       Payee payee=new Payee(); 
+                   payee.setPayee_account_number(rs.getLong(1));
+			       payee.setName(rs.getString(2));
+			       payee.setNick_name(rs.getString(3));			       
+			       
+			       
+			        return payee;  
+			    }  
+			    }); 	
+	}
+	public Payee searchPayee(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	}
+
+
