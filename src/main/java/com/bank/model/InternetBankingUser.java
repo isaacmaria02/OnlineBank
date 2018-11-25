@@ -18,12 +18,21 @@ public class InternetBankingUser {
 	private String status;
 	
 	
+	
+
+	public long getAccount_number() {
+		return account_number;
+	}
+
+	public void setAccount_number(long account_number) {
+		this.account_number = account_number;
+	}
 
 	private String security_questions;
 	
 	private String security_answers;
 	
-	private int account_number;
+	private long account_number;
 
 	public String getUser_id() {
 		return user_id;
@@ -81,10 +90,7 @@ public class InternetBankingUser {
 		this.security_answers = security_answers;
 	}
 
-	public int getAccount_number() {
-		return account_number;
-	}
-
+	
 	public void setAccount_number(int account_number) {
 		this.account_number = account_number;
 	}

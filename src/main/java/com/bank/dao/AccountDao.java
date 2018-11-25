@@ -21,6 +21,7 @@ import com.bank.model.Address;
 import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
 import com.bank.model.Login;
+import com.bank.model.Payee;
 
 
 public class AccountDao 
@@ -36,20 +37,32 @@ public class AccountDao
 	{
 		int i=0;
 		
-		String customerTableQuery="insert into GR13_customers values(GR13_customers_seq.nextval,'"+customer.getFirst_name()+"','"+customer.getMiddle_name()+"','"+customer.getLast_name()+"','"+customer.getFather_name()+"','"+customer.getEmail_id()+"',"+customer.getMobile_number()+","+customer.getAadhar_card()+",NULL,"+customer.getAnnual_income()+")";
+		String getCustomerId= "select GR13_customers_seq.nextval from dual";
+	      long customerId = getCustomerSeq(getCustomerId);
+	
+		
+		String getAccountNumber= "select GR13_accounts_seq.nextval from dual";
+		long accountNumber = getCustomerSeq(getAccountNumber);
+		
+		
+		String getAddressId= "select GR13_addresses_seq.nextval from dual";
+		long addressId = getCustomerSeq(getAddressId);
+		
+		
+		String customerTableQuery="insert into GR13_customers values("+customerId+",'"+customer.getFirst_name()+"','"+customer.getMiddle_name()+"','"+customer.getLast_name()+"','"+customer.getFather_name()+"','"+customer.getEmail_id()+"',"+customer.getMobile_number()+","+customer.getAadhar_card()+",'"+customer.getDate_of_birth()+"',"+customer.getAnnual_income()+")";
 
 		i= jdbcTemplate.update(customerTableQuery);
 		
 		
 	    
 		
-		String accountTableQuery="insert into GR13_accounts values(GR13_accounts_seq.nextval,'SAVINGS','+50000+',GR13_customers_seq.currval)";
+		String accountTableQuery="insert into GR13_accounts values("+accountNumber+",50000,'SAVINGS',"+customerId+")";
 
 		i =  jdbcTemplate.update(accountTableQuery);
 	     
 		
 		
-		String addressTableQuery="insert into GR13_addresses values(GR13_addresses_seq.nextval,'"+address.getAddress_line_1()+"','"+address.getAddress_line_2()+"','"+address.getCity()+"',"+address.getPin_code()+",'"+address.getState()+"',GR13_customers_seq.currval)";
+		String addressTableQuery="insert into GR13_addresses values("+addressId+",'"+address.getAddress_line_1()+"','"+address.getAddress_line_2()+"',"+address.getPin_code()+",'"+address.getCity()+"','"+address.getState()+"',"+customerId+")";
 		
 	//	String query="insert into customers values('"+rf.getUserId()+"','"+rf.getMobileNo()+"','"+rf.getAmount()+"','"+rf.getOperator()+"')";
 		
@@ -64,6 +77,9 @@ public class AccountDao
 	public int register(InternetBankingUser ibu)
 	{
 		int i =0;
+		
+		
+		
 		String register="insert into GR13_internet_banking_users values('"+ibu.getUser_id()+"','"+ibu.getLogin_password()+"','"+ibu.getTransaction_password()+"',0,'enabled','"+ibu.getSecurity_questions()+"','"+ibu.getSecurity_answers()+"',"+ibu.getAccount_number()+")";
 		i= jdbcTemplate.update(register);		
 		
@@ -76,6 +92,8 @@ public class AccountDao
 	public boolean Login(Login login)
 	{
 		boolean isValidate= validateUser(login);
+		
+		
 		
 		
 		return isValidate;
@@ -117,9 +135,13 @@ public class AccountDao
 	
 */
 	
+         private long getCustomerSeq(String query) {
+		
+		long res = jdbcTemplate.queryForObject(query, Long.class);
+		return res;
+	}
 	
-	
-	 public boolean validateUser(Login login) {
+	     public boolean validateUser(Login login) {
 		    String sql = "select * from GR13_internet_banking_users where GIBU_USER_ID='" + login.getUser_id() + "' and GIBU_LOGIN_PASSWORD='" + login.getPassword()
 		    + "'";
 		    List<InternetBankingUser> users = jdbcTemplate.query(sql, new UserMapper());
@@ -141,6 +163,8 @@ public class AccountDao
 		  
 	 }
 
+	 
+	
 	 
 }  
 

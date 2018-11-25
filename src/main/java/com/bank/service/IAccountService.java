@@ -8,6 +8,7 @@ import com.bank.model.Address;
 import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
 import com.bank.model.Login;
+import com.bank.model.Payee;
 
 
 public interface IAccountService {
@@ -18,6 +19,7 @@ public interface IAccountService {
 	public int registerOnline(InternetBankingUser ibu);
 	
 	public boolean validateUser(Login login);
+	
 
 	/*public void addEmployee(Employee employee);
 

@@ -6,29 +6,34 @@ import java.util.List;
 
 public class Account {
 	
-   private int  account_number;	
+   private long  account_number;	
 	private int balance;
 	private String account_type;
-	int customer_id;
+	long customer_id;
 	
 	
 	
 
+	
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Account [account_number=" + account_number + ", balance=" + balance + ", account_type=" + account_type
 				+ ", customer_id=" + customer_id + "]";
 	}
-	public int getAccount_number() {
+	public long getAccount_number() {
 		return account_number;
 	}
-	public void setAccount_number(int account_number) {
+	public void setAccount_number(long account_number) {
 		this.account_number = account_number;
 	}
-	public int getCustomer_id() {
+	public long getCustomer_id() {
 		return customer_id;
 	}
-	public void setCustomer_id(int customer_id) {
+	public void setCustomer_id(long customer_id) {
 		this.customer_id = customer_id;
 	}
 	public int getBalance() {

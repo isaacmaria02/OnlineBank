@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="register">
-Account Number<input type="number" name="account_number"><br>
+Account Number <input type="number"  name="account_number"><br>
 User ID <input type="text" name="user_id"><br>
 Login Password <input type="text" name="login_password"><br>
 Confirm Login Password <input type="text"><br>

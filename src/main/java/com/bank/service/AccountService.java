@@ -12,6 +12,7 @@ import com.bank.model.Address;
 import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
 import com.bank.model.Login;
+import com.bank.model.Payee;
 
 
 
@@ -68,4 +69,8 @@ public class AccountService implements IAccountService {
 		// TODO Auto-generated method stub
 		return edao.validateUser(login);
 	}
+
+
+
+	
 }

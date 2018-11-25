@@ -9,7 +9,14 @@
 <body>
 <h1>Hello User</h1>
 
-<a href="">Add Payee</a><br>
+<a href="AddPayee.jsp">Add Payee</a><br>
 <a href="">Initiate a Fund Transfer</a>
+
+<br><br>
+
+<a href="">User Profile</a><br>
+<a href="">Account Summary</a><br>
+<a href="">Account Statement</a><br>
+
 </body>
 </html>
