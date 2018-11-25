@@ -27,6 +27,7 @@ import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
 import com.bank.model.Login;
 import com.bank.model.Payee;
+import com.bank.model.Transaction;
 import com.bank.service.IAccountService;
 import com.bank.service.IFundTransferService;
 
@@ -213,7 +214,6 @@ public class BankController
 
 		model.addObject("PayeeList",payeeList);
 		
-		System.out.println("hoja");
 		
 		model.setViewName("FundTransferForm");
 		
@@ -224,5 +224,29 @@ public class BankController
 		
 	}
 	
+	
+
+	@RequestMapping("/ConfirmPayment")
+	public ModelAndView confirmTransaction(HttpServletRequest request, HttpServletResponse response, ModelAndView model, HttpSession session, @ModelAttribute Transaction tr)
+	{
+		
+//		System.out.println("in controller "+session.getAttribute("account_number"));
+
+		System.out.println((Long)session.getAttribute("account_number"));
+		System.out.println(tr);
+		
+        boolean isSuccessful = fundTransferService.confirmTransaction(tr, (Long)session.getAttribute("account_number"));
+	    
+		
+		model.setViewName("Dashboard");
+		
+	//	model.setViewName(viewName);
+		
+		return model;
+		
+		
+		
+		
+	}
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.bank.model.Payee;
+import com.bank.model.Transaction;
 import com.bank.service.IFundTransferService;
 
 public class FundTransferDao implements IFundTransferService {
@@ -74,6 +75,37 @@ public class FundTransferDao implements IFundTransferService {
 			    }); 	
 	}
 	
+	
+	public boolean confirmTransaction(Transaction tr, long accountNumber) {
+		// TODO Auto-generated method stub
+	
+		 String getPayeeQuery="select * from gr13_payee where GP_GC_CUSTOMER_ACCOUNT_NUMBER="+tr; 
+
+
+		 
+		 
+		 
+		 
+		 return false; 	
+	}
+	
+
+
+	public long payeeAccountNumber(Transaction tr, long accountNumber) {
+		
+		System.out.println(tr.getPayee_name()+" inside dao");
+		// TODO Auto-generated method stub
+		 String getPayeeQuery="select GP_PAYEE_ACCOUNT_NUMBER from gr13_payee where GP_GC_CUSTOMER_ACCOUNT_NUMBER="+accountNumber+" and gp_name='"+tr.getPayee_name()+"'"; 
+
+
+		 
+			long payeeAccountNumber =  jdbcTemplate.queryForObject(getPayeeQuery, Long.class);
+			
+			 
+			System.out.println("inside fund transfer dao "+payeeAccountNumber); 
+			
+			return payeeAccountNumber;
+	}
 	
 	
 	}

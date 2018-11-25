@@ -51,29 +51,9 @@ $(document).ready(function(){
 </head>
 <body>
 
-<%-- <form:form method = "POST" action = "/HelloWeb/addStudent">
-         <table>
-            <tr>
-               <td><form:input path = "name" /></td>
-            </tr>
-            <tr>
-               <td><form:label path = "age">Age</form:label></td>
-               <td><form:input path = "age" /></td>
-            </tr>
-            <tr>
-               <td><form:input path = "id" /></td>
-            </tr>
-            <tr>
-               <td colspan = "2">
-                  <input type = "submit" value = "Submit"/>
-               </td>
-            </tr>
-         </table>  
-      </form:form> --%>
 
-
-<form action="">
-Select Payee : <select class="readonly">
+<form action="ConfirmPayment">
+Select Payee : <select class="readonly" name="payee_name">
         <c:forEach items="${PayeeList}" var="payee">
    
         <option value="${payee.getName()}">${payee.getName()}</option>

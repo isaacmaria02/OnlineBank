@@ -116,6 +116,22 @@ public class AccountDao implements IAccountDao
 		
 		
 	}
+	
+
+	/*public long getAccountNumber(String userId, long userAccountNumber) {
+		// TODO Auto-generated method stub
+		
+		
+		
+        String getAccountNumberQuery="select GIBU_GA_ACCOUNT_NUMBER from gr13_internet_banking_users where gibu_user_id='"+userId+"'"; 
+		 
+		long accountNumber =jdbcTemplate.queryForObject(getAccountNumberQuery, Long.class); 	 
+		 
+		System.out.println(accountNumber+" paye account no it?");
+		return accountNumber;
+		
+		
+	}*/
 
 	
 	

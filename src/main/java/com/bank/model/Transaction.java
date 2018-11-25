@@ -4,19 +4,49 @@ package com.bank.model;
 
 public class Transaction {
 
-	private int reference_id;
+	private long reference_id;
 	private String type;
 	private int amount;
-	private int to_account;
+	private long to_account;
 	private String timestamp;
 	private String remark;
+	private float charges;
+	private String payee_name;
 	
 	
-	public int getReference_id() {
+	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Transaction [reference_id=" + reference_id + ", type=" + type + ", amount=" + amount + ", to_account="
+				+ to_account + ", timestamp=" + timestamp + ", remark=" + remark + ", charges=" + charges
+				+ ", payee_name=" + payee_name + "]";
+	}
+	public String getPayee_name() {
+		return payee_name;
+	}
+	public void setPayee_name(String payee_name) {
+		this.payee_name = payee_name;
+	}
+	public long getTo_account() {
+		return to_account;
+	}
+	public void setTo_account(long to_account) {
+		this.to_account = to_account;
+	}
+	public long getReference_id() {
 		return reference_id;
 	}
-	public void setReference_id(int reference_id) {
+	public void setReference_id(long reference_id) {
 		this.reference_id = reference_id;
+	}
+	public float getCharges() {
+		return charges;
+	}
+	public void setCharges(float charges) {
+		this.charges = charges;
 	}
 	public String getType() {
 		return type;
@@ -30,12 +60,7 @@ public class Transaction {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	public int getTo_account() {
-		return to_account;
-	}
-	public void setTo_account(int to_account) {
-		this.to_account = to_account;
-	}
+	
 	public String getTimestamp() {
 		return timestamp;
 	}
@@ -48,11 +73,7 @@ public class Transaction {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	@Override
-	public String toString() {
-		return "Transaction [reference_id=" + reference_id + ", type=" + type + ", amount=" + amount + ", to_account="
-				+ to_account + ", timestamp=" + timestamp + ", remark=" + remark + "]";
-	}
+	
 	
 	
 	
