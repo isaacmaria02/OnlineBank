@@ -12,7 +12,6 @@ public interface IFundTransferService {
 	
 	public List<Payee> displayPayee(long accountNumber);
 	
-	public Payee searchPayee(String name);
 
 
 

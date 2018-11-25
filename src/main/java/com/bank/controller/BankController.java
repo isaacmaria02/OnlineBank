@@ -199,6 +199,30 @@ public class BankController
 	}
 	
 	
+
+	@RequestMapping("/FundTransfer")
+	public ModelAndView fundTransfer(HttpServletRequest request, HttpServletResponse response, ModelAndView model, HttpSession session)
+	{
+		
+//		System.out.println("in controller "+session.getAttribute("account_number"));
+
+
+		
+	List<Payee> payeeList= fundTransferService.displayPayee((Long)session.getAttribute("account_number"));
+		
+
+		model.addObject("PayeeList",payeeList);
+		
+		System.out.println("hoja");
+		
+		model.setViewName("FundTransferForm");
+		
+		return model;
+		
+		
+		
+		
+	}
 	
 	
 }

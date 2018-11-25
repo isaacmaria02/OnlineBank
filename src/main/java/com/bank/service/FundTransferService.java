@@ -30,10 +30,7 @@ public class FundTransferService implements IFundTransferService {
 		return tdao.displayPayee(accountNumber);
 	}
 
-	public Payee searchPayee(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	
 	
 

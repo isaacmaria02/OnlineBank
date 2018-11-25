@@ -73,10 +73,7 @@ public class FundTransferDao implements IFundTransferService {
 			    }  
 			    }); 	
 	}
-	public Payee searchPayee(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	
 	}

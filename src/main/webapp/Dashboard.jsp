@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+    <%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
+    
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -51,7 +53,7 @@ Search   <input class="form-control" id="searchPayee" type="text" placeholder="S
   <tbody id="payeeListTable">
      <c:forEach items="${PayeeList}" var="payee">
        <tr>
-          <td>${payee.getName()}</td>
+          <td>${payee.getPayee_account_number()}</td>
          <td>${payee.getName()}</td>
          <td>${payee.getNick_name()}</td>
        </tr>
@@ -64,7 +66,15 @@ Search   <input class="form-control" id="searchPayee" type="text" placeholder="S
 
 </div>
 
-<a href="">Initiate a Fund Transfer</a>
+<%-- <select>
+        <c:forEach items="${PayeeList}" var="payee">
+   
+        <option value="${payee.getName()}">${payee.getName()}</option>
+     </c:forEach>
+        
+      </select> --%>
+
+<a href="FundTransfer">Initiate a Fund Transfer</a>
 
 <br><br>
 
