@@ -91,7 +91,7 @@ public class BankController
 	}
 	
 	@RequestMapping("/login")
-	public ModelAndView login(ModelAndView model, @ModelAttribute Login login)
+	public ModelAndView login(ModelAndView model, @ModelAttribute Login login, HttpSession session)
 	{
 		
 		
@@ -100,8 +100,9 @@ public class BankController
 		{
 			
 			long accountNumber = accountService.getAccountNumber(login);
-			model.addObject("account_number",accountNumber);
+			//model.addObject("account_number",accountNumber);
 			
+			session.setAttribute("account_number", accountNumber);
 			
 			
 			
@@ -123,9 +124,11 @@ public class BankController
 	
 	
 	@RequestMapping("/addPayee")
-	public ModelAndView addPayee(ModelAndView model, @ModelAttribute Payee payee)
+	public ModelAndView addPayee(ModelAndView model, @ModelAttribute Payee payee, HttpSession session)
 	{
 		
+		System.out.println(payee);
+		payee.setCustomer_account_number((Long)session.getAttribute("account_number"));
 		
 		
 		int i = fundTransferService.addPayee(payee);

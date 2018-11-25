@@ -22,6 +22,7 @@ public class FundTransferDao implements IFundTransferService {
 			System.out.println("hows u");
 			System.out.println(payee.getCustomer_account_number());
 			
+			
 			String addPayeeQuery="insert into GR13_payee values("+payee.getPayee_account_number()+",'"+payee.getName()+"','"+payee.getNick_name()+"',"+payee.getCustomer_account_number()+")";
 			i= jdbcTemplate.update(addPayeeQuery);		
 			

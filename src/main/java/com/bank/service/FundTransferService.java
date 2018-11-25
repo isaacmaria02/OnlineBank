@@ -15,6 +15,7 @@ public class FundTransferService implements IFundTransferService {
 	public int addPayee(Payee payee) {
 		System.out.println("yo");
 		// TODO Auto-generated method stub
+		System.out.println(payee.getCustomer_account_number()+"in ser");
 		return tdao.addPayee(payee);
 	}
 	

@@ -23,8 +23,8 @@ public class Payee {
 	}
 	/*public void setCustomer_account_number(String customer_account_number) {
 		this.customer_account_number = Long.parseLong(customer_account_number);
-	}*/
-	
+	}
+	*/
 	public void setCustomer_account_number(long customer_account_number) {
 		this.customer_account_number = customer_account_number;
 	}
