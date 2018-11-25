@@ -99,6 +99,10 @@ public class BankController
 		if(accountService.validateUser(login))
 		{
 			
+			long accountNumber = accountService.getAccountNumber(login);
+			model.addObject("account_number",accountNumber);
+			
+			
 			
 			
 			model.setViewName("Dashboard");

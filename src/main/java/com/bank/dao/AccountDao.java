@@ -24,7 +24,7 @@ import com.bank.model.Login;
 import com.bank.model.Payee;
 
 
-public class AccountDao 
+public class AccountDao implements IAccountDao
 {
 	JdbcTemplate jdbcTemplate;
 	public JdbcTemplate getJdbcTemplate() {
@@ -95,10 +95,32 @@ public class AccountDao
 		
 		
 		
-		
 		return isValidate;
 		
 	}
+	
+	
+	public long getAccountNumber(Login login) {
+		// TODO Auto-generated method stub
+		
+		
+		
+        String getAccountNumberQuery="select GIBU_GA_ACCOUNT_NUMBER from gr13_internet_banking_users where gibu_user_id='"+login.getUser_id()+"'"; 
+		 
+		long accountNumber =jdbcTemplate.queryForObject(getAccountNumberQuery, Long.class); 	 
+		 
+		System.out.println(accountNumber+" got it?");
+		return accountNumber;
+		
+		
+	}
+
+	
+	
+	
+	
+	
+	
 	/*
 	public List<RechargeForm> getAllTransaction(RechargeForm rf){  
 		 String sql="select * from Transactions where mobile=?"; 
@@ -163,6 +185,7 @@ public class AccountDao
 		  
 	 }
 
+	
 	 
 	
 	 

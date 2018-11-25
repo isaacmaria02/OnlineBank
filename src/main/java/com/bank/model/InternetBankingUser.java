@@ -17,6 +17,13 @@ public class InternetBankingUser {
 	
 	private String status;
 	
+
+	private String security_questions;
+	
+	private String security_answers;
+	
+	private long account_number;
+	
 	
 	
 
@@ -28,11 +35,6 @@ public class InternetBankingUser {
 		this.account_number = account_number;
 	}
 
-	private String security_questions;
-	
-	private String security_answers;
-	
-	private long account_number;
 
 	public String getUser_id() {
 		return user_id;

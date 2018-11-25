@@ -70,6 +70,12 @@ public class AccountService implements IAccountService {
 		return edao.validateUser(login);
 	}
 
+	public long getAccountNumber(Login login) {
+		// TODO Auto-generated method stub
+		
+		return edao.getAccountNumber(login);
+	}
+
 
 
 	

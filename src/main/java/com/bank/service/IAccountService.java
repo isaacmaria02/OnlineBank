@@ -20,6 +20,8 @@ public interface IAccountService {
 	
 	public boolean validateUser(Login login);
 	
+	public long getAccountNumber(Login login);
+	
 
 	/*public void addEmployee(Employee employee);
 
