@@ -47,9 +47,21 @@ public class BankController
 		
 		
 	   int i =  accountService.openAccount(customer,account,address);
+	   
+	   
 		
-		
+		if(i>0) {
 		model.setViewName("Register");
+		model.addObject("notification");
+		}
+		else
+		{
+			model.addObject("notification","Could not create your account");
+			model.setViewName("OpenAccount");
+		}
+		
+		
+		
 		
 		return model;
 		

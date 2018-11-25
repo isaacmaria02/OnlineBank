@@ -80,7 +80,7 @@ Search   <input class="form-control" id="searchPayee" type="text" placeholder="S
 
 <a href="">User Profile</a><br>
 <a href="">Account Summary</a><br>
-<a href="">Account Statement</a><br>
+<a href="AccountStatement.jsp">Account Statement</a><br>
 
 </body>
 </html>

@@ -62,7 +62,6 @@ public class FundTransferService implements IFundTransferService {
 		
 		
 		
-		
 		//GENERATING REFERENCE ID
 		long referenceId = generateRandom(12);
 		tr.setReference_id(referenceId);

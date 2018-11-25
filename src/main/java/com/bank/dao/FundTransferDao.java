@@ -118,7 +118,7 @@ public class FundTransferDao  {
         else if(i>0 && j>0) {
         	//BOTH THE TABLES UPDATED SUCCESSFULLY
 		//UPDATE TRANSACTION TABLE
-		String insertTransactionQuery = "insert into gr13_transactions values ("+tr.getReference_id()+",'"+tr.getType()+"',"+tr.getAmount()+","+tr.getFrom_account()+","+tr.getTo_account()+",'"+tr.getTimestamp()+"','"+tr.getRemark()+"',"+tr.getCharges()+")"; 
+		String insertTransactionQuery = "insert into gr13_transactions values ("+tr.getReference_id()+",'"+tr.getType()+"',"+tr.getAmount()+","+tr.getFrom_account()+","+tr.getTo_account()+",CURRENT_TIMESTAMP,'"+tr.getRemark()+"',"+tr.getCharges()+")"; 
 		k = jdbcTemplate.update(insertTransactionQuery);
 		
         }

@@ -1,6 +1,6 @@
 package com.bank.model;
 
-
+import java.sql.Date;
 
 public class Transaction {
 
@@ -75,8 +75,8 @@ public class Transaction {
 	public String getTimestamp() {
 		return timestamp;
 	}
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
+	public void setTimestamp(String timestamp2) {
+		this.timestamp = timestamp2;
 	}
 	public String getRemark() {
 		return remark;
