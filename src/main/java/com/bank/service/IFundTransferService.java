@@ -1,5 +1,6 @@
 package com.bank.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.bank.model.Payee;
@@ -15,6 +16,7 @@ public interface IFundTransferService {
 	
 	public boolean confirmTransaction(Transaction tr, long accountNumber);
 	
+	public List<Transaction> getAccountStatement(Date from, Date to);
 
 
 }

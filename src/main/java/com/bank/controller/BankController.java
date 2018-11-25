@@ -2,6 +2,9 @@ package com.bank.controller;
 
 import java.io.IOException;
 import java.rmi.ServerException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bank.dao.AccountDao;
+import com.bank.dao.IReportGeneration;
 import com.bank.model.Account;
 import com.bank.model.Address;
 import com.bank.model.Customer;
@@ -37,7 +41,10 @@ public class BankController
 	@Autowired
 	private IAccountService accountService;
 	
-	@Autowired IFundTransferService fundTransferService;
+	@Autowired private IFundTransferService fundTransferService;
+	
+	@Autowired 
+	private IReportGeneration reportGenerationService;
 	
 	@RequestMapping("/open")
 	public ModelAndView openAccount(ModelAndView model, @ModelAttribute Customer customer, Account account, Address address)
@@ -259,6 +266,48 @@ public class BankController
 		}
 		
 	//	model.setViewName(viewName);
+		
+		return model;
+		
+		
+		
+		
+	}
+	
+	
+	
+
+	@RequestMapping("/AccountStatement")
+	public ModelAndView getAccountStatement(HttpServletRequest request, HttpServletResponse response, ModelAndView model)
+	{
+		
+//		System.out.println("in controller "+session.getAttribute("account_number"));
+
+	    SimpleDateFormat formatter=new SimpleDateFormat("dd-MMM-yy");  
+
+		
+		Date fromDate,toDate;
+		try {
+			fromDate = (Date) formatter.parse(request.getParameter("from"));
+			
+			toDate = (Date) formatter.parse(request.getParameter("to"));
+			
+			
+			System.out.println(fromDate+" "+toDate);
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+       // List<Transaction> accountStatement = reportGenerationService.getAccountStatement(fromDate, toDate);
+	    
+        
+		
+		
+		model.setViewName("AccountStatement");
 		
 		return model;
 		

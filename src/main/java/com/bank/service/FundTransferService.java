@@ -158,6 +158,11 @@ public class FundTransferService implements IFundTransferService {
 		return false;
 	}
 
+	public List<Transaction> getAccountStatement(java.sql.Date from, java.sql.Date to) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 	
