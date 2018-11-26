@@ -14,11 +14,12 @@ import com.bank.dao.AccountDao;
 import com.bank.dao.FundTransferDao;
 import com.bank.model.Payee;
 import com.bank.model.Transaction;
+
 @Service
 public class FundTransferService implements IFundTransferService {
 	@Autowired
 	FundTransferDao tdao;
-	
+
 	@Autowired
 	AccountDao edao;
 
@@ -26,7 +27,7 @@ public class FundTransferService implements IFundTransferService {
 	public int addPayee(Payee payee) {
 		System.out.println("yo");
 		// TODO Auto-generated method stub
-		System.out.println(payee.getCustomer_account_number()+"in ser");
+		System.out.println(payee.getCustomer_account_number() + "in ser");
 		return tdao.addPayee(payee);
 	}
 
@@ -40,121 +41,69 @@ public class FundTransferService implements IFundTransferService {
 	}
 
 	public synchronized boolean confirmTransaction(Transaction tr, long userAccountNumber) {
-		
-		//FINDING TRANSACTION CHARGES
-				float charges = calculateCharges(tr);		
-				System.out.println("charges "+charges);
-				tr.setCharges(charges);
-		
-		//CHECKING BALANCE
+
+		// FINDING TRANSACTION CHARGES
+		float charges = calculateCharges(tr);
+		tr.setCharges(charges);
+
+		// CHECKING BALANCE
 		float balance = edao.checkBalance(userAccountNumber);
-		
-		
-		System.out.println("balance in service "+balance);
-		
-		if(balance<(tr.getAmount()+charges))
-		{
+
+		if (balance < (tr.getAmount() + charges)) {
 			return false;
 		}
-		
-		
-		
-		
-		
-		
-		//GENERATING REFERENCE ID
+
+		// GENERATING REFERENCE ID
 		long referenceId = generateRandom(12);
 		tr.setReference_id(referenceId);
-		
-		
-		//FINDING PAYEE ACCOUNT NUMBER
-	   long accountNumber=tdao.payeeAccountNumber(tr, userAccountNumber);
-       tr.setTo_account(accountNumber);		
-		
-		
-		
-		//GENERATING TIMESTAMP		
-	/*	Date timestamp = getTimeStamp();
-		System.out.println("Timestamp "+timestamp);
-		tr.setTimestamp(timestamp);*/
-		
-		//
+
+		// FINDING PAYEE ACCOUNT NUMBER
+		long accountNumber = tdao.payeeAccountNumber(tr, userAccountNumber);
+		tr.setTo_account(accountNumber);
+
 		tr.setFrom_account(userAccountNumber);
-		
-		
-		
-		System.out.println(tr);
-		
+
 		return tdao.confirmTransaction(tr);
 	}
 
-
 	public static long generateRandom(int length) {
-	    Random random = new Random();
-	    char[] digits = new char[length];
-	    digits[0] = (char) (random.nextInt(9) + '1');
-	    for (int i = 1; i < length; i++) {
-	        digits[i] = (char) (random.nextInt(10) + '0');
-	    }
-	    return Long.parseLong(new String(digits));
+		Random random = new Random();
+		char[] digits = new char[length];
+		digits[0] = (char) (random.nextInt(9) + '1');
+		for (int i = 1; i < length; i++) {
+			digits[i] = (char) (random.nextInt(10) + '0');
+		}
+		return Long.parseLong(new String(digits));
 	}
-	
-	public static float calculateCharges(Transaction tr)	
-	{
-		float charges=0.0f;
+
+	public static float calculateCharges(Transaction tr) {
+		float charges = 0.0f;
 		long amount = tr.getAmount();
-		
-		if(tr.getType().equals("IMPS"))
-		{
-			if(amount<100000) {
-				charges = 5+18/100*5;
-				
-			}
-			else if(amount>100000 && amount<200000)
-			{
-				charges = 15+18/100*15;
+
+		if (tr.getType().equals("IMPS")) {
+			if (amount < 100000) {
+				charges = 5 + 18 / 100 * 5;
+
+			} else if (amount > 100000 && amount < 200000) {
+				charges = 15 + 18 / 100 * 15;
 			}
 		}
-		
-		else  if(tr.getType().equals("RTGS"))
-		{
-			if(amount<500000 && amount>200000) {
-				charges = 25+18/100*25;
-				
-			}
-			else if(amount>500000)
-			{
-				charges = 50+18/100*50;
+
+		else if (tr.getType().equals("RTGS")) {
+			if (amount < 500000 && amount > 200000) {
+				charges = 25 + 18 / 100 * 25;
+
+			} else if (amount > 500000) {
+				charges = 50 + 18 / 100 * 50;
 			}
 		}
-		
+
 		return charges;
 	}
-	
-/*	public static Date getTimeStamp()
-	{
-	     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
-
-		
-		//method 1
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        System.out.println(timestamp);
-
-        //method 2 - via Date
-        Date date = new Date();
-        System.out.println(new Timestamp(date.getTime()));
-
-        //return number of milliseconds since January 1, 1970, 00:00:00 GMT
-        System.out.println(timestamp.getTime());
-
-        //format timestamp
-      return sdf.format(timestamp);
-	}*/
 
 	public boolean confirmTransaction(Transaction tr, Long accountNumber) {
 		// TODO Auto-generated method stub
-		
-		
+
 		return false;
 	}
 
@@ -162,9 +111,5 @@ public class FundTransferService implements IFundTransferService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
-	
-	
 
 }

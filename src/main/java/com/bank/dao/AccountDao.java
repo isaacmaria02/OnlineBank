@@ -41,121 +41,121 @@ public class AccountDao implements IAccountDao
 	public int createAccount(Customer customer, Account account, Address address)
 	{
 		int i=0,j=0,k=0;
-		
+
 		String getCustomerId= "select GR13_customers_seq.nextval from dual";
-	      long customerId = getCustomerSeq(getCustomerId);
-	
-		
+		long customerId = getCustomerSeq(getCustomerId);
+
+
 		String getAccountNumber= "select GR13_accounts_seq.nextval from dual";
 		long accountNumber = getCustomerSeq(getAccountNumber);
-		
-		
+
+
 		String getAddressId= "select GR13_addresses_seq.nextval from dual";
 		long addressId = getCustomerSeq(getAddressId);
-		
-		
+
+
 		String customerTableQuery="insert into GR13_customers values("+customerId+",'"+customer.getFirst_name()+"','"+customer.getMiddle_name()+"','"+customer.getLast_name()+"','"+customer.getFather_name()+"','"+customer.getEmail_id()+"',"+customer.getMobile_number()+","+customer.getAadhar_card()+",'"+customer.getDate_of_birth()+"',"+customer.getAnnual_income()+")";
 
-		
+
 		//ADD ALL THE CONDITIONS
-		
+
 		i= jdbcTemplate.update(customerTableQuery);
-		
-		
-	    
-		
+
+
+
+
 		String accountTableQuery="insert into GR13_accounts values("+accountNumber+",500000,'SAVINGS',"+customerId+")";
 
 		i =  jdbcTemplate.update(accountTableQuery);
-	     
-		
-		
+
+
+
 		String addressTableQuery="insert into GR13_addresses values("+addressId+",'"+address.getAddress_line_1()+"','"+address.getAddress_line_2()+"',"+address.getPin_code()+",'"+address.getCity()+"','"+address.getState()+"',"+customerId+")";
-		
-	//	String query="insert into customers values('"+rf.getUserId()+"','"+rf.getMobileNo()+"','"+rf.getAmount()+"','"+rf.getOperator()+"')";
-		
+
+		//	String query="insert into customers values('"+rf.getUserId()+"','"+rf.getMobileNo()+"','"+rf.getAmount()+"','"+rf.getOperator()+"')";
+
 		i =  jdbcTemplate.update(addressTableQuery);
-		
-		
-		
+
+
+
 		//EMAIL ACCOUNT NUMER
 		//emailAccountNumber(customer, account, address);
-	    	
+
 		return i;
 	}
-	
-	
+
+
 	//search account number before this
-	
+
 	public int register(InternetBankingUser ibu)
 	{
 		int i =0;
-		
-		
-		
+
+
+
 		String register="insert into GR13_internet_banking_users values('"+ibu.getUser_id()+"','"+ibu.getLogin_password()+"','"+ibu.getTransaction_password()+"',0,'enabled','"+ibu.getSecurity_questions()+"','"+ibu.getSecurity_answers()+"',"+ibu.getAccount_number()+")";
 		i= jdbcTemplate.update(register);		
-		
-		
+
+
 		return i;
-		
+
 	}
-	
-	
+
+
 	public boolean login(Login login)
 	{
-	
-		
-		 String validateUserQuery = "select * from GR13_internet_banking_users where GIBU_USER_ID='" + login.getUser_id() + "' and GIBU_LOGIN_PASSWORD='" + login.getPassword() +"'";
-		    List<InternetBankingUser> users = jdbcTemplate.query(validateUserQuery, new UserMapper());
-		    return users.size() > 0 ? true : false;
-		
-		
-		
+
+
+		String validateUserQuery = "select * from GR13_internet_banking_users where GIBU_USER_ID='" + login.getUser_id() + "' and GIBU_LOGIN_PASSWORD='" + login.getPassword() +"'";
+		List<InternetBankingUser> users = jdbcTemplate.query(validateUserQuery, new UserMapper());
+		return users.size() > 0 ? true : false;
+
+
+
 	}
-	
-	
+
+
 	public long getAccountNumber(Login login) {
 		// TODO Auto-generated method stub
-		
-		
-		
-        String getAccountNumberQuery="select GIBU_GA_ACCOUNT_NUMBER from gr13_internet_banking_users where gibu_user_id='"+login.getUser_id()+"'"; 
-		 
+
+
+
+		String getAccountNumberQuery="select GIBU_GA_ACCOUNT_NUMBER from gr13_internet_banking_users where gibu_user_id='"+login.getUser_id()+"'"; 
+
 		long accountNumber =jdbcTemplate.queryForObject(getAccountNumberQuery, Long.class); 	 
-		 
+
 		System.out.println(accountNumber+" got it?");
 		return accountNumber;
-		
-		
+
+
 	}
-	
+
 
 	/*public long getAccountNumber(String userId, long userAccountNumber) {
 		// TODO Auto-generated method stub
-		
-		
-		
+
+
+
         String getAccountNumberQuery="select GIBU_GA_ACCOUNT_NUMBER from gr13_internet_banking_users where gibu_user_id='"+userId+"'"; 
-		 
+
 		long accountNumber =jdbcTemplate.queryForObject(getAccountNumberQuery, Long.class); 	 
-		 
+
 		System.out.println(accountNumber+" paye account no it?");
 		return accountNumber;
-		
-		
+
+
 	}*/
 
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	/*
 	public List<RechargeForm> getAllTransaction(RechargeForm rf){  
 		 String sql="select * from Transactions where mobile=?"; 
-		 
+
 		 return jdbcTemplate.query(sql, new Object[] {rf.getMobileNo()}, new RowMapper<RechargeForm>(){  
 			    public RechargeForm mapRow(ResultSet rs, int rownumber) throws SQLException {  
 			        RechargeForm e=new RechargeForm();  
@@ -163,113 +163,113 @@ public class AccountDao implements IAccountDao
 			        e.setMobileNo(rs.getLong(2));
                      e.setAmount(rs.getInt(3));
                      e.setOperator(rs.getString(4));
-                     
-                    
+
+
 			        System.out.println(e.getAmount());
 			        return e;  
 			    }  
 			    }); 		 
-		 
+
 	 }  
-	
+
 	public User checkBalance(RechargeForm rf){  
 		System.out.println("inside dao"+rf.getUserId());
 		 String sql="select * from users where users_pk="+rf.getUserId(); 
-		 
+
 		 return (User)jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(User.class) ); 	 
-		 
+
 	 }
-	
+
 	public int updateBalance(int balance, RechargeForm rf){  
 		System.out.println("inside update balance "+balance +" "+rf.getUserId());
 	    String sql="update Users set balance='"+balance+"' where users_pk="+rf.getUserId()+"";  
 	    return jdbcTemplate.update(sql);  
 	}  
-	
-*/
-	
-         private long getCustomerSeq(String query) {
-		
+
+	 */
+
+	private long getCustomerSeq(String query) {
+
 		long res = jdbcTemplate.queryForObject(query, Long.class);
 		return res;
 	}
-	
-	  /*   public boolean validateUser(Login login) {
+
+	/*   public boolean validateUser(Login login) {
 		    String sql = "select * from GR13_internet_banking_users where GIBU_USER_ID='" + login.getUser_id() + "' and GIBU_LOGIN_PASSWORD='" + login.getPassword()
 		    + "'";
 		    List<InternetBankingUser> users = jdbcTemplate.query(sql, new UserMapper());
 		    return users.size() > 0 ? true : false;
 		    }*/
-	 
-	 class UserMapper implements RowMapper<InternetBankingUser> {
-		  public InternetBankingUser mapRow(ResultSet rs, int arg1) throws SQLException {
-			  InternetBankingUser user = new InternetBankingUser();
-		    //user.setUsername(rs.getString("username"));
-		  //  user.setPassword(rs.getString("password"));
-		    
-		    user.setUser_id(rs.getString(1));
-		    user.setLogin_password(rs.getString(2));
-		   
-		
-		    return user;
-		  }
-		  
-	 }
 
-	 public float checkBalance(long customerAccountNumber){  
-			//System.out.println("inside dao"+rf.getUserId());
-			 String getBalanceQuery="select ga_balance from gr13_accounts where ga_account_number="+customerAccountNumber; 
-			 
-			 
-			 
-			 float balance = jdbcTemplate.queryForObject(getBalanceQuery, Float.class); 	 
-			 
-			 return balance;
-		 }
-	
-	 
+	class UserMapper implements RowMapper<InternetBankingUser> {
+		public InternetBankingUser mapRow(ResultSet rs, int arg1) throws SQLException {
+			InternetBankingUser user = new InternetBankingUser();
+			//user.setUsername(rs.getString("username"));
+			//  user.setPassword(rs.getString("password"));
+
+			user.setUser_id(rs.getString(1));
+			user.setLogin_password(rs.getString(2));
+
+
+			return user;
+		}
+
+	}
+
+	public float checkBalance(long customerAccountNumber){  
+		//System.out.println("inside dao"+rf.getUserId());
+		String getBalanceQuery="select ga_balance from gr13_accounts where ga_account_number="+customerAccountNumber; 
+
+
+
+		float balance = jdbcTemplate.queryForObject(getBalanceQuery, Float.class); 	 
+
+		return balance;
+	}
+
+
 	public static void emailAccountNumber(Customer customer, Account account, Address address)
 	{
 		String to = customer.getEmail_id();
 
-	      // Sender's email ID needs to be mentioned
-	      String from = "isaac.m@somaiya.edu";
+		// Sender's email ID needs to be mentioned
+		String from = "isaac.m@somaiya.edu";
 
-	      // Assuming you are sending email from localhost
-	      String host = "localhost";
+		// Assuming you are sending email from localhost
+		String host = "localhost";
 
-	      // Get system properties
-	      Properties properties = System.getProperties();
+		// Get system properties
+		Properties properties = System.getProperties();
 
-	      // Setup mail server
-	      properties.setProperty("mail.smtp.host", "8081");
+		// Setup mail server
+		properties.setProperty("mail.smtp.host", "8081");
 
-	      // Get the default Session object.
-	      Session session = Session.getDefaultInstance(properties);
+		// Get the default Session object.
+		Session session = Session.getDefaultInstance(properties);
 
-	      try {
-	         // Create a default MimeMessage object.
-	         MimeMessage message = new MimeMessage(session);
+		try {
+			// Create a default MimeMessage object.
+			MimeMessage message = new MimeMessage(session);
 
-	         // Set From: header field of the header.
-	         message.setFrom(new InternetAddress(from));
+			// Set From: header field of the header.
+			message.setFrom(new InternetAddress(from));
 
-	         // Set To: header field of the header.
-	         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			// Set To: header field of the header.
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
-	         // Set Subject: header field
-	         message.setSubject("Your Account is Activated!");
+			// Set Subject: header field
+			message.setSubject("Your Account is Activated!");
 
-	         // Send the actual HTML message, as big as you like
-	         message.setContent("<h1>Your Account Number is "+account.getAccount_number()+"</h1>", "text/html");
+			// Send the actual HTML message, as big as you like
+			message.setContent("<h1>Your Account Number is "+account.getAccount_number()+"</h1>", "text/html");
 
-	         // Send message
-	         Transport.send(message);
-	         System.out.println("Sent message successfully....");
-	      } catch (MessagingException mex) {
-	         mex.printStackTrace();
-	      }
+			// Send message
+			Transport.send(message);
+			System.out.println("Sent message successfully....");
+		} catch (MessagingException mex) {
+			mex.printStackTrace();
+		}
 	}
-	 
+
 }  
 

@@ -1,31 +1,22 @@
 package com.bank.model;
 
-
-
 public class InternetBankingUser {
-	
 
 	private String user_id;
 
-
 	private String login_password;
 
-	
-		private String transaction_password;
+	private String transaction_password;
 
 	private int attempts;
-	
+
 	private String status;
-	
 
 	private String security_questions;
-	
+
 	private String security_answers;
-	
+
 	private long account_number;
-	
-	
-	
 
 	public long getAccount_number() {
 		return account_number;
@@ -34,7 +25,6 @@ public class InternetBankingUser {
 	public void setAccount_number(long account_number) {
 		this.account_number = account_number;
 	}
-
 
 	public String getUser_id() {
 		return user_id;
@@ -92,7 +82,6 @@ public class InternetBankingUser {
 		this.security_answers = security_answers;
 	}
 
-	
 	public void setAccount_number(int account_number) {
 		this.account_number = account_number;
 	}
@@ -104,12 +93,5 @@ public class InternetBankingUser {
 				+ ", security_questions=" + security_questions + ", security_answers=" + security_answers
 				+ ", account_number=" + account_number + "]";
 	}
-	
-	
-	
-
-
-	
-	
 
 }
