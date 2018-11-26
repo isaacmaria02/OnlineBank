@@ -45,4 +45,12 @@ public class AccountService implements IAccountService {
 		return edao.getAccountNumber(login);
 	}
 
+	
+	@Transactional
+	public float getBalance(long accountNumber) {
+		// TODO Auto-generated method stub
+
+		return edao.checkBalance(accountNumber);
+	}	
+	
 }

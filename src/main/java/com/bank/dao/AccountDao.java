@@ -131,62 +131,6 @@ public class AccountDao implements IAccountDao
 	}
 
 
-	/*public long getAccountNumber(String userId, long userAccountNumber) {
-		// TODO Auto-generated method stub
-
-
-
-        String getAccountNumberQuery="select GIBU_GA_ACCOUNT_NUMBER from gr13_internet_banking_users where gibu_user_id='"+userId+"'"; 
-
-		long accountNumber =jdbcTemplate.queryForObject(getAccountNumberQuery, Long.class); 	 
-
-		System.out.println(accountNumber+" paye account no it?");
-		return accountNumber;
-
-
-	}*/
-
-
-
-
-
-
-
-	/*
-	public List<RechargeForm> getAllTransaction(RechargeForm rf){  
-		 String sql="select * from Transactions where mobile=?"; 
-
-		 return jdbcTemplate.query(sql, new Object[] {rf.getMobileNo()}, new RowMapper<RechargeForm>(){  
-			    public RechargeForm mapRow(ResultSet rs, int rownumber) throws SQLException {  
-			        RechargeForm e=new RechargeForm();  
-			      //  e.setMobileNo(rs.getInt(2)); 
-			        e.setMobileNo(rs.getLong(2));
-                     e.setAmount(rs.getInt(3));
-                     e.setOperator(rs.getString(4));
-
-
-			        System.out.println(e.getAmount());
-			        return e;  
-			    }  
-			    }); 		 
-
-	 }  
-
-	public User checkBalance(RechargeForm rf){  
-		System.out.println("inside dao"+rf.getUserId());
-		 String sql="select * from users where users_pk="+rf.getUserId(); 
-
-		 return (User)jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(User.class) ); 	 
-
-	 }
-
-	public int updateBalance(int balance, RechargeForm rf){  
-		System.out.println("inside update balance "+balance +" "+rf.getUserId());
-	    String sql="update Users set balance='"+balance+"' where users_pk="+rf.getUserId()+"";  
-	    return jdbcTemplate.update(sql);  
-	}  
-
-	 */
 
 	private long getCustomerSeq(String query) {
 
@@ -194,18 +138,11 @@ public class AccountDao implements IAccountDao
 		return res;
 	}
 
-	/*   public boolean validateUser(Login login) {
-		    String sql = "select * from GR13_internet_banking_users where GIBU_USER_ID='" + login.getUser_id() + "' and GIBU_LOGIN_PASSWORD='" + login.getPassword()
-		    + "'";
-		    List<InternetBankingUser> users = jdbcTemplate.query(sql, new UserMapper());
-		    return users.size() > 0 ? true : false;
-		    }*/
 
 	class UserMapper implements RowMapper<InternetBankingUser> {
 		public InternetBankingUser mapRow(ResultSet rs, int arg1) throws SQLException {
 			InternetBankingUser user = new InternetBankingUser();
-			//user.setUsername(rs.getString("username"));
-			//  user.setPassword(rs.getString("password"));
+		
 
 			user.setUser_id(rs.getString(1));
 			user.setLogin_password(rs.getString(2));
@@ -226,6 +163,8 @@ public class AccountDao implements IAccountDao
 
 		return balance;
 	}
+	
+	
 
 
 	public static void emailAccountNumber(Customer customer, Account account, Address address)

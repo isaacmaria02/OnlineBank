@@ -76,15 +76,12 @@
                 <br><br>
                 <label for="Pincode"><b>Pincode</b></label>
                 <input type="number"  name="pin_code" required><br><br>
-                <p1>Debit/ATM Card</p1>
-                <br> <br>
-                <p2>
-                Do you want a debit card ?</p>
-                <input type="checkbox" name="Net Banking" value="Net banking">Opt for Net Banking<br>
-                <input type="checkbox" name="Agree" value="Agree">I agree<br>
+                
+<!--                 <input type="checkbox" name="Net Banking" value="Net banking">Opt for Net Banking<br>
+ -->                <input type="radio" name="Agree" value="Agree">I agree<br>
                 <hr>
                 <p>By creating an account you agree to our terms and conditions.</p>
-                <input type="submit" class="registerbtn" value="Register">
+                <input type="submit" class="registerbtn" value="Register" >
             </div>
         </form>
     </body>

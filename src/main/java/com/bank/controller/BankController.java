@@ -1,5 +1,5 @@
 package com.bank.controller;
-
+import java.util.logging.*;
 import java.io.IOException;
 import java.rmi.ServerException;
 import java.text.ParseException;
@@ -34,6 +34,9 @@ import com.bank.model.Payee;
 import com.bank.model.Transaction;
 import com.bank.service.IAccountService;
 import com.bank.service.IFundTransferService;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+
 
 @Controller
 public class BankController {
@@ -46,7 +49,7 @@ public class BankController {
 	@Autowired
 	private IReportGeneration reportGenerationService;
 
-	@RequestMapping("/open")
+	@RequestMapping(value="/open",method = RequestMethod.POST)
 	public ModelAndView openAccount(ModelAndView model, @ModelAttribute Customer customer, Account account,
 			Address address) {
 
@@ -56,7 +59,7 @@ public class BankController {
 
 		if (i > 0) {
 			model.setViewName("Register");
-			model.addObject("notification");
+			model.addObject("notification","Account created successfully");
 		} else {
 			model.addObject("notification", "Could not create your account");
 			model.setViewName("OpenAccount");
@@ -70,6 +73,7 @@ public class BankController {
 	public ModelAndView register(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
 
 		// CHECK IF ACCOUNT NUMBER EXISTS
+		
 
 		// REGISTER IF IT EXISTS
 		int i = accountService.registerOnline(ibu);
@@ -85,13 +89,12 @@ public class BankController {
 
 	}
 
-	@RequestMapping("/login")
+	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public ModelAndView login(ModelAndView model, @ModelAttribute Login login, HttpSession session) {
 
 		if (accountService.validateUser(login)) {
 
 			long accountNumber = accountService.getAccountNumber(login);
-			// model.addObject("account_number",accountNumber);
 
 			session.setAttribute("account_number", accountNumber);
 
@@ -190,6 +193,22 @@ public class BankController {
 		} else {
 			model.setViewName("TransactionFailure");
 		}
+
+
+		return model;
+
+	}
+	
+	
+	@RequestMapping("/checkBalancet")
+	public ModelAndView checkBalance(HttpSession session, ModelAndView model) {
+
+
+
+
+/*				(Long)session.getAttribute("account_number"));
+*/
+		
 
 
 		return model;

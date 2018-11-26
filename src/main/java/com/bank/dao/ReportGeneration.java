@@ -50,8 +50,8 @@ public class ReportGeneration implements IReportGeneration {
 		// TODO Auto-generated method stub
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");
 
-		String getStatementQuery = "select * from gr13_transactions where gt_timestamp between '" + startDate
-				+ "' and '" + endDate + "' and gt_ga_from_account=" + accountNumber;
+		String getStatementQuery = "select * from gr13_transactions where gt_timestamp >= '" + startDate
+				+ "' and gt_timestamp<='" + endDate + "' and gt_ga_from_account=" + accountNumber;
 
 		List<Transaction> transactionList = (List<Transaction>) jdbcTemplate.query(getStatementQuery,
 				new TransactionMapper());

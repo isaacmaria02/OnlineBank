@@ -62,5 +62,8 @@
         <a href="">User Profile</a><br>
         <a href="">Account Summary</a><br>
         <a href="AccountStatement.jsp">Account Statement</a><br>
+        
+        <br>
+        <a href="">Get Balance</a>
     </body>
 </html>
