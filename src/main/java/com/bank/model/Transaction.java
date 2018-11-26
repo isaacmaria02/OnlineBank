@@ -20,7 +20,7 @@ public class Transaction {
 	private int amount;
 	private long from_account;
 	private long to_account;
-	private String timestamp;
+	private Date timestamp;
 	private String remark;
 	private float charges;
 	private String payee_name;
@@ -83,11 +83,11 @@ public class Transaction {
 		this.amount = amount;
 	}
 	
-	public String getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
-	public void setTimestamp(String timestamp2) {
-		this.timestamp = timestamp2;
+	public void setTimestamp(Date date) {
+		this.timestamp = date;
 	}
 	public String getRemark() {
 		return remark;

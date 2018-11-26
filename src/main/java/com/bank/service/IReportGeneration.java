@@ -1,5 +1,5 @@
 package com.bank.service;
 
-public class IReportGeneration {
+public interface IReportGeneration {
 
 }

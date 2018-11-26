@@ -1,7 +1,7 @@
 package com.bank.service;
 
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import com.bank.model.Transaction;
 
 
 @Service
-public class ReportGeneration implements IReportGeneration {
+public class ReportGeneration  {
 
 	@Autowired
 	ReportGeneration rdao;
@@ -80,6 +80,7 @@ public class ReportGeneration implements IReportGeneration {
 		return edao.getAccountNumber(login);
 	}
 */
+	@Transactional
 
 	public List<Transaction> getAccountStatement(Date from, Date to) {
 		// TODO Auto-generated method stub

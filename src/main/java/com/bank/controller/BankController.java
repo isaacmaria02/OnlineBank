@@ -2,10 +2,10 @@ package com.bank.controller;
 
 import java.io.IOException;
 import java.rmi.ServerException;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -282,27 +282,20 @@ public class BankController
 	{
 		
 //		System.out.println("in controller "+session.getAttribute("account_number"));
+		
+		
+		String fromDate = request.getParameter("from");
+		String toDate =  request.getParameter("to");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
+		
+		fromDate = sdf.format(new Date(fromDate));
+		toDate = sdf.format(new Date(toDate));
 
-	    SimpleDateFormat formatter=new SimpleDateFormat("dd-MMM-yy");  
-
-		
-		Date fromDate,toDate;
-		try {
-			fromDate = (Date) formatter.parse(request.getParameter("from"));
-			
-			toDate = (Date) formatter.parse(request.getParameter("to"));
-			
-			
-			System.out.println(fromDate+" "+toDate);
-
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		
 		
-       // List<Transaction> accountStatement = reportGenerationService.getAccountStatement(fromDate, toDate);
+		
+        List<Transaction> accountStatement = reportGenerationService.getAccountStatement(fromDate, toDate);
 	    
         
 		

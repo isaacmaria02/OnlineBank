@@ -35,6 +35,9 @@
 		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
 	</bean>
 	
+	<bean id="rdao" class="com.bank.dao.ReportGeneration">	
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
 	
 		
 	

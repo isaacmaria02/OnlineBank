@@ -74,9 +74,9 @@ public class FundTransferService implements IFundTransferService {
 		
 		
 		//GENERATING TIMESTAMP		
-		String timestamp = getTimeStamp();
+	/*	Date timestamp = getTimeStamp();
 		System.out.println("Timestamp "+timestamp);
-		tr.setTimestamp(timestamp);
+		tr.setTimestamp(timestamp);*/
 		
 		//
 		tr.setFrom_account(userAccountNumber);
@@ -131,7 +131,7 @@ public class FundTransferService implements IFundTransferService {
 		return charges;
 	}
 	
-	public static String getTimeStamp()
+/*	public static Date getTimeStamp()
 	{
 	     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
@@ -149,7 +149,7 @@ public class FundTransferService implements IFundTransferService {
 
         //format timestamp
       return sdf.format(timestamp);
-	}
+	}*/
 
 	public boolean confirmTransaction(Transaction tr, Long accountNumber) {
 		// TODO Auto-generated method stub

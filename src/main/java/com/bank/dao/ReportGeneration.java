@@ -1,9 +1,9 @@
 package com.bank.dao;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
@@ -26,20 +26,9 @@ public class ReportGeneration implements IReportGeneration {
 	}
 	
 
-	public List<Transaction> getAccountStatement(HttpServletRequest request, HttpServletResponse response) {
-	    SimpleDateFormat formatter=new SimpleDateFormat("dd-MMM-yyyy");  
+	/*public List<Transaction> getAccountStatement(HttpServletRequest request, HttpServletResponse response) {
+	   
 
-		
-	     
-		java.util.Date fromDate,toDate;
-		try {
-		  toDate =  (Date) formatter.parse(request.getParameter("to"))	;
-
-			fromDate = formatter.parse(request.getParameter("from"));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	    
 	    
 	    List<Transaction> list= null;
@@ -51,7 +40,7 @@ public class ReportGeneration implements IReportGeneration {
 	    
 	    return list;
 		 
-	}
+	}*/
 	
 	
 	 class  TransactionMapper implements RowMapper<Transaction> {
@@ -65,7 +54,7 @@ public class ReportGeneration implements IReportGeneration {
 		    transaction.setAmount(rs.getInt(3));
 		    transaction.setFrom_account(rs.getLong(4));
 		    transaction.setTo_account(rs.getLong(5));
-		    //transaction.setTimestamp(rs.getDate(6));
+		    transaction.setTimestamp(rs.getDate(6));
 		    transaction.setRemark(rs.getString(7));
 		    transaction.setCharges(rs.getFloat(7));
 		    
@@ -75,12 +64,35 @@ public class ReportGeneration implements IReportGeneration {
 		  }
 
 }
+
+
+	public List<Transaction> getAccountStatement(String startDate, String endDate) {
+		// TODO Auto-generated method stub
+	    SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");  
+		//String from = formatter.format(startDate);
+		//String to =formatter.format(endDate);
+	    String sartDate = "14-Nov-18";
+	    String edDate = "26-Nov-18";
+	    System.out.println(sartDate+" "+edDate);
+		
+	    String getStatementQuery = "select * from gr13_transactions where gt_timestamp>='"+sartDate+"' and gt_timestamp<='"+edDate+"'";
+
+	    
+		List<Transaction> transactionList = (List<Transaction>)jdbcTemplate.query(getStatementQuery, new TransactionMapper());
+
+		System.out.println(transactionList.size()+" no of transactions");
+         
+		return transactionList;
+		
+	}
+	public List<Transaction> getAccountStatement(Date startDate, Date endDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	 
 	 
 
-		public List<Transaction> getAccountStatement(Date fromDate, Date toDate) {
-			// TODO Auto-generated method stub
-			return null;
-		}
+		
 	 
 }
