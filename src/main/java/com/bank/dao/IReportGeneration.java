@@ -10,7 +10,7 @@ import com.bank.model.Transaction;
 
 public interface IReportGeneration {
 
-	List<Transaction> getAccountStatement(String startDate, String endDate);
+	List<Transaction> getAccountStatement(String startDate, String endDate, long accountNumber);
 	
 	
 	//public List<Transaction> getAccountStatement(@RequestParam("from") @DateTimeFormat(pattern="dd-MMM-YY") Date fromDate, @RequestParam("to") @DateTimeFormat(pattern="dd-MMM-YY") Date toDate);

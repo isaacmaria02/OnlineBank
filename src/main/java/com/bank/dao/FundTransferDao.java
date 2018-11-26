@@ -92,7 +92,7 @@ public class FundTransferDao  {
         
         if(i>0 && j<=0)
         {
-        	updateCustomerBalance = "update gr13_accounts set ga_balance=ga_balance+"+tr.getAmount()+" where ga_account_number="+tr.getFrom_account();
+        	updateCustomerBalance = "update gr13_accounts set ga_balance=ga_balance+"+(tr.getAmount()+tr.getCharges())+" where ga_account_number="+tr.getFrom_account();
     		i = jdbcTemplate.update(updateCustomerBalance);
         	
         	//DEDUCTED FROM CUSTOMER BUT NOT ADDED TO PAYEE
@@ -128,7 +128,7 @@ public class FundTransferDao  {
 		
 		else {
 			//IF TRANSACTION IS NOT SAVED, CREDIT TO CUSTOMER AND 
-			updateCustomerBalance = "update gr13_accounts set ga_balance=ga_balance+"+tr.getAmount()+" where ga_account_number="+tr.getFrom_account();
+			updateCustomerBalance = "update gr13_accounts set ga_balance=ga_balance+"+(tr.getAmount()+tr.getCharges())+" where ga_account_number="+tr.getFrom_account();
     		i = jdbcTemplate.update(updateCustomerBalance);
         	
     		updateCustomerBalance = "update gr13_accounts set ga_balance=ga_balance-"+tr.getAmount()+" where ga_account_number="+tr.getTo_account();

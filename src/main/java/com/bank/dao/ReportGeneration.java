@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -56,7 +55,7 @@ public class ReportGeneration implements IReportGeneration {
 		    transaction.setTo_account(rs.getLong(5));
 		    transaction.setTimestamp(rs.getDate(6));
 		    transaction.setRemark(rs.getString(7));
-		    transaction.setCharges(rs.getFloat(7));
+		    transaction.setCharges(rs.getFloat(8));
 		    
 		   
 		
@@ -66,29 +65,26 @@ public class ReportGeneration implements IReportGeneration {
 }
 
 
-	public List<Transaction> getAccountStatement(String startDate, String endDate) {
+	public List<Transaction> getAccountStatement(String startDate, String endDate, long accountNumber) {
 		// TODO Auto-generated method stub
 	    SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");  
 		//String from = formatter.format(startDate);
 		//String to =formatter.format(endDate);
-	    String sartDate = "14-Nov-18";
-	    String edDate = "26-Nov-18";
-	    System.out.println(sartDate+" "+edDate);
+	    //String sartDate = "14-Nov-18";
+	   // String edDate = "26-Nov-18";
+	 //   System.out.println(sartDate+" "+edDate);
 		
-	    String getStatementQuery = "select * from gr13_transactions where gt_timestamp>='"+sartDate+"' and gt_timestamp<='"+edDate+"'";
+	    String getStatementQuery = "select * from gr13_transactions where gt_timestamp between '"+startDate+"' and '"+endDate+"' and gt_ga_from_account="+accountNumber;
 
 	    
 		List<Transaction> transactionList = (List<Transaction>)jdbcTemplate.query(getStatementQuery, new TransactionMapper());
 
-		System.out.println(transactionList.size()+" no of transactions");
+	//	System.out.println(transactionList.size()+" no of transactions");
          
 		return transactionList;
 		
 	}
-	public List<Transaction> getAccountStatement(Date startDate, Date endDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	 
 	 

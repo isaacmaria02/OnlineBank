@@ -110,7 +110,7 @@ public class FundTransferService implements IFundTransferService {
 				charges = 5+18/100*5;
 				
 			}
-			else if(amount<200000)
+			else if(amount>100000 && amount<200000)
 			{
 				charges = 15+18/100*15;
 			}

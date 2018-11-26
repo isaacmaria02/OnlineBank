@@ -278,7 +278,7 @@ public class BankController
 	
 
 	@RequestMapping("/AccountStatement")
-	public ModelAndView getAccountStatement(HttpServletRequest request, HttpServletResponse response, ModelAndView model)
+	public ModelAndView getAccountStatement(HttpServletRequest request, HttpServletResponse response, ModelAndView model, HttpSession session)
 	{
 		
 //		System.out.println("in controller "+session.getAttribute("account_number"));
@@ -286,18 +286,34 @@ public class BankController
 		
 		String fromDate = request.getParameter("from");
 		String toDate =  request.getParameter("to");
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
 		
-		fromDate = sdf.format(new Date(fromDate));
-		toDate = sdf.format(new Date(toDate));
+		SimpleDateFormat current = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat requiredFormat = new SimpleDateFormat("dd-MMM-yy");
+		Date from=null;
+		Date to=null;
+		try {
+			from = current.parse(fromDate);
+			to = current.parse(toDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		fromDate = requiredFormat.format(from);
+		toDate = requiredFormat.format(to);
+
+		
+	
 
 		
 		
 		
 		
-        List<Transaction> accountStatement = reportGenerationService.getAccountStatement(fromDate, toDate);
-	    
-        
+        List<Transaction> accountStatement = reportGenerationService.getAccountStatement(fromDate, toDate, (Long) session.getAttribute("account_number"));
+	    //model.addObject("account_statement",accountStatement);
+	
+        System.out.println(accountStatement.size()+" in controller");
+        model.addObject("AccountStatementList",accountStatement);
 		
 		
 		model.setViewName("AccountStatement");
