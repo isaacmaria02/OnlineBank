@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -41,6 +43,7 @@ public class ReportGeneration implements IReportGeneration {
 			transaction.setRemark(rs.getString(7));
 			transaction.setCharges(rs.getFloat(8));
 			
+			
 
 			return transaction;
 		}
@@ -51,13 +54,34 @@ public class ReportGeneration implements IReportGeneration {
 		// TODO Auto-generated method stub
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");
 
-		String getStatementQuery = "select * from gr13_transactions where gt_timestamp >= '" + startDate
+		String getStatementFromQuery = "select * from gr13_transactions where gt_timestamp >= '" + startDate
 				+ "' and gt_timestamp<='" + endDate + "' and gt_ga_from_account=" + accountNumber;
 
-		List<Transaction> transactionList = (List<Transaction>) jdbcTemplate.query(getStatementQuery,
+		List<Transaction> transactionList1 = (List<Transaction>) jdbcTemplate.query(getStatementFromQuery,
 				new TransactionMapper());
+		
+		transactionList1.stream().forEach(debit -> debit.setStatus("Debit"));
 
 		
+		String getStatementToQuery = "select * from gr13_transactions where gt_timestamp >= '" + startDate
+				+ "' and gt_timestamp<='" + endDate + "' and GT_TO_ACCOUNT=" + accountNumber;
+		
+		List<Transaction> transactionList2 = (List<Transaction>) jdbcTemplate.query(getStatementToQuery,
+				new TransactionMapper());
+		
+		transactionList2.stream().forEach(credit -> credit.setStatus("Credit"));
+		transactionList2.stream().forEach(credit -> credit.setCharges(0));
+
+		
+
+
+		
+		List<Transaction> transactionList = new ArrayList<Transaction>(transactionList1);
+		transactionList.addAll(transactionList2);
+		
+		
+     
+		transactionList.sort(Comparator.comparing(o -> ((Transaction) o).getTimestamp()).reversed());
 
 		
 		return transactionList;

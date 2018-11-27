@@ -27,6 +27,7 @@
                         <th>Date</th>
                         <th>Remark</th>
                         <th>Transaction Charges</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,7 @@
                             <td>${record.timestamp }</td>
                             <td>${record.remark }</td>
                             <td>${record.charges }</td>
+                            <td>${record.status }</td>
                         </tr>
                     </c:forEach>
                 </tbody>
