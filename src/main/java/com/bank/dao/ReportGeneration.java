@@ -40,6 +40,7 @@ public class ReportGeneration implements IReportGeneration {
 			transaction.setTimestamp(rs.getDate(6));
 			transaction.setRemark(rs.getString(7));
 			transaction.setCharges(rs.getFloat(8));
+			
 
 			return transaction;
 		}
@@ -56,6 +57,9 @@ public class ReportGeneration implements IReportGeneration {
 		List<Transaction> transactionList = (List<Transaction>) jdbcTemplate.query(getStatementQuery,
 				new TransactionMapper());
 
+		
+
+		
 		return transactionList;
 
 	}

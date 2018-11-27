@@ -2,8 +2,8 @@ package com.bank.model;
 
 public class Login {
 
-	String user_id;
-	String password;
+	private String user_id;
+	private String password;
 
 	public String getUser_id() {
 		return user_id;

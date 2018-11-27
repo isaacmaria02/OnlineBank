@@ -64,6 +64,6 @@
         <a href="AccountStatement.jsp">Account Statement</a><br>
         
         <br>
-        <a href="">Get Balance</a>
+        <a href="demo">Get Balance</a>
     </body>
 </html>

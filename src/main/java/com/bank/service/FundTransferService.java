@@ -60,6 +60,10 @@ public class FundTransferService implements IFundTransferService {
 		// FINDING PAYEE ACCOUNT NUMBER
 		long accountNumber = tdao.payeeAccountNumber(tr, userAccountNumber);
 		tr.setTo_account(accountNumber);
+		
+		//FINDING PAYEE NAME
+		
+		
 
 		tr.setFrom_account(userAccountNumber);
 

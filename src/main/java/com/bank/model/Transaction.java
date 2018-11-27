@@ -25,14 +25,30 @@ public class Transaction {
 	private String remark;
 	private float charges;
 	private String payee_name;
+	private String status;
+	
+	
+	
 
 	@Override
 	public String toString() {
-		return "Transaction [reference_id=" + reference_id + ", type=" + type + ", amount=" + amount + ", from_account="
-				+ from_account + ", to_account=" + to_account + ", timestamp=" + timestamp + ", remark=" + remark
-				+ ", charges=" + charges + ", payee_name=" + payee_name + "]";
+		return "Transaction [jdbcTemplate=" + jdbcTemplate + ", reference_id=" + reference_id + ", type=" + type
+				+ ", amount=" + amount + ", from_account=" + from_account + ", to_account=" + to_account
+				+ ", timestamp=" + timestamp + ", remark=" + remark + ", charges=" + charges + ", payee_name="
+				+ payee_name + ", status=" + status + "]";
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	
+	
+	
 	public long getFrom_account() {
 		return from_account;
 	}
