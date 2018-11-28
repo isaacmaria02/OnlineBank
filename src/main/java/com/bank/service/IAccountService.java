@@ -18,5 +18,9 @@ public interface IAccountService {
 	public boolean validateUser(Login login);
 
 	public long getAccountNumber(Login login);
+	
+	public float getBalance(long accountNumber);
+	
+	public Account getSummary(long accountNumber);
 
 }

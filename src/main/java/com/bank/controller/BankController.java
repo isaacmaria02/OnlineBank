@@ -220,15 +220,24 @@ public class BankController {
 	}
 	
 	
-	@RequestMapping("/checkBalance")
-	public ModelAndView checkBalance(HttpSession session, ModelAndView model) {
-
-
-
-
-/*				(Long)session.getAttribute("account_number"));
-*/
+	
+	
+	@RequestMapping("/summary")
+	public ModelAndView accountSummary(ModelAndView model, HttpSession session) {
+		// float balance = accountService.getBalance((Long) session.getAttribute("account_number"));
 		
+         Account userAccount = accountService.getSummary((Long) session.getAttribute("account_number"));
+		
+		// model.addObject("balance", balance);
+    
+         
+         model.addObject("summary", userAccount);
+         
+         
+         
+         model.setViewName("AccountSummary");
+       
+
 
 
 		return model;

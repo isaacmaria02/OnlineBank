@@ -51,6 +51,12 @@ public class AccountService implements IAccountService {
 		// TODO Auto-generated method stub
 
 		return edao.checkBalance(accountNumber);
+	}
+
+	@Override
+	public Account getSummary(long accountNumber) {
+		// TODO Auto-generated method stub
+		return edao.getSummary(accountNumber);
 	}	
 	
 }

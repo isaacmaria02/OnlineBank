@@ -16,6 +16,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataAccessException.*; 
 import org.springframework.jdbc.core.ResultSetExtractor;import org.springframework.jdbc.core.RowMapper;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bank.model.Account;
 import com.bank.model.AccountNumber;
@@ -28,6 +29,8 @@ import com.bank.model.Payee;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.activation.*;
 
@@ -132,6 +135,10 @@ public class AccountDao implements IAccountDao
 
 		String validateUserQuery = "select * from GR13_internet_banking_users where GIBU_USER_ID='" + login.getUser_id() + "' and GIBU_LOGIN_PASSWORD='" + login.getPassword() +"'";
 		List<InternetBankingUser> users = jdbcTemplate.query(validateUserQuery, new UserMapper());
+		
+		
+		
+		
 		return users.size() > 0 ? true : false;
 
 
@@ -155,7 +162,7 @@ public class AccountDao implements IAccountDao
 
 
 
-	private long getCustomerSeq(String query) {
+	public long getCustomerSeq(String query) {
 
 		long res = jdbcTemplate.queryForObject(query, Long.class);
 		return res;
@@ -190,7 +197,7 @@ public class AccountDao implements IAccountDao
 	
 
 
-	public static void emailAccountNumber(Customer customer, Account account, Address address)
+	public  void emailAccountNumber(Customer customer, Account account, Address address)
 	{
 		String to = customer.getEmail_id();
 		System.out.println(to);
@@ -233,6 +240,36 @@ public class AccountDao implements IAccountDao
 			mex.printStackTrace();
 		}
 	}
+	@Override
+	public Account getSummary(long customerAccountNumber) {
+		// TODO Auto-generated method stub
+		
+		String getSummaryQuery="select * from gr13_accounts where ga_account_number="+customerAccountNumber; 
+
+
+
+		Account userAccount = jdbcTemplate.queryForObject(getSummaryQuery, new AccountMapper()); 	 
+		
+		
+		return userAccount;
+	}
+	
+	
+	class AccountMapper implements RowMapper<Account> {
+		public Account mapRow(ResultSet rs, int arg1) throws SQLException {
+			Account user = new Account();
+		
+			user.setCustomer_id(rs.getLong(4));
+			user.setAccount_number(rs.getLong(1));
+			user.setBalance(rs.getFloat(2));
+            user.setAccount_type(rs.getString(3));
+
+
+			return user;
+		}
+
+	}
+	
 
 }  
 
