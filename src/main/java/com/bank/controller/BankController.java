@@ -109,6 +109,7 @@ public class BankController {
 			model.setViewName("Dashboard");
 
 		} else {
+			
 			model.setViewName("Login");
 
 		}
@@ -260,8 +261,15 @@ public class BankController {
 		List<Transaction> accountStatement = reportGenerationService.getAccountStatement(fromDate, toDate,
 				(Long) session.getAttribute("account_number"));
 
+		if(accountStatement.size()!=0) {
 		model.addObject("AccountStatementList", accountStatement);
-
+        
+		}
+		else
+		{ 
+			model.addObject("statement","No Results Found");
+		
+		}
 		model.setViewName("AccountStatement");
 
 		return model;

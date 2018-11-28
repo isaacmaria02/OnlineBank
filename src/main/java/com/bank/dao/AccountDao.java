@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.PreparedStatementCallback;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -104,9 +105,20 @@ public class AccountDao implements IAccountDao
 		int i =0;
 
 
+		
+//	   String register="insert into GR13_internet_banking_users values(?,?,?,?,?,?,?,?)";
+				
+		
+		i= jdbcTemplate.update("insert into GR13_internet_banking_users values(?,?,?,?,?,?,?,?)", new Object[] {ibu.getUser_id(), ibu.getLogin_password(), ibu.getTransaction_password(),0,"enabled", ibu.getSecurity_questions(), ibu.getSecurity_answers(), ibu.getAccount_number()});		
+		
+		
 
-		String register="insert into GR13_internet_banking_users values('"+ibu.getUser_id()+"','"+ibu.getLogin_password()+"','"+ibu.getTransaction_password()+"',0,'enabled','"+ibu.getSecurity_questions()+"','"+ibu.getSecurity_answers()+"',"+ibu.getAccount_number()+")";
-		i= jdbcTemplate.update(register);		
+	/*	String register="insert into GR13_internet_banking_users values('"+ibu.getUser_id()+"','"+ibu.getLogin_password()+"','"+ibu.getTransaction_password()+"',0,'enabled','"+ibu.getSecurity_questions()+"','"+ibu.getSecurity_answers()+"',"+ibu.getAccount_number()+")";
+		
+		
+		
+		
+		i= jdbcTemplate.update(register);		*/
 
 
 		return i;

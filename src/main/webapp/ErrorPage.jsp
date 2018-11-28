@@ -36,7 +36,7 @@
                            <center>   <h1>${pageContext.errorData.statusCode}</h1> </center>
 			<center><h2>Oops! ${pageContext.exception}</h2>
 			<p>${pageContext.errorData.requestURI}</p>
-			<a href="Login.jsp">Back to login page</a>
+			<a  href="Login.jsp">Back to login page</a>
 		</div>
 	</div>
 

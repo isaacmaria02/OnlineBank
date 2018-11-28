@@ -147,6 +147,33 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="custombutton.css">
+    
+    
+    <style>
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color:#f2f2f2;}
+
+#customers tr:hover {background-color: #ccffe6;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #0099ff;
+    color: white;
+}
+</style>
+    
 
   </head>
 
@@ -355,9 +382,10 @@
 
             <!-- <input type="submit" value="Get Account Statement"><br> -->
         </form>
+           
         <br><br>
         <c:if test="${not empty AccountStatementList}">
-            <table border="1">
+            <table id="customers" border="1">
                 <thead>
                     <tr>
                         <th>Reference ID</th>
@@ -390,7 +418,7 @@
         </c:if>
 
 
-
+   ${statement}
         <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->
