@@ -459,7 +459,7 @@
              Payee Account Number : <input type="number" name="payee_account_number"><br>
             Name : <input type="text" name="name"><br>
             NickName: <input type="text" name="nick_name"><br>
-            <input type="submit">
+            <input value="Add Payee" class="btn btn-primary dropdown-toggle dropdown-toggle-split"  type="submit">
         </form>
             
 

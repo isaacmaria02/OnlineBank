@@ -464,10 +464,10 @@
         
          <h3>Delete Payee</h3>
         <form action="DeletePayee">
-            Delete Payee by Name <input type="text" name="payee_name"> 
+          <br><br>  <h4>Delete Payee by Name</h4> <input type="text" name="payee_name">
             
              
-            <input type="submit">
+            <input value="Delete Payee" class="btn btn-primary dropdown-toggle dropdown-toggle-split"  type="submit">
         </form>
             
             

@@ -160,7 +160,7 @@
 <label for="Date Of Birth"><b>Date Of Birth* <span class="fa fa-calendar"></span>:</b></label><br>
     <input type="date"  name="date_of_birth" value="1990-01-01" required><br>
     
-    <label for="Annual_Income"><b>Annual Income :</b></label><br>
+    <label for="Annual_Income"><b>Annual Income* :</b></label><br>
     <input type="text"  name="annual_income" pattern="[1-9]{4-9}" ><br>
 
  <p><b>Address <span class="fa fa-address-card"></span>:</b></p><br>

@@ -307,8 +307,8 @@
            
             <c:if test="${not empty PayeeList}">
                 <br><br>
-        Search   <input class="form-control" id="searchPayee" type="text" placeholder="Search..">
-        <div >
+        <h3>Search</h3>   <input class="form-control" id="searchPayee" type="text" placeholder="Search..">
+       <br><br> <div >
                 <table border="1" id="">
                     <thead>
                         <tr>

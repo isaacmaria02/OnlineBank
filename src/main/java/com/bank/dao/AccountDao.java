@@ -136,7 +136,6 @@ public class AccountDao implements IAccountDao
 
 		long accountNumber =jdbcTemplate.queryForObject(getAccountNumberQuery, Long.class); 	 
 
-		System.out.println(accountNumber+" got it?");
 		return accountNumber;
 
 

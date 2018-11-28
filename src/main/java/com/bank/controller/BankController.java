@@ -260,7 +260,6 @@ public class BankController {
 		List<Transaction> accountStatement = reportGenerationService.getAccountStatement(fromDate, toDate,
 				(Long) session.getAttribute("account_number"));
 
-		System.out.println(accountStatement.size() + " in controller");
 		model.addObject("AccountStatementList", accountStatement);
 
 		model.setViewName("AccountStatement");

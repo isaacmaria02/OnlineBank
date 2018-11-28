@@ -462,9 +462,9 @@
             <br>
             Remarks (Optional) : <input class="readonly" type="text" name="remark">
             <br>
-            <input id="transfer" type="button" value="Transfer">
-            <input id="backbtn" class="hidden" style="display:none;" type="button" value="Back">
-            <input id="submitbtn" class="hidden" style="display:none;" type="submit" value="Confirm">
+            <input class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="transfer" type="button" value="Transfer">
+            <input id="backbtn" class="hidden btn btn-primary dropdown-toggle dropdown-toggle-split" style="display:none;" type="button" value="Back">
+            <input id="submitbtn" class="hidden btn btn-primary dropdown-toggle dropdown-toggle-split" style="display:none;" type="submit" value="Confirm">
         </form>
             
             
