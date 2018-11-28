@@ -158,7 +158,7 @@
     <input type="text" placeholder="Enter Aadhar No" name="aadhar_card" pattern = "[2-9]{1}[0-9]{11}" title="Please enter a 12 digit aadhar number" required><br> 
 
 <label for="Date Of Birth"><b>Date Of Birth* <span class="fa fa-calendar"></span>:</b></label><br>
-    <input type="date"  name="date_of_birth" required><br>
+    <input type="date"  name="date_of_birth" value="1990-01-01" required><br>
     
     <label for="Annual_Income"><b>Annual Income :</b></label><br>
     <input type="text"  name="annual_income" pattern="[1-9]{4-9}" ><br>

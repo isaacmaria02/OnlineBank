@@ -126,8 +126,11 @@ public class BankController {
 		int i = fundTransferService.addPayee(payee);
 
 		if (i > 0)
-			model.setViewName("Dashboard");
+		{
+			model.addObject("payee_status", "Payee added successfully");
 
+			model.setViewName("Dashboard");
+		}
 		else
 			model.setViewName("Payee");
 
@@ -145,13 +148,13 @@ public class BankController {
 				(Long) session.getAttribute("account_number"));
 
 		if (i > 0) {
-			model.addObject("msg", "Deleted Successfully");
+			model.addObject("payee_status", "Payee Deleted Successfully");
 			
 			
 
 			model.setViewName("Dashboard");
 		} else {
-			model.addObject("msg", "Does not exist");
+			model.addObject("payee_status", "Does not exist");
 			model.setViewName("Dashboard");
 		}
 
@@ -201,9 +204,13 @@ public class BankController {
 				(Long) session.getAttribute("account_number"));
 
 		if (isSuccessful) {
-			model.setViewName("TransactionSucess");
+			model.addObject("transaction","Fund Transfer Successful");
+			model.setViewName("Dashboard");
+			
 		} else {
-			model.setViewName("TransactionFailure");
+	       model.addObject("transaction","Transaction Failure");
+
+			model.setViewName("Dashboard");
 		}
 
 

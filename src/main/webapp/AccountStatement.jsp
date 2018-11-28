@@ -229,7 +229,7 @@
           </div> -->
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="charts.html">
+          <a class="nav-link" href="FundTransfer">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Fund Transfer</span></a>
         </li>
@@ -300,9 +300,10 @@
    View Details
    </button>
    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">IMPS</a>
+        <a class="dropdown-item" href="AddPayee.jsp">Add Payee</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">RTGS</a>
+      <a class="dropdown-item" href="DeletePayee.jsp">Delete Payee</a>
+          <a class="dropdown-item" href="DisplayPayee">Display Payee</a>
    </div>
 </div>
 
@@ -345,7 +346,8 @@
 
        <!-- BODY -->
        
-        <h3>Account Statement</h3><br><br>
+        <h3>Account Statement</h3>
+        <br><br>
         <form action="AccountStatement">
             From<input type="date" name="from">
             To <input type="date" name="to">

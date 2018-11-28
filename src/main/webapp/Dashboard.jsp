@@ -331,8 +331,8 @@
         </div>
             
             
-            
-
+            ${transaction}
+            ${payee_status}
 
 
         <!-- /.container-fluid -->
