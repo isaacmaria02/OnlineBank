@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -82,10 +83,14 @@ public class ReportGeneration implements IReportGeneration {
 		
      
 		transactionList.sort(Comparator.comparing(o -> ((Transaction) o).getTimestamp()).reversed());
+	//	Collections.sort(transactionList, (p1, p2) -> p1.getTimestamp() - p2.getTimestamp());
 
-		
+	
 		return transactionList;
 
 	}
+	
+	
+		
 
 }

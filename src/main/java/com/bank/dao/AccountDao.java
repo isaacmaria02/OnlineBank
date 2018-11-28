@@ -17,6 +17,7 @@ import org.springframework.dao.DataAccessException.*;
 import org.springframework.jdbc.core.ResultSetExtractor;import org.springframework.jdbc.core.RowMapper;
 
 import com.bank.model.Account;
+import com.bank.model.AccountNumber;
 import com.bank.model.Address;
 import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
@@ -26,6 +27,7 @@ import com.bank.model.Payee;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.servlet.http.HttpSession;
 import javax.activation.*;
 
 
@@ -38,7 +40,7 @@ public class AccountDao implements IAccountDao
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-	public int createAccount(Customer customer, Account account, Address address)
+	public long createAccount(Customer customer, Account account, Address address)
 	{
 		int i=0,j=0,k=0;
 
@@ -77,11 +79,19 @@ public class AccountDao implements IAccountDao
 		i =  jdbcTemplate.update(addressTableQuery);
 
 
+		if(i<=0)
+			return 0;
+		
 
 		//EMAIL ACCOUNT NUMER
-		//emailAccountNumber(customer, account, address);
-
-		return i;
+	//	emailAccountNumber(customer, account, address);
+		
+/*		
+		AccountNumber registeredUser = new AccountNumber();
+        System.out.println(accountNumber+" inside account dao");
+        registeredUser.setAccountNumber(accountNumber);
+		*/
+		return accountNumber;
 	}
 
 
@@ -170,6 +180,7 @@ public class AccountDao implements IAccountDao
 	public static void emailAccountNumber(Customer customer, Account account, Address address)
 	{
 		String to = customer.getEmail_id();
+		System.out.println(to);
 
 		// Sender's email ID needs to be mentioned
 		String from = "isaac.m@somaiya.edu";

@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bank.dao.AccountDao;
 import com.bank.dao.IReportGeneration;
 import com.bank.model.Account;
+import com.bank.model.AccountNumber;
 import com.bank.model.Address;
 import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
@@ -53,12 +54,19 @@ public class BankController {
 	public ModelAndView openAccount(ModelAndView model, @ModelAttribute Customer customer, Account account,
 			Address address) {
 
-		account.setCustomer_id(customer.getCustomer_id());
+		//System.out.println("inside open acc controller");
+	//	System.out.println(customer.getCustomer_id());
+		
+		
+	//	account.setCustomer_id(customer.getCustomer_id());
 
-		int i = accountService.openAccount(customer, account, address);
+		long accountNum = accountService.openAccount(customer, account, address);
 
-		if (i > 0) {
-			model.setViewName("Register");
+		if (accountNum > 0) {
+			model.setViewName("AccountInformation");
+			
+			model.addObject("user_account_number",accountNum);
+			
 			model.addObject("notification","Account created successfully");
 		} else {
 			model.addObject("notification", "Could not create your account");

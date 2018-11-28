@@ -11,7 +11,7 @@ import com.bank.model.Payee;
 
 public interface IAccountService {
 
-	public int openAccount(Customer customer, Account account, Address address);
+	public long openAccount(Customer customer, Account account, Address address);
 
 	public int registerOnline(InternetBankingUser ibu);
 

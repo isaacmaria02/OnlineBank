@@ -47,5 +47,6 @@
                 </tbody>
             </table>
         </c:if>
+        <a href="Download">Download</a>
     </body>
 </html>

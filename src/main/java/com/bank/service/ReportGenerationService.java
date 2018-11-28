@@ -18,10 +18,10 @@ import com.bank.model.Payee;
 import com.bank.model.Transaction;
 
 @Service
-public class ReportGeneration {
+public class ReportGenerationService implements IReportGenerationService{
 
 	@Autowired
-	ReportGeneration rdao;
+	ReportGenerationService rdao;
 
 	@Transactional
 
@@ -29,5 +29,13 @@ public class ReportGeneration {
 		// TODO Auto-generated method stub
 		return rdao.getAccountStatement(from, to);
 	}
+
+	@Override
+	public void generateReport() {
+		
+		
+	}
+
+
 
 }

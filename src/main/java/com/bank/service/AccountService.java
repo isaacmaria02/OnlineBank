@@ -21,7 +21,7 @@ public class AccountService implements IAccountService {
 	AccountDao edao;
 
 	@Transactional
-	public int openAccount(Customer customer, Account account, Address address) {
+	public long openAccount(Customer customer, Account account, Address address) {
 		// TODO Auto-generated method stub
 		return edao.createAccount(customer, account, address);
 	}
