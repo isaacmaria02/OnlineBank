@@ -9,7 +9,9 @@
     <body>
         <h3>Delete Payee</h3>
         <form action="DeletePayee">
-            Delete Payee by Name<input type="text" name="payee_name">
+            Delete Payee by Name <input type="text" name="payee_name"> 
+            
+             
             <input type="submit">
         </form>
     </body>

@@ -146,6 +146,8 @@ public class BankController {
 
 		if (i > 0) {
 			model.addObject("msg", "Deleted Successfully");
+			
+			
 
 			model.setViewName("Dashboard");
 		} else {
@@ -178,6 +180,8 @@ public class BankController {
 
 		List<Payee> payeeList = fundTransferService.displayPayee((Long) session.getAttribute("account_number"));
 
+		System.out.println(payeeList.size());
+		
 		model.addObject("PayeeList", payeeList);
 
 		model.setViewName("FundTransferForm");
@@ -208,7 +212,7 @@ public class BankController {
 	}
 	
 	
-	@RequestMapping("/checkBalancet")
+	@RequestMapping("/checkBalance")
 	public ModelAndView checkBalance(HttpSession session, ModelAndView model) {
 
 

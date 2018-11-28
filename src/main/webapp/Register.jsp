@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<!-- 
+
         <form action="register">
             Account Number <input type="number"  name="account_number"><br>
             User ID <input type="text" name="user_id"><br>
@@ -21,7 +21,7 @@
             Security Answer <input type="text" name="security_answers">
             <input type="submit" value="Register">
         </form>
-      -->
+      
 
 
 

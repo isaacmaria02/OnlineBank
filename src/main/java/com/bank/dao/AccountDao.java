@@ -192,7 +192,7 @@ public class AccountDao implements IAccountDao
 		Properties properties = System.getProperties();
 
 		// Setup mail server
-		properties.setProperty("mail.smtp.host", "8081");
+		properties.setProperty("mail.smtp.host", "8082");
 
 		// Get the default Session object.
 		Session session = Session.getDefaultInstance(properties);
