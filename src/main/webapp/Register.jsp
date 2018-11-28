@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 
-        <form action="register">
+<!--         <form action="register">
             Account Number <input type="number"  name="account_number"><br>
             User ID <input type="text" name="user_id"><br>
             Login Password <input type="password" name="login_password"><br>
@@ -21,7 +21,7 @@
             Security Answer <input type="text" name="security_answers">
             <input type="submit" value="Register">
         </form>
-      
+       -->
 
 
 
@@ -62,9 +62,9 @@
 
     <h1 align="center">Register for Internet Banking</h1>
    <center> <h4>Please fill in the form to avail Internet Banking</h2></center>
-    <hr>    
+<!--     <hr>    
   <label for="Account No"><b>Account Number *<span class="fa fa-address-card"></span>  :</b></label><br>
-    <input type="text" placeholder="Enter your account number" name="account_number" required><br>
+    <input type="number" placeholder="Enter your account number" name="account_number" required><br>
 
     <label for="User Id"><b>Set User Id * <span class="fa fa-user-circle"></span> :</b></label><br>
     <input type="text" placeholder="Set your user id" name="user_id" required><br>
@@ -92,7 +92,26 @@
 <label for="Security Answer "><b>Your Answer * <span class="fa fa-pencil"></span>:</b></label><br>
 <input type="text" placeholder="Enter your security answer" name="security_answers" required><br>
    
-    <input type="submit" class="registerbtn" value="Register">
+    <input type="submit" class="registerbtn" value="Register"> -->
+    
+    
+    
+              Account Number <input type="number"  name="account_number"><br>
+            User ID <input type="text" name="user_id"><br>
+            Login Password <input type="password" name="login_password"><br>
+            Confirm Login Password <input type="password"><br>
+            Transaction Password <input type="password" name="transaction_password"><br>
+            Confirm Transaction Password <input type="password"><br>
+            Security Question
+            <select name="security_questions">
+                <option value="select">select</option>
+                <option value="What was your childhood nickname?">What was your childhood nickname?</option>
+                <option value="What is your favourite movie?">What is your favourite movie?</option>
+                <option value="What is your favourite team?">What is your favourite team?</option>
+            </select>
+            <br>
+            Security Answer <input type="text" name="security_answers">
+            <input type="submit" value="Register">
   
   </form>
   <div class="container loginin">

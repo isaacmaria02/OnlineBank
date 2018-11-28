@@ -80,8 +80,10 @@ public class AccountDao implements IAccountDao
 
 
 		if(i<=0)
+		{
+			//accountNumber=0;
 			return 0;
-		
+		}
 
 		//EMAIL ACCOUNT NUMER
 	//	emailAccountNumber(customer, account, address);

@@ -77,10 +77,10 @@ public class BankController {
 
 	}
 
-	@RequestMapping("/register")
+	@RequestMapping(value="/register",method = RequestMethod.POST)
 	public ModelAndView register(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
 
-		// CHECK IF ACCOUNT NUMBER EXISTS
+		
 		
 
 		// REGISTER IF IT EXISTS
