@@ -10,7 +10,11 @@ import org.springframework.jdbc.core.RowMapper;
 import com.bank.model.Payee;
 import com.bank.model.Transaction;
 import com.bank.service.IFundTransferService;
-
+/**
+ * 
+ * @author Isaac Maria <isaac.maria@lntinfotech.com
+ *
+ */
 public class FundTransferDao implements IFundTransferDao {
 
 	JdbcTemplate jdbcTemplate;

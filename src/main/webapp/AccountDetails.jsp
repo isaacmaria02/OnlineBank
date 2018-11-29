@@ -1,3 +1,18 @@
+<%@ page errorPage="ErrorPage.jsp" %>  
+
+
+<%
+response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+if(session!=null)
+{
+	if(session.getAttribute("isLoggedIn")==null)
+	{
+		
+		response.sendRedirect("index.jsp");
+	}
+}
+%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
@@ -220,6 +235,13 @@
           <a class="nav-link" href="FundTransfer">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Fund Transfer</span></a>
+        </li>
+        
+        <br><br>
+         <li class="nav-item">
+          <a class="nav-link" href="logout">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Logout</span></a>
         </li>
               </ul>
 

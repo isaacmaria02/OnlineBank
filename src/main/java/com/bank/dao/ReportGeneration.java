@@ -18,7 +18,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.bank.model.*;
-
+/**
+ * 
+ * @author Isaac Maria <isaac.m@somaiya.edu>
+ *
+ */
 public class ReportGeneration implements IReportGeneration {
 
 	JdbcTemplate jdbcTemplate;
@@ -51,6 +55,13 @@ public class ReportGeneration implements IReportGeneration {
 
 	}
 
+	/**
+	 * The method gets all the transaction logs of the user from specified date range
+	 * <p>
+	 * Account Number in the from_account attribute of gr13_transactions relation will be debited, Account Number in the to_account attribute of the will be credited.
+	 * Both the lists and sorted and merged into one
+	 * </p>
+	 */
 	public List<Transaction> getAccountStatement(String startDate, String endDate, long accountNumber) {
 		// TODO Auto-generated method stub
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");
@@ -83,7 +94,6 @@ public class ReportGeneration implements IReportGeneration {
 		
      
 		transactionList.sort(Comparator.comparing(o -> ((Transaction) o).getTimestamp()).reversed());
-	//	Collections.sort(transactionList, (p1, p2) -> p1.getTimestamp() - p2.getTimestamp());
 
 	
 		return transactionList;

@@ -1,41 +1,17 @@
-<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="ISO-8859-1">
-        <title>Insert title here</title>
-    </head>
-    <body>
-        <form action="addPayee">
-            <input style="display:hidden;" type="number" value="${account_number}" name="customer_account_number">
-               Payee Account Number : <input type="number" name="payee_account_number"><br>
-            Name : <input type="text" name="name"><br>
-            NickName: <input type="text" name="nick_name"><br>
-            <input type="submit">
-        </form>
-    </body>
-</html> --%>
+<%@ page errorPage="ErrorPage.jsp" %>  
 
 
-<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="ISO-8859-1">
-        <title>Insert title here</title>
-    </head>
-    <body>
-        <h3>Delete Payee</h3>
-        <form action="DeletePayee">
-            Delete Payee by Name <input type="text" name="payee_name"> 
-            
-             
-            <input type="submit">
-        </form>
-    </body>
-</html> --%>
+<%
+response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+if(session!=null)
+{
+	if(session.getAttribute("isLoggedIn")==null)
+	{
+		
+		response.sendRedirect("index.jsp");
+	}
+}
+%>
 
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -343,6 +319,14 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Fund Transfer</span></a>
         </li>
+        
+        
+         <br><br>
+         <li class="nav-item">
+          <a class="nav-link" href="logout">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Logout</span></a>
+        </li>
               </ul>
 
       <div id="content-wrapper">
@@ -453,15 +437,15 @@
             </div>
             
             
-                
-         <form action="addPayee">
+                <div align="center">
+         <form action="addPayee" >
             <input style="display:none;" type="number" value="${account_number}" name="customer_account_number">
              Payee Account Number : <input type="number" name="payee_account_number"><br>
             Name : <input type="text" name="name"><br>
             NickName: <input type="text" name="nick_name"><br>
             <input value="Add Payee" class="btn btn-primary dropdown-toggle dropdown-toggle-split"  type="submit">
         </form>
-            
+            </div>
 
 
 

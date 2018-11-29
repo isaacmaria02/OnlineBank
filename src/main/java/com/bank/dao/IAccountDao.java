@@ -15,7 +15,15 @@ import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
 import com.bank.model.Login;
 import com.bank.model.Profile;
+/**
+ * 
+ * @author Isaac Maria <isaac.maria@lntinfotech.com>
+ *
+ */
 
+/**
+ * Interface for Account : Data Access Object
+ */
 public interface IAccountDao {
 
 	public long getAccountNumber(Login login);

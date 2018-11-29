@@ -1,153 +1,24 @@
+ <%@ page errorPage="ErrorPage.jsp" %>  
+
+
+<%
+response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+if(session!=null)
+{
+	if(session.getAttribute("isLoggedIn")==null)
+	{
+		
+		response.sendRedirect("index.jsp");
+	}
+}
+%>
+ 
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
-<%-- <html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script>
-            $(document).ready(function(){
-              $("#searchPayee").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#payeeListTable tr").filter(function() {
-                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-              });
-              
-              $("#transfer").click(function(){
-            	  $('.hidden').show();
-                  $('#transfer').hide();
-                  
-                  
-                  $('.readonly').prop('disabled', true) 
-            
-            	  
-              });
-              
-              
-              $("#backbtn").click(function(){
-            	  $('.hidden').hide();
-                  $('#transfer').show();
-                  
-                  
-                  $('.readonly').prop('disabled', false) 
-            
-            	  
-              });
-              
-              
-              
-              $('#fundtransfer').on('submit', function() {
-            	    $('.readonly').prop('disabled', false);
-            	});
-              
-              
-              
-            
-              
-            });
-        </script>
-        <meta charset="ISO-8859-1">
-        <title>Insert title here</title>
-    </head>
-    <body>
-        <form id="fundtransfer" action="ConfirmPayment">
-            Select Payee : 
-            <select class="readonly" name="payee_name">
-                <c:forEach items="${PayeeList}" var="payee">
-                    <option value="${payee.getName()}">${payee.getName()}</option>
-                </c:forEach>
-            </select>
-            <br>
-            Transaction Type :   
-            <select class="readonly" name="type">
-                  <a class="dropdown-item" href="AddPayee.jsp">Add Payee</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="DeletePayee.jsp">Delete Payee</a>
-          <a class="dropdown-item" href="DisplayPayee">Display Payee</a>
-            </select>
-            <br>
-            Amount :   <input class="readonly" type="number" name="amount">
-            <br>
-            Remarks (Optional) : <input class="readonly" type="text" name="remark">
-            <br>
-            <input id="transfer" type="button" value="Transfer">
-            <input id="backbtn" class="hidden" style="display:none;" type="button" value="Back">
-            <input id="submitbtn" class="hidden" style="display:none;" type="submit" value="Confirm">
-        </form>
-    </body>
-</html> 
- --%>
-
-
-<%-- <html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script>
-            $(document).ready(function(){
-              $("#searchPayee").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#payeeListTable tr").filter(function() {
-                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-              });
-            });
-        </script>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Insert title here</title>
-    </head>
-    <body>
-        <h1>Hello User</h1>
-        <a href="AddPayee.jsp">Add Payee</a><br>
-        <a href="DeletePayee.jsp">Delete Payee</a><br> 
-        <p>${msg}</p>
-        <a id="display_button" href="DisplayPayee">Display</a>
-        </form>
-        <br><br>
-        Search   <input class="form-control" id="searchPayee" type="text" placeholder="Search..">
-        <div >
-            <c:if test="${not empty PayeeList}">
-                <table border="1" id="">
-                    <thead>
-                        <tr>
-                            <th>Account Number</th>
-                            <th>Payee Name</th>
-                            <th>Payee Nick Name</th>
-                        </tr>
-                    </thead>
-                    <tbody id="payeeListTable">
-                        <c:forEach items="${PayeeList}" var="payee">
-                            <tr>
-                                <td>${payee.getPayee_account_number()}</td>
-                                <td>${payee.getName()}</td>
-                                <td>${payee.getNick_name()}</td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </c:if>
-        </div>
-        <select>
-            <c:forEach items="${PayeeList}" var="payee">
-            
-            <option value="${payee.getName()}">${payee.getName()}</option>
-            </c:forEach>
-            
-            </select>
-        <a href="FundTransfer">Initiate a Fund Transfer</a>
-        <br><br>
-        <a href="">User Profile</a><br>
-        <a href="">Account Summary</a><br>
-        <a href="AccountStatement.jsp">Account Statement</a><br>
-        
-        <br>
-        <a href="demo">Get Balance</a>
-    </body>
-</html>
- --%>
-
 
 <html lang="en">
 
@@ -304,6 +175,13 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Fund Transfer</span></a>
         </li>
+        
+         <br><br>
+         <li class="nav-item">
+          <a class="nav-link" href="logout">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Logout</span></a>
+        </li>
               </ul>
 
       <div id="content-wrapper">
@@ -442,9 +320,9 @@
         </div> --%>
         
         
-        
+  
          <form id="fundtransfer" action="ConfirmPayment">
-            Select Payee : 
+        Select Payee :
             <select class="readonly" name="payee_name">
                 <c:forEach items="${PayeeList}" var="payee">
                     <option value="${payee.getName()}">${payee.getName()}</option>
@@ -458,7 +336,7 @@
                   
             </select>
             <br>
-            Amount :   <input class="readonly" type="number" name="amount">
+            Amount :   <input class="readonly" type="number"  min=1 name="amount">
             <br>
             Remarks (Optional) : <input class="readonly" type="text" name="remark">
             <br>
@@ -467,7 +345,7 @@
             <input id="submitbtn" class="hidden btn btn-primary dropdown-toggle dropdown-toggle-split" style="display:none;" type="submit" value="Confirm">
         </form>
             
-            
+         
             
 
 

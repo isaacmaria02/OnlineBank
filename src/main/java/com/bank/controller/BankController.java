@@ -39,7 +39,9 @@ import com.bank.service.IFundTransferService;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
-
+/**
+ * @author Isaac Maria  <isaac.m@somaiya.edu>
+ */
 @Controller
 public class BankController {
 	@Autowired
@@ -55,11 +57,7 @@ public class BankController {
 	public ModelAndView openAccount(ModelAndView model, @ModelAttribute Customer customer, Account account,
 			Address address) {
 
-		//System.out.println("inside open acc controller");
-	//	System.out.println(customer.getCustomer_id());
-		
-		
-	//	account.setCustomer_id(customer.getCustomer_id());
+
 
 		long accountNum = accountService.openAccount(customer, account, address);
 
@@ -106,6 +104,7 @@ public class BankController {
 			long accountNumber = accountService.getAccountNumber(login);
 
 			session.setAttribute("account_number", accountNumber);
+			session.setAttribute("isLoggedIn",true);
 
 			model.setViewName("Dashboard");
 
@@ -115,6 +114,24 @@ public class BankController {
 
 		}
 
+		return model;
+
+	}
+	
+	/**
+	 * 
+	 * @param model
+	 * @param session : It has IsLoggedSession set to true which will be invalidated when 
+	 * logout button is pressed and customer will be redirected to the homepage
+	 * @return 
+	 */
+	@RequestMapping(value="/logout")
+	public ModelAndView logout(ModelAndView model, HttpSession session) {
+
+		session.invalidate();
+		model.setViewName("index");
+		
+		
 		return model;
 
 	}
@@ -185,7 +202,7 @@ public class BankController {
 
 		List<Payee> payeeList = fundTransferService.displayPayee((Long) session.getAttribute("account_number"));
 
-		System.out.println(payeeList.size());
+		//System.out.println(payeeList.size());
 		
 		model.addObject("PayeeList", payeeList);
 

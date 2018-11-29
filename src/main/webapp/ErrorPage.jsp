@@ -1,6 +1,18 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page isErrorPage = "true" %>
-<%@include file="Dashboard.jsp"%>
+<%
+
+response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+if(session!=null)
+{
+	if(session.getAttribute("isLoggedIn")==null)
+	{
+		
+		response.sendRedirect("index.jsp");
+	}
+}
+%>
+
 
 
 <html>

@@ -34,7 +34,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.activation.*;
-
+/**
+ * 
+ * @author Isaac Maria <isaac.maria@lntinfotech.com>
+ *
+ */
 
 public class AccountDao implements IAccountDao
 {
@@ -45,6 +49,16 @@ public class AccountDao implements IAccountDao
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
+	
+	/**
+	 * Processes the open account request from the user
+	 * <p> The open account form is validated and then inserted into Customers, Accounts and Addresses relation
+	 * </p>
+	 * @param customer : Fetches values from the getters of model class Customers
+	 * @param account : Fetches values from the getters of Model class Accounts
+	 * @param address : Fetches values from the getters of Model class Addresses
+	 * @return long : return the account number if the record is updated
+	 */
 	public long createAccount(Customer customer, Account account, Address address)
 	{
 		int i=0,j=0,k=0;
@@ -103,29 +117,28 @@ public class AccountDao implements IAccountDao
 
 
 	//search account number before this
-
+/**
+ * User will register for internet banking after account opening process is complete
+ * <p>
+ * Account Number will be emailed to user after the admin approves the account opening request. The customer can
+ * use the account number for availing internet banking.
+ * 
+ * @param InternetBankingUser : It is a model class obtained from Internet Banking registation form.
+ * @return int : return positive values when successfully registered for internet banking
+ * </p>
+ */
 	public int register(InternetBankingUser ibu)
 	{
 		int i =0;
-
-
 		
-//	   String register="insert into GR13_internet_banking_users values(?,?,?,?,?,?,?,?)";
 				
 		
 		i= jdbcTemplate.update("insert into GR13_internet_banking_users values(?,?,?,?,?,?,?,?)", new Object[] {ibu.getUser_id(), ibu.getLogin_password(), ibu.getTransaction_password(),0,"enabled", ibu.getSecurity_questions(), ibu.getSecurity_answers(), ibu.getAccount_number()});		
 		
-		
-
-	/*	String register="insert into GR13_internet_banking_users values('"+ibu.getUser_id()+"','"+ibu.getLogin_password()+"','"+ibu.getTransaction_password()+"',0,'enabled','"+ibu.getSecurity_questions()+"','"+ibu.getSecurity_answers()+"',"+ibu.getAccount_number()+")";
+			
 		
 		
-		
-		
-		i= jdbcTemplate.update(register);		*/
-
-
-		return i;
+				return i;
 
 	}
 
@@ -184,8 +197,8 @@ public class AccountDao implements IAccountDao
 
 	}
 
+	
 	public float checkBalance(long customerAccountNumber){  
-		//System.out.println("inside dao"+rf.getUserId());
 		String getBalanceQuery="select ga_balance from gr13_accounts where ga_account_number="+customerAccountNumber; 
 
 
@@ -241,6 +254,11 @@ public class AccountDao implements IAccountDao
 			mex.printStackTrace();
 		}
 	}
+	
+	/**
+	 * @param customerAccountNumber : It is used as a parameter to obtain summary information of the customer
+	 * @return Account : returns the Account Summary Model object
+	 */
 	@Override
 	public Account getSummary(long customerAccountNumber) {
 		// TODO Auto-generated method stub
