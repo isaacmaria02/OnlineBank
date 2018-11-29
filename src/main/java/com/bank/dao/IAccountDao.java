@@ -14,6 +14,7 @@ import com.bank.model.Address;
 import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
 import com.bank.model.Login;
+import com.bank.model.Profile;
 
 public interface IAccountDao {
 
@@ -34,6 +35,7 @@ public interface IAccountDao {
 	
 	public Account getSummary(long customerAccountNumber);
 	
+	public Profile getProfileDetails(long customerAccountNumber);
 
 
 		

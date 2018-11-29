@@ -32,6 +32,7 @@ import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
 import com.bank.model.Login;
 import com.bank.model.Payee;
+import com.bank.model.Profile;
 import com.bank.model.Transaction;
 import com.bank.service.IAccountService;
 import com.bank.service.IFundTransferService;
@@ -280,6 +281,34 @@ public class BankController {
 		
 		}
 		model.setViewName("AccountStatement");
+
+		return model;
+
+	}
+	
+	
+	@RequestMapping("/details")
+	public ModelAndView accountDetails(ModelAndView model, HttpSession session) {
+		// float balance = accountService.getBalance((Long) session.getAttribute("account_number"));
+		
+     //    Account userAccount = accountService.getSummary((Long) session.getAttribute("account_number"));
+		
+		// model.addObject("balance", balance);
+    
+         
+   //      model.addObject("summary", userAccount);
+		
+		
+         Profile userProfile = accountService.getDetails((Long) session.getAttribute("account_number"));
+         
+         model.addObject("user_profile",userProfile);
+         
+         System.out.println(userProfile);
+         
+         model.setViewName("AccountDetails");
+       
+
+
 
 		return model;
 

@@ -1,87 +1,8 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<!DOCTYPE html>
-<%-- <html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script>
-            $(document).ready(function(){
-              $("#searchPayee").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#payeeListTable tr").filter(function() {
-                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-              });
-              
-              $("#transfer").click(function(){
-            	  $('.hidden').show();
-                  $('#transfer').hide();
-                  
-                  
-                  $('.readonly').prop('disabled', true) 
-            
-            	  
-              });
-              
-              
-              $("#backbtn").click(function(){
-            	  $('.hidden').hide();
-                  $('#transfer').show();
-                  
-                  
-                  $('.readonly').prop('disabled', false) 
-            
-            	  
-              });
-              
-              
-              
-              $('#fundtransfer').on('submit', function() {
-            	    $('.readonly').prop('disabled', false);
-            	});
-              
-              
-              
-            
-              
-            });
-        </script>
-        <meta charset="ISO-8859-1">
-        <title>Insert title here</title>
-    </head>
-    <body>
-        <form id="fundtransfer" action="ConfirmPayment">
-            Select Payee : 
-            <select class="readonly" name="payee_name">
-                <c:forEach items="${PayeeList}" var="payee">
-                    <option value="${payee.getName()}">${payee.getName()}</option>
-                </c:forEach>
-            </select>
-            <br>
-            Transaction Type :   
-            <select class="readonly" name="type">
-                  <a class="dropdown-item" href="AddPayee.jsp">Add Payee</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="DeletePayee.jsp">Delete Payee</a>
-          <a class="dropdown-item" href="DisplayPayee">Display Payee</a>
-            </select>
-            <br>
-            Amount :   <input class="readonly" type="number" name="amount">
-            <br>
-            Remarks (Optional) : <input class="readonly" type="text" name="remark">
-            <br>
-            <input id="transfer" type="button" value="Transfer">
-            <input id="backbtn" class="hidden" style="display:none;" type="button" value="Back">
-            <input id="submitbtn" class="hidden" style="display:none;" type="submit" value="Confirm">
-        </form>
-    </body>
-</html> 
- --%>
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%-- <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -164,37 +85,8 @@
                 });
               });
               
-              $("#transfer").click(function(){
-            	  $('.hidden').show();
-                  $('#transfer').hide();
-                  
-                  
-                  $('.readonly').prop('disabled', true) 
-            
-            	  
-              });
-              
-              
-              $("#backbtn").click(function(){
-            	  $('.hidden').hide();
-                  $('#transfer').show();
-                  
-                  
-                  $('.readonly').prop('disabled', false) 
-            
-            	  
-              });
-              
-              
-              
-              $('#fundtransfer').on('submit', function() {
-            	    $('.readonly').prop('disabled', false);
-            	});
-              
-              
-              
-            
-              
+             
+           
             });
         </script>
 
@@ -218,6 +110,31 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="custombutton.css">
+    
+    <style>
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color:#f2f2f2;}
+
+#customers tr:hover {background-color: #ccffe6;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #0099ff;
+    color: white;
+}
+</style>
 
   </head>
 
@@ -414,62 +331,82 @@
             </div>
             
             
-            <%-- 
+            
+            <table id="customers" >
+            <th colspan="2">Personal Details</th>
+            <tr>
+              <td>Name</td>
+               <td>${user_profile.first_name} ${user_profile.middle_name} ${user_profile.last_name}</td>
+            </tr>
+              <tr>
+              <td>Father's Name</td>
+               <td>${user_profile.father_name}</td>
+            </tr>  <tr>
+              <td>Email ID</td>
+               <td>${user_profile.email_id}</td>
+            </tr>  <tr>
+              <td>Mobile Number</td>
+               <td>${user_profile.mobile_number}</td>
+            </tr><tr>
+              <td>Aadhar Card Number</td>
+               <td>${user_profile.aadhar_card}</td>
+            </tr>       
+            <tr>
+              <td>Date of Birth</td>
+               <td>${user_profile.date_of_birth}</td>
+            </tr>    
+            <tr>
+              <td>Address</td>
+               <td>${user_profile.address_line_1}, ${user_profile.address_line_2}</td>
+            </tr> <tr>
+              <td>Pincode</td>
+               <td>${user_profile.pin_code}</td>
+            </tr>  
+             <tr>
+              <td>City</td>
+               <td>${user_profile.city}</td>
+            </tr>  <tr>
+              <td>State</td>
+               <td>${user_profile.state}</td>
+            </tr>       
+            
+            
+            
+     
            
-            <c:if test="${not empty PayeeList}">
-                <br><br>
-        Search   <input class="form-control" id="searchPayee" type="text" placeholder="Search..">
-        <div >
-                <table border="1" id="">
-                    <thead>
-                        <tr>
-                            <th>Account Number</th>
-                            <th>Payee Name</th>
-                            <th>Payee Nick Name</th>
-                        </tr>
-                    </thead>
-                    <tbody id="payeeListTable">
-                        <c:forEach items="${PayeeList}" var="payee">
-                            <tr>
-                                <td>${payee.getPayee_account_number()}</td>
-                                <td>${payee.getName()}</td>
-                                <td>${payee.getNick_name()}</td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </c:if>
-        </div> --%>
-        
-        
-        
-         <form id="fundtransfer" action="ConfirmPayment">
-            Select Payee : 
-            <select class="readonly" name="payee_name">
-                <c:forEach items="${PayeeList}" var="payee">
-                    <option value="${payee.getName()}">${payee.getName()}</option>
-                </c:forEach>
-            </select>
-            <br>
-            Transaction Type :   
-            <select class="readonly" name="type">
-                  <option value="IMPS">IMPS</option>
-                   <option value="RTGS">RTGS</option>
-                  
-            </select>
-            <br>
-            Amount :   <input class="readonly" type="number" name="amount">
-            <br>
-            Remarks (Optional) : <input class="readonly" type="text" name="remark">
-            <br>
-            <input class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="transfer" type="button" value="Transfer">
-            <input id="backbtn" class="hidden btn btn-primary dropdown-toggle dropdown-toggle-split" style="display:none;" type="button" value="Back">
-            <input id="submitbtn" class="hidden btn btn-primary dropdown-toggle dropdown-toggle-split" style="display:none;" type="submit" value="Confirm">
-        </form>
+            </table>   
+            
+            <br><br><br><br>
+            
+            <table style="margin-top:30px;" id="customers" >
+            <th colspan="2">Account Details</th>
+           <tr>
+              <td>Customer ID</td>
+               <td>${user_profile.customer_id}</td>
+            </tr>
+            
+     
+            
+              <tr>
+             <td>  Account Number</td>
+                <td>${user_profile.account_number}</td>
+            </tr>
+            
+              <tr>
+               <td>Balance</td>
+               <td>${user_profile.balance}</td>
+            </tr>
+            
+     
+              <tr>
+               <td>Type</td>
+               <td>${user_profile.account_type}</td>
+            </tr>       
+            </table>
             
             
             
-
+           
 
 
         <!-- /.container-fluid -->
@@ -535,5 +472,3 @@
   </body>
 
 </html>
-
-

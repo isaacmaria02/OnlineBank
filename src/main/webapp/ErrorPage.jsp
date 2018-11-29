@@ -1,8 +1,17 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page isErrorPage = "true" %>
+<%@include file="Dashboard.jsp"%>
+
 
 <html>
    <head>
+   
+   <style>
+   .clear {
+    clear: both;
+}
+   </style>
+   
       <title>Show Error Page</title>
    </head>
    
@@ -27,8 +36,8 @@
             
        
       </table> --%>
-      
-      <div id="notfound">
+     
+      <div class="clear"  id="notfound">
 		<div class="notfound">
 			<div class="notfound-404">
 				<h1><span></span></h1>

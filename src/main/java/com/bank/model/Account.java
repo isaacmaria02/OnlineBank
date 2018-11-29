@@ -6,14 +6,11 @@ import java.util.List;
 
 public class Account {
 
-	public Account() {
-		super();
-	}
-
+	
 	private long account_number;
 	private float balance;
 	private String account_type;
-	long customer_id;
+	private long customer_id;
 
 	@Override
 	public String toString() {

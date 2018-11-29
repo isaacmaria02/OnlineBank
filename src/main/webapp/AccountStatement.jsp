@@ -234,7 +234,7 @@
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="summary">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Account Summary</span>
           </a>
@@ -296,11 +296,11 @@
    View Details
    </button>
    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Account Details</a>
+      <a class="dropdown-item" href="details">Account Details</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="AccountStatement.jsp">Account Statement</a>
  <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Account Summary</a>
+      <a class="dropdown-item" href="summary">Account Summary</a>
    </div>
 </div>
 
@@ -374,7 +374,7 @@
        <!-- BODY -->
        
         <h3>Account Statement</h3>
-        <br><br>
+        <br><br><div>
         <form action="AccountStatement">
             From<input type="date" name="from">
             To <input type="date" name="to">
@@ -382,7 +382,7 @@
 
             <!-- <input type="submit" value="Get Account Statement"><br> -->
         </form>
-           
+           </div>
         <br><br>
         <c:if test="${not empty AccountStatementList}">
             <table id="customers" border="1">

@@ -13,6 +13,7 @@ import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
 import com.bank.model.Login;
 import com.bank.model.Payee;
+import com.bank.model.Profile;
 
 @Service
 public class AccountService implements IAccountService {
@@ -58,5 +59,14 @@ public class AccountService implements IAccountService {
 		// TODO Auto-generated method stub
 		return edao.getSummary(accountNumber);
 	}	
+	
+	@Transactional
+	public Profile getDetails(long customerAccountNumber) {
+		// TODO Auto-generated method stub
+
+		return edao.getProfileDetails(customerAccountNumber);
+	}
+
+	
 	
 }

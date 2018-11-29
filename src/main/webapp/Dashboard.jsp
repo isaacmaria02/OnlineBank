@@ -257,7 +257,7 @@
    View Details
    </button>
    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Account Details</a>
+      <a class="dropdown-item" href="details">Account Details</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="AccountStatement.jsp">Account Statement</a>
  <div class="dropdown-divider"></div>
@@ -288,9 +288,9 @@
    View Details
    </button>
    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#ap">Add Payee</a>
+      <a class="dropdown-item" href="AddPayee.jsp">Add Payee</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#dp">Delete Payee</a>
+      <a class="dropdown-item" href="DeletePayee.jsp">Delete Payee</a>
           <a class="dropdown-item" href="DisplayPayee">Display Payee</a>
    
    </div>

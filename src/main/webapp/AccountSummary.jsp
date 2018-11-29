@@ -129,7 +129,7 @@
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="summary">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Account Summary</span>
           </a>
@@ -191,11 +191,11 @@
    View Details
    </button>
    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Account Details</a>
+      <a class="dropdown-item" href="details">Account Details</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="AccountStatement.jsp">Account Statement</a>
  <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Account Summary</a>
+      <a class="dropdown-item" href="summary">Account Summary</a>
    </div>
 </div>
 
