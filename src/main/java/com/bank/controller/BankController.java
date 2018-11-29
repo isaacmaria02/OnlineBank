@@ -1,5 +1,9 @@
 package com.bank.controller;
 import java.util.logging.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.ServerException;
 import java.text.ParseException;
@@ -14,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -284,6 +289,10 @@ public class BankController {
 
 		fromDate = requiredFormat.format(from);
 		toDate = requiredFormat.format(to);
+		
+		session.setAttribute("from", fromDate);
+		session.setAttribute("to", toDate);
+
 
 		List<Transaction> accountStatement = reportGenerationService.getAccountStatement(fromDate, toDate,
 				(Long) session.getAttribute("account_number"));
@@ -306,15 +315,7 @@ public class BankController {
 	
 	@RequestMapping("/details")
 	public ModelAndView accountDetails(ModelAndView model, HttpSession session) {
-		// float balance = accountService.getBalance((Long) session.getAttribute("account_number"));
-		
-     //    Account userAccount = accountService.getSummary((Long) session.getAttribute("account_number"));
-		
-		// model.addObject("balance", balance);
-    
-         
-   //      model.addObject("summary", userAccount);
-		
+			
 		
          Profile userProfile = accountService.getDetails((Long) session.getAttribute("account_number"));
          
@@ -327,6 +328,56 @@ public class BankController {
 
 
 
+		return model;
+
+	}
+	
+	
+	@RequestMapping("/download")
+	public ModelAndView downloadStatement(ModelAndView model, HttpSession session) {
+	
+		
+        Profile userProfile = accountService.getDetails((Long) session.getAttribute("account_number"));
+      
+        List<Transaction> accountStatement = reportGenerationService.getAccountStatement((String)session.getAttribute("from"),(String) session.getAttribute("to"),
+				(Long) session.getAttribute("account_number"));
+        
+        XWPFDocument document = new XWPFDocument(); 
+		
+              	    try{
+              	    	File file = new File("C:\\Users\\AE103_PC7\\git\\OnlineBank\\src\\main\\resources\\"+userProfile.getAccount_number());
+              	        if (!file.exists()) {
+              	            if (file.mkdir()) {
+              	                System.out.println("Directory is created!");
+              	            } else {
+              	                System.out.println("Failed to create directory!");
+              	            }
+              	        }
+              	    	
+              	    	
+        	    	FileOutputStream out = new FileOutputStream(new File(file+"aa.docx"));
+        			document.write(out);
+        			out.close();
+        	    }
+        	    catch (IOException e){
+        	        e.printStackTrace();
+        	        System.out.println("Not successful");
+        	        System.exit(-1);
+        	    }
+        	
+        	    
+        	/*
+			FileOutputStream out = new FileOutputStream( new File());
+			document.write(out);
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+        System.out.println("createdocument.docx written successully");
+
+
+        model.setViewName("AccountStatement");
 		return model;
 
 	}

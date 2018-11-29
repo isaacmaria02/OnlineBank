@@ -325,6 +325,9 @@ if(session!=null)
 
 
    ${statement}
+   
+   
+   <a href="download">Download</a>
         <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->
