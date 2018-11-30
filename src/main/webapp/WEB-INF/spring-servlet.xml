@@ -39,6 +39,9 @@
 		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
 	</bean>
 	
+	<bean id="addao" class="com.bank.dao.AdminDao">	
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
 		
 	
 	

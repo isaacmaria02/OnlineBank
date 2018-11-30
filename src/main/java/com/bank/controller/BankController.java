@@ -347,7 +347,6 @@ public class BankController {
     	List<Transaction> accountStatement = reportGenerationService.getAccountStatement((String)session.getAttribute("from"),(String)session.getAttribute("to"),
 				(Long) session.getAttribute("account_number"));
         
-        System.out.println(accountStatement);
         
         
         XWPFDocument document = new XWPFDocument(); 
