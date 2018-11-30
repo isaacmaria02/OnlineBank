@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -334,7 +336,7 @@ public class BankController {
 	
 	
 	@RequestMapping("/download")
-	public ModelAndView downloadStatement(ModelAndView model, HttpSession session) {
+	public ModelAndView generateStatement(ModelAndView model, HttpSession session) {
 	
 		
         Profile userProfile = accountService.getDetails((Long) session.getAttribute("account_number"));
@@ -342,10 +344,13 @@ public class BankController {
         List<Transaction> accountStatement = reportGenerationService.getAccountStatement((String)session.getAttribute("from"),(String) session.getAttribute("to"),
 				(Long) session.getAttribute("account_number"));
         
+        
+       // System.out.println(accountStatement);
+        
         XWPFDocument document = new XWPFDocument(); 
 		
               	    try{
-              	    	File file = new File("C:\\Users\\AE103_PC7\\git\\OnlineBank\\src\\main\\resources\\"+userProfile.getAccount_number());
+              	    	File file = new File("E:\\OnlineBank\\src\\main\\resources\\"+userProfile.getAccount_number());
               	        if (!file.exists()) {
               	            if (file.mkdir()) {
               	                System.out.println("Directory is created!");
@@ -355,8 +360,23 @@ public class BankController {
               	        }
               	    	
               	    	
-        	    	FileOutputStream out = new FileOutputStream(new File(file+"aa.docx"));
-        			document.write(out);
+        	    	FileOutputStream out = new FileOutputStream(new File(file+"/"+(String)session.getAttribute("from")+(String)session.getAttribute("to")+".docx"));
+        			
+        	    	
+        	    	//create Paragraph
+        	        XWPFParagraph paragraph = document.createParagraph();
+        	        XWPFRun run = paragraph.createRun();
+        	        run.setText(""+userProfile.getAccount_number());
+        	    	
+        	    	
+        	    	
+        	    	
+        	    	
+        	    	
+        	    	
+        	    	
+        	    	
+        	    	document.write(out);
         			out.close();
         	    }
         	    catch (IOException e){
@@ -374,7 +394,10 @@ public class BankController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-        System.out.println("createdocument.docx written successully");
+        
+        
+        
+        
 
 
         model.setViewName("AccountStatement");

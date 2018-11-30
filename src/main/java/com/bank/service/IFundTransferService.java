@@ -16,6 +16,6 @@ public interface IFundTransferService {
 
 	public boolean confirmTransaction(Transaction tr, long accountNumber);
 
-	public List<Transaction> getAccountStatement(Date from, Date to);
+	//public List<Transaction> getAccountStatement(Date from, Date to);
 
 }

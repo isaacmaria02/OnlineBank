@@ -25,9 +25,9 @@ public class ReportGenerationService implements IReportGenerationService{
 
 	@Transactional
 
-	public List<Transaction> getAccountStatement(Date from, Date to) {
+	public List<Transaction> getAccountStatement(Date from, Date to, long accountNumber) {
 		// TODO Auto-generated method stub
-		return rdao.getAccountStatement(from, to);
+		return rdao.getAccountStatement(from, to, accountNumber);
 	}
 
 	@Override
