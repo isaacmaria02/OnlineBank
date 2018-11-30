@@ -18,9 +18,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.apache.poi.xwpf.usermodel.XWPFTable;
+import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -336,22 +339,26 @@ public class BankController {
 	
 	
 	@RequestMapping("/download")
-	public ModelAndView generateStatement(ModelAndView model, HttpSession session) {
+	public ModelAndView generateStatement(ModelAndView model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 	
 		
         Profile userProfile = accountService.getDetails((Long) session.getAttribute("account_number"));
       
-        List<Transaction> accountStatement = reportGenerationService.getAccountStatement((String)session.getAttribute("from"),(String) session.getAttribute("to"),
+    	List<Transaction> accountStatement = reportGenerationService.getAccountStatement((String)session.getAttribute("from"),(String)session.getAttribute("to"),
 				(Long) session.getAttribute("account_number"));
         
+        System.out.println(accountStatement);
         
-       // System.out.println(accountStatement);
         
         XWPFDocument document = new XWPFDocument(); 
 		
               	    try{
-              	    	File file = new File("E:\\OnlineBank\\src\\main\\resources\\"+userProfile.getAccount_number());
-              	        if (!file.exists()) {
+              	    	File file = new File("C:\\Users\\AE103_PC7\\git\\OnlineBank\\src\\main\\resources\\"+userProfile.getAccount_number());
+          	        	session.setAttribute("filePath","C:\\Users\\AE103_PC7\\git\\OnlineBank\\src\\main\\resources\\"+userProfile.getAccount_number()+"\\");
+
+              	    	if (!file.exists()) {
+              	        	//model.addObject("filePath",file);
+              	        	
               	            if (file.mkdir()) {
               	                System.out.println("Directory is created!");
               	            } else {
@@ -360,19 +367,97 @@ public class BankController {
               	        }
               	    	
               	    	
-        	    	FileOutputStream out = new FileOutputStream(new File(file+"/"+(String)session.getAttribute("from")+(String)session.getAttribute("to")+".docx"));
-        			
+        	    	FileOutputStream out = new FileOutputStream(new File(file+"/"+(String)session.getAttribute("from")+"-"+(String)session.getAttribute("to")+".docx"));
+        		//	model.addObject("fileName",(String)session.getAttribute("from")+"-"+(String)session.getAttribute("to")+".docx");
+        	    	session.setAttribute("fileName", (String)session.getAttribute("from")+"-"+(String)session.getAttribute("to")+".docx");
         	    	
-        	    	//create Paragraph
+        	    	//TITLE
         	        XWPFParagraph paragraph = document.createParagraph();
         	        XWPFRun run = paragraph.createRun();
-        	        run.setText(""+userProfile.getAccount_number());
+
+        		      run.setFontSize(18);
+        		      paragraph.setAlignment(ParagraphAlignment.CENTER);
+        		      run.setText("STATEMENT OF ACCOUNT");
+        		      
+        		      //DETAILS
+        		      paragraph = document.createParagraph();
+        		      run = paragraph.createRun();        		      
+        		      run.setText("Account Number : "+userProfile.getAccount_number());
+        		      run.addBreak();
+        		      run.setText("Balance : "+userProfile.getBalance());
+        		      run.addBreak();
+        		      run.setText("Customer ID: "+userProfile.getCustomer_id());
+        		      run.addBreak();
+        		      run.setText("Customer Name: "+userProfile.getFirst_name()+" "+userProfile.getLast_name());
+        		      run.addBreak();
+        		      run.setText("Address: "+userProfile.getAddress_line_1()+","+userProfile.getAddress_line_2());
+                      run.addBreak();
+                      
+             
+                      //create table
+                      XWPFTable table = document.createTable();
+                		
+                      //create first row
+                      XWPFTableRow tableRowOne = table.getRow(0);
+                      
+                      tableRowOne.addNewTableCell();
+                      tableRowOne.addNewTableCell();
+                      tableRowOne.addNewTableCell();
+                      tableRowOne.addNewTableCell();
+                      tableRowOne.addNewTableCell();
+                      tableRowOne.addNewTableCell();
+                      tableRowOne.addNewTableCell();
+                      tableRowOne.addNewTableCell();
+                      
+                      
+                      tableRowOne.getCell(0).setText("Reference ID");                 
+                      tableRowOne.getCell(1).setText("Transaction Type");
+                      tableRowOne.getCell(2).setText("Amount");
+                     tableRowOne.getCell(3).setText("From Account");
+                      tableRowOne.getCell(4).setText("To Account");
+                      tableRowOne.getCell(5).setText("Date");
+                      tableRowOne.getCell(6).setText("Remark");
+                      tableRowOne.getCell(7).setText("Transaction Charges");
+                      tableRowOne.getCell(8).setText("Status");
+                      
+                    
+
+                      
+
+                     XWPFTableRow tableRow ;
+                      for(int i = 0; i<accountStatement.size(); i++) {
+                      tableRow = table.createRow();
+
+                      
+                      tableRow.getCell(0).setText(""+accountStatement.get(i).getReference_id());               
+                      tableRow.getCell(1).setText(""+accountStatement.get(i).getType());
+                      tableRow.getCell(2).setText(""+accountStatement.get(i).getAmount());
+                      tableRow.getCell(3).setText(""+accountStatement.get(i).getFrom_account());
+                      tableRow.getCell(4).setText(""+accountStatement.get(i).getTo_account());
+                      tableRow.getCell(5).setText(""+accountStatement.get(i).getTimestamp());
+
+                      
+             
+                      if(accountStatement.get(i).getRemark()==null)
+                      {
+                          tableRow.getCell(6).setText("");
+
+                      }
+                      else
+                      {
+                          tableRow.getCell(6).setText(""+accountStatement.get(i).getRemark());
+
+                      }
+                  
+                    	   
+                      
+                      tableRow.getCell(7).setText(""+accountStatement.get(i).getCharges());
+                      tableRow.getCell(8).setText(""+accountStatement.get(i).getStatus());
+                      }
         	    	
         	    	
-        	    	
-        	    	
-        	    	
-        	    	
+                      
+                    
         	    	
         	    	
         	    	
@@ -385,22 +470,12 @@ public class BankController {
         	        System.exit(-1);
         	    }
         	
-        	    
-        	/*
-			FileOutputStream out = new FileOutputStream( new File());
-			document.write(out);
-			out.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-        
+       
         
         
         
 
-
-        model.setViewName("AccountStatement");
+        model.setViewName("Download");
 		return model;
 
 	}

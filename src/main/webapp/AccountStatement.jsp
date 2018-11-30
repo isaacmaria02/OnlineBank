@@ -321,13 +321,15 @@ if(session!=null)
                     </c:forEach>
                 </tbody>
             </table>
+            
+               <a href="download">Download</a>
         </c:if>
 
 
    ${statement}
    
    
-   <a href="download">Download</a>
+
         <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->

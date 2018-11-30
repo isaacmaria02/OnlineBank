@@ -8,5 +8,23 @@
 </head>
 <body>
 
+<%    
+  String filename = (String) session.getAttribute("fileName");
+  String filepath = (String)session.getAttribute("filePath");
+  
+
+  
+ response.setContentType("application/msword");   
+  response.setHeader("Content-Disposition","attachment; filename=\"" + filename + "\"");   
+  
+  java.io.FileInputStream fileInputStream=new java.io.FileInputStream(filepath + filename);  
+            
+  int i;   
+  while ((i=fileInputStream.read()) != -1) {  
+    out.write(i);   
+  }   
+  fileInputStream.close();    
+%>  
+
 </body>
 </html>
