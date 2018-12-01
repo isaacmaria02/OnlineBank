@@ -64,7 +64,6 @@ public class AdminService implements IAdminService {
 	@Transactional
 	public int approve(int customerId) {
 		// TODO Auto-generated method stub
-
 			
 			
 		int isRequestApproved = addao.approve(customerId);
