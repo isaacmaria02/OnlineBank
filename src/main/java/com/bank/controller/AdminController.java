@@ -34,22 +34,24 @@ public class AdminController {
 	AdminService adminService;
 
 	@RequestMapping(value="/adminlogin",method = RequestMethod.POST)
-	public ModelAndView openAccount(ModelAndView model, @ModelAttribute Admin admin) {
+	public ModelAndView openAccount(ModelAndView model, @ModelAttribute Admin admin, HttpSession session) {
 
 		
 		
 		
-		
-       
 		if(admin.getAdminId().equals("admin") && admin.getAdminPassword().equals("admin123"))
 		{
+			session.setAttribute("isAdminLoggedIn",true);
 			
-			     
-			    List<Profile> accountOpeningRequests = adminService.displayRequests();
+			System.out.println(session.getAttribute("isAdminLoggedIn"));
+		
+		    /*List<Profile> accountOpeningRequests = adminService.displayRequests();
 			
 			     model.addObject("requests",accountOpeningRequests);
-			    
-                 model.setViewName("AdminDashboard");			
+			  
+                 model.setViewName("AdminDashboard");	*/	
+			
+			model.setViewName("redirect:/display");
 		}
 		else {
         model.setViewName("Admin");
@@ -71,6 +73,24 @@ public class AdminController {
 			     model.addObject("requests",accountOpeningRequests);
 			    
                  model.setViewName("AdminDashboard");			
+		
+		
+		return model;
+
+	}
+	
+	
+	@RequestMapping(value="/adminlogout")
+	public ModelAndView adminLogout(ModelAndView model, HttpSession session) {
+
+		
+		session.removeAttribute("isAdminLoggedIn");
+       	session.invalidate();
+       	
+       	System.out.println("invaldated");
+       	
+       	model.setViewName("index");
+			    	
 		
 		
 		return model;

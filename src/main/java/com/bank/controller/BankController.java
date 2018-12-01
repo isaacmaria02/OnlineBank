@@ -11,7 +11,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -338,6 +346,20 @@ public class BankController {
 	}
 	
 	
+	
+	@RequestMapping("/changeId")
+	public ModelAndView changeId(ModelAndView model, HttpSession session) {
+			
+		
+         
+
+
+
+		return model;
+
+	}
+	
+	
 	@RequestMapping("/download")
 	public ModelAndView generateStatement(ModelAndView model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 	
@@ -478,5 +500,47 @@ public class BankController {
 		return model;
 
 	}
+	
+	
+	
+	
+	@RequestMapping("/email")
+	public ModelAndView email(ModelAndView model) {
+
+		final String user="sbbibank005@gmail.com";//change accordingly  
+		final String pass="SBBI@2018";  
+		  
+		//1st step) Get the session object    
+		Properties props = new Properties();  
+		props.put("mail.smtp.host", "smtp.googlemail.com");//change accordingly  
+		props.put("mail.smtp.auth", "true");  
+		  
+		Session session = Session.getDefaultInstance(props,  
+		 new javax.mail.Authenticator() {  
+		  protected PasswordAuthentication getPasswordAuthentication() {  
+		   return new PasswordAuthentication(user,pass);  
+		   }  
+		});  
+		//2nd step)compose message  
+		try {  
+		 MimeMessage message = new MimeMessage(session);  
+		 message.setFrom(new InternetAddress(user));  
+		 message.addRecipient(Message.RecipientType.TO,new InternetAddress("isaacmaria2@gmail.com"));  
+		 message.setSubject("aa");  
+		 message.setText("bcd");  
+		   
+		 //3rd step)send message  
+		 Transport.send(message);  
+		  
+		 System.out.println("Done");  
+		  
+		 } catch (MessagingException e) {  
+		    throw new RuntimeException(e);  
+		 }  
+
+		return model;
+
+	}
+
 
 }

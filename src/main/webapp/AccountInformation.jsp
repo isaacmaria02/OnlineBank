@@ -42,7 +42,7 @@
 
 
 
-<h1>Your Account is Activated ! Your Account Number is ${user_account_number}</h1>
-<h3><a href="Register.jsp">Click here to register for internet banking</a></h3>
+<h1>Thanks for Registering</h1>
+<h3><a href="index.jsp">Click here to go to homepage</a></h3>
 </body>
 </html>
