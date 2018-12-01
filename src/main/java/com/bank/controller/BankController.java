@@ -504,43 +504,6 @@ public class BankController {
 	
 	
 	
-	@RequestMapping("/email")
-	public ModelAndView email(ModelAndView model) {
-
-		final String user="sbbibank005@gmail.com";//change accordingly  
-		final String pass="SBBI@2018";  
-		  
-		//1st step) Get the session object    
-		Properties props = new Properties();  
-		props.put("mail.smtp.host", "smtp.googlemail.com");//change accordingly  
-		props.put("mail.smtp.auth", "true");  
-		  
-		Session session = Session.getDefaultInstance(props,  
-		 new javax.mail.Authenticator() {  
-		  protected PasswordAuthentication getPasswordAuthentication() {  
-		   return new PasswordAuthentication(user,pass);  
-		   }  
-		});  
-		//2nd step)compose message  
-		try {  
-		 MimeMessage message = new MimeMessage(session);  
-		 message.setFrom(new InternetAddress(user));  
-		 message.addRecipient(Message.RecipientType.TO,new InternetAddress("isaacmaria2@gmail.com"));  
-		 message.setSubject("aa");  
-		 message.setText("bcd");  
-		   
-		 //3rd step)send message  
-		 Transport.send(message);  
-		  
-		 System.out.println("Done");  
-		  
-		 } catch (MessagingException e) {  
-		    throw new RuntimeException(e);  
-		 }  
-
-		return model;
-
-	}
-
+	
 
 }

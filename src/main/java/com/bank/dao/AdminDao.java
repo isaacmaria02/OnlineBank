@@ -59,9 +59,9 @@ public class AdminDao  implements IAdminDao{
 				user.setPin_code(rs.getString(14));
 				user.setCity(rs.getString(15));
 				user.setState(rs.getString(16));
-				user.setAccount_number(rs.getLong(18));
-				user.setAccount_type(rs.getString(20));
-				user.setBalance(rs.getFloat(19));
+				user.setAccount_number(rs.getLong(19));
+				user.setAccount_type(rs.getString(21));
+				user.setBalance(rs.getFloat(20));
 
 
 
@@ -91,5 +91,17 @@ public class AdminDao  implements IAdminDao{
 			return 	jdbcTemplate.update(rejectRequestQuery); 
 
 		}
+		
+		public Profile getProfile(int customerId)
+	    {
+	    	
+			
+			String getProfileQuery="select * from gr13_customers c, gr13_addresses ad, gr13_accounts ac  where c.gc_customer_id = ad.gt_gc_customer_id  and c.gc_customer_id = ac.ga_gc_customer_id  and c.gc_customer_id="+customerId; 
+
+			
+	    	
+			return 	(Profile) jdbcTemplate.queryForObject(getProfileQuery, new ProfileMapper()); 
+	    	
+	    }
 	
 }
