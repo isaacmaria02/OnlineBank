@@ -3,17 +3,17 @@
   
 <h1>Account Opening Request</h1>  
 <table border="2" width="70%" cellpadding="2">  
-<tr><th>Id</th><th>Name</th><th>Salary</th><th>Designation</th><th>Edit</th><th>Delete</th></tr>  
-   <c:forEach var="emp" items="${list}">   
+<tr><th>Customer ID</th><th>Full Name</th><th>Email ID</th><th>Mobile Numer</th><th>Date of Birth</th><th>Approve</th><th>Reject</th></tr>  
+   <c:forEach var="request" items="${requests}">   
    <tr>  
-   <td>${emp.id}</td>  
-   <td>${emp.name}</td>  
-   <td>${emp.salary}</td>  
-   <td>${emp.designation}</td>  
-   <td><a href="editemp/${emp.id}">Edit</a></td>  
-   <td><a href="deleteemp/${emp.id}">Delete</a></td>  
+   <td>${request.customer_id}</td>  
+   <td>${request.first_name} ${request.middle_name} ${request.last_name}</td>  
+   <td>${request.email_id}</td>  
+   <td>${request.mobile_number }</td>  
+   <td>${request.date_of_birth }</td>  
+   <td><a href="approve/${request.customer_id}">Approve</a></td>  
+   <td><a href="reject/${request.customer_id}">Reject</a></td>  
    </tr>  
    </c:forEach>  
    </table>  
    <br/>  
-   <a href="empform">Add New Employee</a>  

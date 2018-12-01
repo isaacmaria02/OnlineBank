@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataAccessException.*; 
 import org.springframework.jdbc.core.ResultSetExtractor;import org.springframework.jdbc.core.RowMapper;
@@ -24,6 +25,7 @@ import com.bank.model.Address;
 import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
 import com.bank.model.Login;
+import com.bank.model.MD5;
 import com.bank.model.Payee;
 import com.bank.model.Profile;
 
@@ -50,6 +52,10 @@ public class AccountDao implements IAccountDao
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
+	
+	@Autowired
+	MD5 hash;
+	
 	/**
 	 * Processes the open account request from the user
 	 * <p> The open account form is validated and then inserted into Customers, Accounts and Addresses relation
@@ -75,7 +81,7 @@ public class AccountDao implements IAccountDao
 		long addressId = getCustomerSeq(getAddressId);
 
 
-		String customerTableQuery="insert into GR13_customers values("+customerId+",'"+customer.getFirst_name()+"','"+customer.getMiddle_name()+"','"+customer.getLast_name()+"','"+customer.getFather_name()+"','"+customer.getEmail_id()+"',"+customer.getMobile_number()+","+customer.getAadhar_card()+",'"+customer.getDate_of_birth()+"',"+customer.getAnnual_income()+")";
+		String customerTableQuery="insert into GR13_customers values("+customerId+",'"+customer.getFirst_name()+"','"+customer.getMiddle_name()+"','"+customer.getLast_name()+"','"+customer.getFather_name()+"','"+customer.getEmail_id()+"',"+customer.getMobile_number()+","+customer.getAadhar_card()+",'"+customer.getDate_of_birth()+"',"+customer.getAnnual_income()+",'pending')";
 
 
 		//ADD ALL THE CONDITIONS
@@ -147,7 +153,7 @@ public class AccountDao implements IAccountDao
 	{
 
 
-		String validateUserQuery = "select * from GR13_internet_banking_users where GIBU_USER_ID='" + login.getUser_id() + "' and GIBU_LOGIN_PASSWORD='" + login.getPassword() +"'";
+		String validateUserQuery = "select * from GR13_internet_banking_users where GIBU_USER_ID='" + login.getUser_id() + "' and GIBU_LOGIN_PASSWORD='" + hash.getMd5(login.getPassword()) +"'";
 		List<InternetBankingUser> users = jdbcTemplate.query(validateUserQuery, new UserMapper());
 		
 		

@@ -23,10 +23,15 @@ import com.bank.model.Account;
 import com.bank.model.Address;
 import com.bank.model.Admin;
 import com.bank.model.Customer;
+import com.bank.model.Profile;
+import com.bank.service.AdminService;
 import com.bank.service.IAccountService;
 
 @Controller
 public class AdminController {
+	
+	@Autowired
+	AdminService adminService;
 
 	@RequestMapping(value="/adminlogin",method = RequestMethod.POST)
 	public ModelAndView openAccount(ModelAndView model, @ModelAttribute Admin admin) {
@@ -40,9 +45,10 @@ public class AdminController {
 		{
 			
 			     
+			    List<Profile> accountOpeningRequests = adminService.displayRequests();
 			
-			
-			
+			     model.addObject("requests",accountOpeningRequests);
+			    
                  model.setViewName("AdminDashboard");			
 		}
 		else {
@@ -51,6 +57,66 @@ public class AdminController {
 		return model;
 
 	}
+	
+	
+	
+	@RequestMapping(value="/display")
+	public ModelAndView display(ModelAndView model) {
 
+				
+       	
+			     
+			    List<Profile> accountOpeningRequests = adminService.displayRequests();
+			
+			     model.addObject("requests",accountOpeningRequests);
+			    
+                 model.setViewName("AdminDashboard");			
+		
+		
+		return model;
+
+	}
+
+	
+	/* It deletes record for the given id in URL and redirects to /viewemp */    
+    @RequestMapping(value="/reject/{id}",method = RequestMethod.GET)    
+    public String delete(@PathVariable int id){    
+        int i = adminService.reject(id);   
+        
+        if(i>0)
+        {
+        	
+        }
+        else
+        {
+        	
+        }
+        	
+        	
+        return "redirect:/display";
+	
+        
+    }   
+    
+    
+	/* It deletes record for the given id in URL and redirects to /viewemp */    
+    @RequestMapping(value="/approve/{id}",method = RequestMethod.GET)    
+    public String approve(@PathVariable int id){    
+        int i = adminService.approve(id);   
+        
+        if(i>0)
+        {
+        	
+        }
+        else
+        {
+        	
+        }
+        	
+        	
+        return "redirect:/display";
+	
+        
+    }
 
 }

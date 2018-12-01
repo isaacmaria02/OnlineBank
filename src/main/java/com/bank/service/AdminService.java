@@ -30,6 +30,25 @@ public class AdminService implements IAdminService {
 		// TODO Auto-generated method stub
 		return addao.displayRequests();
 	}
+	
+	
+	
+
+	@Transactional
+	public int reject(int i) {
+		// TODO Auto-generated method stub
+		return addao.reject(i);
+	}
+	
+	
+	
+	
+
+	@Transactional
+	public int approve(int i) {
+		// TODO Auto-generated method stub
+		return addao.approve(i);
+	}
 /*
 	@Transactional
 	public int registerOnline(InternetBankingUser ibu) {

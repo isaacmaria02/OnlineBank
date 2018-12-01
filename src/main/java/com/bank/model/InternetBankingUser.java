@@ -1,6 +1,11 @@
 package com.bank.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class InternetBankingUser {
+	
+	@Autowired
+	MD5 hash;
 
 	private String user_id;
 
@@ -39,7 +44,9 @@ public class InternetBankingUser {
 	}
 
 	public void setLogin_password(String login_password) {
-		this.login_password = login_password;
+		
+		
+		this.login_password = hash.getMd5(login_password);
 	}
 
 	public String getTransaction_password() {
@@ -47,7 +54,7 @@ public class InternetBankingUser {
 	}
 
 	public void setTransaction_password(String transaction_password) {
-		this.transaction_password = transaction_password;
+		this.transaction_password = hash.getMd5(transaction_password);
 	}
 
 	public int getAttempts() {
