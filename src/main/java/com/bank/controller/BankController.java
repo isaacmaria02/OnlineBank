@@ -347,17 +347,139 @@ public class BankController {
 	
 	
 	
-	@RequestMapping("/changeId")
-	public ModelAndView changeId(ModelAndView model, HttpSession session) {
+	@RequestMapping("/checkId")
+	public ModelAndView changeId(ModelAndView model, HttpSession session,HttpServletRequest request, HttpServletResponse response) {
 			
+		String oldUserId = request.getParameter("old");
+		String newUserId = request.getParameter("new");
 		
-         
+		
+		long accountNumber = (Long) session.getAttribute("account_number");
+		
+		boolean isUserId =accountService.checkUserId(accountNumber,oldUserId);
+       
+		
+		if(isUserId)
+		{
+			
+			int isUserIdUpdated = accountService.changeUserId(accountNumber,newUserId);
+			
+			if(isUserIdUpdated>0)
+			{
+			     model.addObject("changeId","User Id Successfully Updated");
 
+			}
+			else
+			{
+			     model.addObject("changeId","Could not update User Id");
 
+			}
+			
+			
+		     model.setViewName("Dashboard");
 
+		}else
+		{
+		     model.addObject("changeId","Please enter correct User Id");
+		     model.setViewName("ChangeId");
+		}
+
+		
 		return model;
 
 	}
+	
+	
+	
+	
+	@RequestMapping("/checkPassword")
+	public ModelAndView changePassword(ModelAndView model, HttpSession session,HttpServletRequest request, HttpServletResponse response) {
+			
+		String oldLoginPassword = request.getParameter("old");
+		String newLoginPassword = request.getParameter("new");
+		
+		
+		long accountNumber = (Long) session.getAttribute("account_number");
+		
+		boolean isLoginPassword =accountService.checkLoginPassword(accountNumber,oldLoginPassword);
+       
+		
+		if(isLoginPassword)
+		{
+			
+			int isUserIdUpdated = accountService.changeLoginPassword(accountNumber,newLoginPassword);
+			
+			if(isUserIdUpdated>0)
+			{
+			     model.addObject("changePassword","Login Password Successfully Updated");
+
+			}
+			else
+			{
+			     model.addObject("changePassword","Could not update Login Password");
+
+			}
+			
+			
+		     model.setViewName("Dashboard");
+
+		}else
+		{
+		     model.addObject("changePassword","Please enter correct Login Password");
+		     model.setViewName("ChangePassword");
+		}
+
+		
+		return model;
+
+	}
+	
+	
+	
+	@RequestMapping("/checkTransactionPassword")
+	public ModelAndView changeTransactionPassword(ModelAndView model, HttpSession session,HttpServletRequest request, HttpServletResponse response) {
+			
+		String oldTransactionPassword = request.getParameter("old");
+		String newTransactionPassword = request.getParameter("new");
+		
+		
+		long accountNumber = (Long) session.getAttribute("account_number");
+		
+		boolean isLoginPassword =accountService.checkTransactionPassword(accountNumber,oldTransactionPassword);
+       
+		
+		if(isLoginPassword)
+		{
+			
+			int isUserIdUpdated = accountService.changeTransactionPassword(accountNumber,newTransactionPassword);
+			
+			if(isUserIdUpdated>0)
+			{
+			     model.addObject("changeTransactionPassword","Transaction Password Successfully Updated");
+
+			}
+			else
+			{
+			     model.addObject("changeTransactionPassword","Could not update Transaction Password");
+
+			}
+			
+			
+		     model.setViewName("Dashboard");
+
+		}else
+		{
+		     model.addObject("changeTransactionPassword","Please enter correct Transaction Password");
+		     model.setViewName("ChangeTransactionPassword");
+		}
+
+		
+		return model;
+
+	}
+	
+	
+	
 	
 	
 	@RequestMapping("/download")
@@ -502,7 +624,7 @@ public class BankController {
 	}
 	
 	
-	
+
 	
 	
 

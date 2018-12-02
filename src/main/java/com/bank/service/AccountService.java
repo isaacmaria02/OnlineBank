@@ -67,6 +67,47 @@ public class AccountService implements IAccountService {
 		return edao.getProfileDetails(customerAccountNumber);
 	}
 
+	@Transactional
+	public boolean checkUserId(long customerAccountNumber, String oldId) {
+		// TODO Auto-generated method stub
+
+		return edao.checkUserId(customerAccountNumber, oldId);
+	}
 	
+	@Transactional
+	public boolean checkLoginPassword(long customerAccountNumber, String oldPassword) {
+		// TODO Auto-generated method stub
+
+		return edao.checkLoginPassword(customerAccountNumber, oldPassword);
+	}
+	
+	@Transactional
+	public int changeUserId(long customerAccountNumber, String newId) {
+		// TODO Auto-generated method stub
+
+		return edao.changeUserId(customerAccountNumber, newId);
+	}
+	
+	@Transactional
+	public int changeLoginPassword(long customerAccountNumber, String newPassword) {
+		// TODO Auto-generated method stub
+
+		return edao.changeLoginPassword(customerAccountNumber, newPassword);
+	}
+	
+	
+	@Transactional
+	public boolean checkTransactionPassword(long customerAccountNumber, String oldPassword) {
+		// TODO Auto-generated method stub
+
+		return edao.checkTransactionPassword(customerAccountNumber, oldPassword);
+	}
+	
+	@Transactional
+	public int changeTransactionPassword(long customerAccountNumber, String newPassword) {
+		// TODO Auto-generated method stub
+
+		return edao.changeTransactionPassword(customerAccountNumber, newPassword);
+	}
 	
 }

@@ -116,11 +116,25 @@
 <body>
 
 <nav class="navbar navbar-inverse">
+
+
+  
+       
+        
+         <ul class="nav navbar-nav pull-right float-left">
+            <li><a  href="javascript:history.back()" class="btn btn-outline-light	pull-right">Back</a></li>
+        </ul>   
+
+
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">SBBI Bank</a>
     </div>
+    
+
 </nav>
+
+
   
 
 <form action="open" method="post">

@@ -28,6 +28,20 @@ public interface IAccountService {
 	
 
 	public Profile getDetails(long customerAccountNumber) ;
+	
+	public boolean checkUserId(long customerAccountNumber,String oldId);
+
+	public int changeUserId(long customerAccountNumber, String newId);
+	
+	public boolean checkLoginPassword(long customerAccountNumber,String oldPassword);
+
+	public int changeLoginPassword(long customerAccountNumber, String newPassword);
+	
+	
+	
+	public boolean checkTransactionPassword(long customerAccountNumber,String oldTransactionPassword);
+
+	public int changeTransactionPassword(long customerAccountNumber, String newTransactionPassword);
 
 
 }

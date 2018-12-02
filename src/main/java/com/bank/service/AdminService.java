@@ -74,7 +74,7 @@ public class AdminService implements IAdminService {
 		
 				
 		if(isRequestApproved>0)
-		sendEmail(user.getEmail_id(), user.getAccount_number());             
+		sendEmail(user.getEmail_id(), user.getAccount_number(), user);             
 		
 		
 		
@@ -85,7 +85,7 @@ public class AdminService implements IAdminService {
 	}
 
 	@Transactional
-	public void sendEmail(String emailId, long accountNumber)
+	public void sendEmail(String emailId, long accountNumber, Profile user)
 	{
 		final String USER="sbbibank005@gmail.com";//change accordingly  
 		final String PASS="SBBI@2018";  

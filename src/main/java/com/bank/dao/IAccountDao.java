@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bank.model.Account;
@@ -45,7 +46,22 @@ public interface IAccountDao {
 	
 	public Profile getProfileDetails(long customerAccountNumber);
 
+	public boolean checkUserId(long customerAccountNumber, String oldId);
+	
+	public int changeUserId(long customerAccountNumber, String newId);
+	
+	public boolean checkLoginPassword(long customerAccountNumber, String oldPassword);
+	
+	public int changeLoginPassword(long customerAccountNumber, String newPassword);
+	
+	
 
+	public boolean checkTransactionPassword(long customerAccountNumber,String oldTransactionPassword);
+
+	public int changeTransactionPassword(long customerAccountNumber, String newTransactionPassword);
+
+
+		
 		
 		
 	

@@ -9,6 +9,10 @@
 
 <html>
 <head>
+
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 
@@ -32,6 +36,11 @@
 <body>
 
 <nav class="navbar navbar-inverse">
+
+  <ul class="nav navbar-nav pull-right float-left">
+            <li><a  href="javascript:history.back()" class="btn btn-outline-light	pull-right">Back</a></li>
+        </ul>   
+
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">SBBI Bank</a>
@@ -60,6 +69,9 @@
 <a href="#"><i>Forgot password?</i></a><br>
   </div>
 </form>
+
+
+
 
 
 <!--   <form action="login" method="post">

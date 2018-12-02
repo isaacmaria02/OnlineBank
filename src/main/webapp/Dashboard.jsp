@@ -49,7 +49,7 @@ if(session!=null)
             
             
             
-            $('a[href="changeId"]').click(function(){
+            $('.changeId'').click(function(){
                 $("#changeUserId").show();
             });
         </script>
@@ -120,6 +120,8 @@ if(session!=null)
         <ul class="nav navbar-nav pull-right float-right">
             <li><a href="logout" class="btn btn-outline-light	pull-right">Logout</a></li>
         </ul>     
+        
+         
 </div>
     </nav>
 
@@ -155,11 +157,11 @@ if(session!=null)
             <span>Fund Transfer</span></a>
         </li>
         <br><br>
-         <li class="nav-item">
+         <!-- <li class="nav-item">
           <a class="nav-link" href="logout">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Logout</span></a>
-        </li>
+        </li> -->
               </ul>
 
       <div id="content-wrapper">
@@ -262,11 +264,11 @@ if(session!=null)
    View Details
    </button>
    <div class="dropdown-menu">
-      <button class="dropdown-item" id="changeId">Change User ID</button>
+      <a class="dropdown-item" href="ChangeId.jsp">Change User ID</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="changePassword">Change Login Password</a>
+      <a class="dropdown-item" href="ChangePassword.jsp">Change Login Password</a>
 <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="changeTransactionPassword">Change Transaction Password</a>
+      <a class="dropdown-item" href="ChangeTransactionPassword.jsp">Change Transaction Password</a>
    </div>
 </div>
 
@@ -304,15 +306,22 @@ if(session!=null)
             ${transaction}
             ${payee_status}
             
-            
-            
-            
+            ${changeId }
+            ${changePassword}
+            ${changeTransactionPassword }
             
             
             
            <div id="changeUserId" style="display:none;">
            <h1>hello</h1>
            </div>
+           
+           <div id="Create" style="display:none">
+Hello
+</div>
+
+
+
 
 
         <!-- /.container-fluid -->
