@@ -262,6 +262,8 @@ public class BankController {
 	@RequestMapping("/FundTransfer")
 	public ModelAndView fundTransfer(HttpServletRequest request, HttpServletResponse response, ModelAndView model,
 			HttpSession session) {
+		
+		
 
 
 		List<Payee> payeeList = fundTransferService.displayPayee((Long) session.getAttribute("account_number"));
@@ -304,6 +306,14 @@ public class BankController {
 			model.setViewName("Dashboard");
 			
 		} else {
+			System.out.println(tr.getFrom_account());
+			System.out.println(fundTransferService.calculateCharges(tr));
+			
+			if(accountService.getBalance(tr.getFrom_account())<(tr.getAmount()+fundTransferService.calculateCharges(tr)))
+			{
+				model.addObject("transaction","Insufficient Balance");
+			}
+		   else			
 	       model.addObject("transaction","Transaction Failure");
 
 			model.setViewName("Dashboard");

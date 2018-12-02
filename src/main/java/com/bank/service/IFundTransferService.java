@@ -15,6 +15,8 @@ public interface IFundTransferService {
 	public List<Payee> displayPayee(long accountNumber);
 
 	public boolean confirmTransaction(Transaction tr, long accountNumber);
+	
+	public  float calculateCharges(Transaction tr);
 
 	//public List<Transaction> getAccountStatement(Date from, Date to);
 

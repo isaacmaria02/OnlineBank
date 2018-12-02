@@ -706,10 +706,44 @@ ${changeTransactionPassword }
   <div ng-app="app">
   
    <div ng-controller="TimeController">
+   
+   <script>
+   function validateForm() {
+
+   var amount = document.forms["fundTrans"]["amount"].value;
+   var type = document.forms["fundTrans"]["type"].value;
+  
+   if(type == "IMPS")
+	   {
+	       if(amount<100000)
+	    	   {
+	    	      return true;
+	    	   }
+	       else
+	    	   {
+	    	   alert('Amount must be less than one lakh');
+	    	   return false;
+	    	   }
+	   }
+   else if (type=="RTGS")
+	   {
+	       if(amount>200000)
+	    	   {
+	    	      return true;
+	    	   }
+	       else
+	    	   {
+	    	   alert('Amount must be greater than two lakhs');
+	    	   return false;
+	    	   }
+	   }
+   
+   }
+   </script>
     
     <div>
   <table>
-         <form id="fundtransfer" action="ConfirmPayment">
+         <form id="fundtransfer" name="fundTrans" action="ConfirmPayment" onsubmit="return validateForm()">
         <tr><td>Select Payee :</td>
             <td><select class="readonly" name="payee_name" required >
                 <c:forEach items="${PayeeList}" var="payee">
@@ -724,7 +758,7 @@ ${changeTransactionPassword }
                   
             </select>
             </td></tr>
-            <tr><td>Amount : </td><td>  <input id ="amt" class="readonly" type="number"  min="{{min}}" max="{{max}}" required  name="amount">
+            <tr><td>Amount : </td><td>  <input id ="amt" class="readonly" type="number"  min=1  required  name="amount" oninput="validity.valid||(value='');">
             </td></tr>
                   <tr><td colspan="2"><span>Please enter amount between {{min}} and {{max}}</span></td></tr>
             

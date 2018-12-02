@@ -78,7 +78,7 @@ public class FundTransferService implements IFundTransferService {
 		return Long.parseLong(new String(digits));
 	}
 
-	public static float calculateCharges(Transaction tr) {
+	public float calculateCharges(Transaction tr) {
 		float charges = 0.0f;
 		long amount = tr.getAmount();
 
