@@ -49,9 +49,9 @@ if(session!=null)
             
             
             
-            $('.changeId'').click(function(){
+            /* $('.changeId'').click(function(){
                 $("#changeUserId").show();
-            });
+            }); */
         </script>
 
     <meta charset="utf-8">
@@ -232,9 +232,9 @@ if(session!=null)
    View Details
    </button>
    <div class="dropdown-menu">
-      <a class="dropdown-item" href="AddPayee.jsp">Add Payee</a>
+      <a class="dropdown-item" href="addPayeePage">Add Payee</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="DeletePayee.jsp">Delete Payee</a>
+      <a class="dropdown-item" href="deletePayeePage">Delete Payee</a>
           <a class="dropdown-item" href="DisplayPayee">Display Payee</a>
    
    </div>
@@ -274,8 +274,7 @@ if(session!=null)
 
             </div>
             
-            
-            
+ 
            
             <c:if test="${not empty PayeeList}">
                 <br><br>
@@ -302,6 +301,10 @@ if(session!=null)
             </c:if>
         </div>
             
+                      
+                      
+            
+            
             
             ${transaction}
             ${payee_status}
@@ -309,8 +312,49 @@ if(session!=null)
             ${changeId }
             ${changePassword}
             ${changeTransactionPassword }
+            ${fundTransfer }
             
             
+            
+            <c:if test="${not empty AddPayeeView}">
+            
+                
+                <div align="center">
+                             <h3>Add Payee</h3>
+                
+         <form action="addPayee" >
+         <table>
+            <input style="display:none;" type="number" value="${account_number}" name="customer_account_number">
+             <tr><td>Payee Account Number : </td><td><input type="number" name="payee_account_number"></td><tr>
+            <tr><td>Name :</td><td> <input type="text" name="name"></td></tr>
+            <tr><td>NickName: </td><td><input type="text" name="nick_name"></td></tr>
+            <tr><td colspan="2"><input value="Add Payee" class="btn btn-primary dropdown-toggle dropdown-toggle-split"  type="submit"></td></tr>
+       </table>
+        </form>
+            </div>
+            </c:if>
+            
+            
+            
+            
+             <c:if test="${not empty DeletePayeeView}">
+                            <div align="center">
+            
+             <h3>Delete Payee</h3>
+        <form action="DeletePayee">
+        <table>
+         <tr><td>Delete Payee by Name</td><td> <input type="text" name="payee_name"></td></tr>
+            
+             
+            <tr><td colspan="2"><input value="Delete Payee" class="btn btn-primary dropdown-toggle dropdown-toggle-split"  type="submit"></td><tr>
+        </table>
+        </form>
+            </div>
+            
+            </c:if>
+            
+            
+  <!--           
             
            <div id="changeUserId" style="display:none;">
            <h1>hello</h1>
@@ -318,7 +362,7 @@ if(session!=null)
            
            <div id="Create" style="display:none">
 Hello
-</div>
+</div> -->
 
 
 

@@ -219,6 +219,10 @@ public class BankController {
 
 		model.addObject("PayeeList", payeeList);
 		model.setViewName("Dashboard");
+		
+		if(payeeList.size()==0)
+			model.addObject("payee_status", "No payee is the list");
+
 
 		return model;
 
@@ -246,8 +250,20 @@ public class BankController {
 			HttpSession session, @ModelAttribute Transaction tr) {
 
 
+           
+		boolean checkTransactionPassword = accountService.checkTransactionPassword((Long) session.getAttribute("account_number"),request.getParameter("transactionPassword") );
+		
+		System.out.println("is transaction password same "+checkTransactionPassword);
+		
 
-
+		if(!checkTransactionPassword)
+		{
+			model.addObject("transaction","Transaction Password does not match");
+			model.setViewName("Dashboard");
+			return model;
+		}
+		
+		
 		boolean isSuccessful = fundTransferService.confirmTransaction(tr,
 				(Long) session.getAttribute("account_number"));
 

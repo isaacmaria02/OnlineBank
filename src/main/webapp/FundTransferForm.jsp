@@ -23,6 +23,7 @@ if(session!=null)
 <html lang="en">
 
   <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
   
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -320,34 +321,67 @@ if(session!=null)
         </div> --%>
         
         
+  <div ng-app="app">
+  
+   <div ng-controller="TimeController">
+    
+    <div>
   
          <form id="fundtransfer" action="ConfirmPayment">
         Select Payee :
-            <select class="readonly" name="payee_name">
+            <select class="readonly" name="payee_name" required >
                 <c:forEach items="${PayeeList}" var="payee">
                     <option value="${payee.getName()}">${payee.getName()}</option>
                 </c:forEach>
             </select>
             <br>
             Transaction Type :   
-            <select class="readonly" name="type">
+            <select class="readonly" name="type" ng-change="update_values()" ng-model="selected" required>
                   <option value="IMPS">IMPS</option>
                    <option value="RTGS">RTGS</option>
                   
             </select>
             <br>
-            Amount :   <input class="readonly" type="number"  min=1 name="amount">
+            Amount :   <input id ="amt" class="readonly" type="number"  min="{{min}}" max="{{max}}" required  name="amount">
             <br>
+                  <span>Please enter amount between {{min}} and {{max}}</span><br>
+            
             Remarks (Optional) : <input class="readonly" type="text" name="remark">
             <br>
             <input class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="transfer" type="button" value="Transfer">
+            <p style="display:none;" class="hidden">Enter Transaction Password</p>
+            <input style="display:none;" type="password" class="hidden" name="transactionPassword" title="Please enter transaction password" required><br><br>
             <input id="backbtn" class="hidden btn btn-primary dropdown-toggle dropdown-toggle-split" style="display:none;" type="button" value="Back">
             <input id="submitbtn" class="hidden btn btn-primary dropdown-toggle dropdown-toggle-split" style="display:none;" type="submit" value="Confirm">
+            
+            
         </form>
             
+            
+            <script>
+            var app = angular.module('app', []);
+            app.controller('TimeController', function($scope) {
+
+              var vm = $scope;
+              
+              vm.update_values = function() {
+                  if(vm.selected === 'IMPS') {
+                     vm.min = "1";
+                     vm.max = "100000";
+                  } else if(vm.selected === 'RTGS') {
+                     vm.min = "100001";
+                     vm.max = "1000000";
+                  } 
+               }
+
+
+            });
+
+            
+            </script>
          
             
-
+</div>
 
 
         <!-- /.container-fluid -->

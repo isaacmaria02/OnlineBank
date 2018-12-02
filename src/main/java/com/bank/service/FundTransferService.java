@@ -86,22 +86,25 @@ public class FundTransferService implements IFundTransferService {
 
 		if (tr.getType().equals("IMPS")) {
 			if (amount < 100000) {
-				charges = 5 + 18 / 100 * 5;
+				charges = (float) (5 + (0.18 * 5));
 
 			} else if (amount > 100000 && amount < 200000) {
-				charges = 15 + 18 / 100 * 15;
+				charges = (float) (15 + (0.18 * 15));
 			}
 		}
 
 		else if (tr.getType().equals("RTGS")) {
 			if (amount < 500000 && amount > 200000) {
-				charges = 25 + 18 / 100 * 25;
+				charges = (float) (25 + (0.18 * 25));
+				
 
 			} else if (amount > 500000) {
-				charges = 50 + 18 / 100 * 50;
+				charges = (float) (50 + (0.18 * 50));
 			}
 		}
 
+		
+		System.out.println(charges+" is the transaction charge");
 		return charges;
 	}
 
