@@ -50,7 +50,7 @@ public class ReportGeneration implements IReportGeneration {
 
 	/**
 	 * The method gets all the transaction logs of the user from specified date
-	 * range
+	 * range.
 	 * <p>
 	 * Account Number in the from_account attribute of gr13_transactions relation
 	 * will be debited, Account Number in the to_account attribute of the will be
