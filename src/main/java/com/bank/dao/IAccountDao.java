@@ -1,5 +1,6 @@
 package com.bank.dao;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public interface IAccountDao {
 	
 	public long createAccount(Customer customer, Account account, Address address);
 	
-	public int register(InternetBankingUser ibu);
+	public int register(InternetBankingUser ibu) throws SQLIntegrityConstraintViolationException;
 	
 	public boolean login(Login login);
 

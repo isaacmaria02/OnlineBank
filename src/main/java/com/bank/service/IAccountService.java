@@ -1,5 +1,6 @@
 package com.bank.service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +17,7 @@ public interface IAccountService {
 
 	public long openAccount(Customer customer, Account account, Address address);
 
-	public int registerOnline(InternetBankingUser ibu);
+	public int registerOnline(InternetBankingUser ibu) throws SQLIntegrityConstraintViolationException;
 
 	public boolean validateUser(Login login);
 

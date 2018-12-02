@@ -67,6 +67,7 @@ return true;
     </div>
 </nav>
   
+  <h2>${register }</h2>
 <form action="register" method="post">
   <div class="container" align="center">
 

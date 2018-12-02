@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.ServerException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.io.FileUtils;
 
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -35,6 +37,7 @@ import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -101,7 +104,15 @@ public class BankController {
 		
 
 		// REGISTER IF IT EXISTS
-		int i = accountService.registerOnline(ibu);
+		int i;
+		try {
+			i = accountService.registerOnline(ibu);
+		} catch (SQLIntegrityConstraintViolationException e) {
+			// TODO Auto-generated catch block
+			model.addObject("register","Please enter different User Id");
+			model.setViewName("Register");
+			return model;
+		}
 
 		if (i > 0) {
 
@@ -494,11 +505,20 @@ public class BankController {
         
         
         XWPFDocument document = new XWPFDocument(); 
+        
+        
+    
+
 		
               	    try{
-              	    	File file = new File("C:\\Users\\AE103_PC7\\git\\OnlineBank\\src\\main\\resources\\"+userProfile.getAccount_number());
-          	        	session.setAttribute("filePath","C:\\Users\\AE103_PC7\\git\\OnlineBank\\src\\main\\resources\\"+userProfile.getAccount_number()+"\\");
+              	    //	File file = new File("E:\\OnlineBank\\src\\main\\resources\\"+userProfile.getAccount_number());
+          	        //	session.setAttribute("filePath","E:\\OnlineBank\\src\\main\\resources\\"+userProfile.getAccount_number()+"\\");
 
+              	    	File file = ResourceUtils.getFile("classpath:"+userProfile.getAccount_number());
+              	    	session.setAttribute("filePath",file+"\\");
+              	    	
+              	    	System.out.println(file.toString());
+              	    	
               	    	if (!file.exists()) {
               	        	//model.addObject("filePath",file);
               	        	
@@ -508,6 +528,11 @@ public class BankController {
               	                System.out.println("Failed to create directory!");
               	            }
               	        }
+              	    	else
+              	    	{
+              	    		FileUtils.cleanDirectory(file); 
+
+              	    	}
               	    	
               	    	
         	    	FileOutputStream out = new FileOutputStream(new File(file+"/"+(String)session.getAttribute("from")+"-"+(String)session.getAttribute("to")+".docx"));

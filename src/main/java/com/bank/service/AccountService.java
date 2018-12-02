@@ -1,5 +1,6 @@
 package com.bank.service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class AccountService implements IAccountService {
 	}
 
 	@Transactional
-	public int registerOnline(InternetBankingUser ibu) {
+	public int registerOnline(InternetBankingUser ibu) throws SQLIntegrityConstraintViolationException {
 		// TODO Auto-generated method stub
 		return edao.register(ibu);
 	}

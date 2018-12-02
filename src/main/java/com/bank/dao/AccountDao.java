@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.PreparedStatementCallback;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -134,7 +135,7 @@ public class AccountDao implements IAccountDao
  * @return int : return positive values when successfully registered for internet banking
  * </p>
  */
-	public int register(InternetBankingUser ibu)
+	public int register(InternetBankingUser ibu) throws SQLIntegrityConstraintViolationException
 	{
 		int i =0;
 		
