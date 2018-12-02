@@ -70,6 +70,48 @@ public class MapperController {
 	
 	
 
+	@RequestMapping("/changeIdPage")
+	public ModelAndView changeIdPage(ModelAndView model) {
+
+		
+		model.addObject("ChangeIdView","not empty");
+		model.setViewName("Dashboard");
+		
+	
+		
+		return model;
+
+	}
+	
+	@RequestMapping("/changePasswordPage")
+	public ModelAndView changePassword(ModelAndView model) {
+
+		
+		model.addObject("ChangePasswordView","not empty");
+		model.setViewName("Dashboard");
+		
+	
+		
+		return model;
+
+	}
+
+	
+	@RequestMapping("/changeTransactionPasswordPage")
+	public ModelAndView changeTransactionPassword(ModelAndView model) {
+
+		
+		model.addObject("ChangeTransactionPasswordView","not empty");
+		model.setViewName("Dashboard");
+		
+	
+		
+		return model;
+
+	}
+	
+	
+
 	
         
     }

@@ -264,11 +264,11 @@ if(session!=null)
    View Details
    </button>
    <div class="dropdown-menu">
-      <a class="dropdown-item" href="ChangeId.jsp">Change User ID</a>
+      <a class="dropdown-item" href="changeIdPage">Change User ID</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="ChangePassword.jsp">Change Login Password</a>
+      <a class="dropdown-item" href="changePasswordPage">Change Login Password</a>
 <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="ChangeTransactionPassword.jsp">Change Transaction Password</a>
+      <a class="dropdown-item" href="changeTransactionPasswordPage">Change Transaction Password</a>
    </div>
 </div>
 
@@ -277,6 +277,7 @@ if(session!=null)
  
            
             <c:if test="${not empty PayeeList}">
+            <div align="center">
                 <br><br>
         <h3>Search</h3>   <input class="form-control" id="searchPayee" type="text" placeholder="Search..">
        <br><br> <div >
@@ -298,6 +299,7 @@ if(session!=null)
                         </c:forEach>
                     </tbody>
                 </table>
+                </div>
             </c:if>
         </div>
             
@@ -307,8 +309,7 @@ if(session!=null)
             
             
             ${transaction}
-            ${payee_status}
-            
+            ${payee_status}            
             ${changeId }
             ${changePassword}
             ${changeTransactionPassword }
@@ -354,15 +355,72 @@ if(session!=null)
             </c:if>
             
             
-  <!--           
+      
+             <c:if test="${not empty ChangeIdView}">
+                            <div align="center">
+                            
+                            <h3>Change User Id</h3>
+            <table>
+          
+          
+          <form action="checkId" method="post">
+<tr><td>Old ID</td><td><input type="text" name="old"></td></tr>
+<tr><td>New User ID</td><td><input type="text" name="new"></td></tr>
+<tr><td>Confirm User ID</td><td><input type="text" name="confirm"></td></tr>
+<tr><td colspan="2"><input type="submit" class="btn btn-primary dropdown-toggle dropdown-toggle-split" value="Change User Id"></td></tr>
+</form>
+
+</table>
+${changeId }
+          
+            </div>
             
-           <div id="changeUserId" style="display:none;">
-           <h1>hello</h1>
-           </div>
-           
-           <div id="Create" style="display:none">
-Hello
-</div> -->
+            </c:if>
+            
+            
+            
+               <c:if test="${not empty ChangePasswordView}">
+                            <div align="center">
+                            
+                            <h3>Change Password</h3>
+           <table>
+              <form action="checkPassword" method="post">
+<tr><td>Old Password</td><td><input type="password" name="old"></td></tr>
+<tr><td>New Login Password</td><td><input type="password" name="new"></td></tr>
+<tr><td>Confirm Login Password</td><td><input type="password" name="confirm"></td></tr>
+<tr><td colspan="2"><input type="submit" class="btn btn-primary dropdown-toggle dropdown-toggle-split" value="Change Password"></td></tr>
+</form>
+</table>
+${changePassword }
+            </div>
+            
+            </c:if>
+            
+            
+            
+               <c:if test="${not empty ChangeTransactionPasswordView}">
+                            <div align="center">
+                            
+                            <h3>Change Transaction Password</h3>
+           <table>
+              <form action="checkTransactionPassword" method="post">
+<tr><td>Old Password</td><td><input type="password" name="old"></td></tr>
+<tr><td>New Login Password</td><td><input type="password" name="new"></td></tr>
+<tr><td>Confirm Login Password</td><td><input type="password" name="confirm"></td></tr>
+<tr><td colspan="2"><input type="submit" class="btn btn-primary dropdown-toggle dropdown-toggle-split" value="Change Password"></td></tr>
+</form>
+</table>
+${changeTransactionPassword }
+            </div>
+            
+            </c:if>
+              
+        
+
+
+
+
+
 
 
 

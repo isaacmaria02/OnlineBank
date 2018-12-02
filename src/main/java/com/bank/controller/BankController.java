@@ -408,7 +408,7 @@ public class BankController {
 		}else
 		{
 		     model.addObject("changeId","Please enter correct User Id");
-		     model.setViewName("ChangeId");
+		     model.setViewName("Dashboard");
 		}
 
 		
@@ -453,7 +453,7 @@ public class BankController {
 		}else
 		{
 		     model.addObject("changePassword","Please enter correct Login Password");
-		     model.setViewName("ChangePassword");
+		     model.setViewName("Dashboard");
 		}
 
 		
@@ -497,7 +497,7 @@ public class BankController {
 		}else
 		{
 		     model.addObject("changeTransactionPassword","Please enter correct Transaction Password");
-		     model.setViewName("ChangeTransactionPassword");
+		     model.setViewName("Dashboard");
 		}
 
 		
