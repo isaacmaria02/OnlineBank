@@ -346,7 +346,9 @@ public class BankController {
 			model.addObject("statement","No Results Found");
 		
 		}
-		model.setViewName("AccountStatement");
+		
+		
+		model.setViewName("Dashboard");
 
 		return model;
 

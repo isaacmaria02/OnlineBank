@@ -32,6 +32,9 @@ if(session!=null)
 	}
 
 </style>
+
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
@@ -44,14 +47,13 @@ if(session!=null)
               });
               
              
+                
            
             });
             
             
             
-            /* $('.changeId'').click(function(){
-                $("#changeUserId").show();
-            }); */
+            
         </script>
 
     <meta charset="utf-8">
@@ -136,7 +138,7 @@ if(session!=null)
           </a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="AccountStatement.jsp"  role="button"  aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="accountStatementPage"  role="button"  aria-haspopup="true" aria-expanded="false">
  
             <span>Account Statement</span>
           </a>
@@ -200,7 +202,7 @@ if(session!=null)
    <div class="dropdown-menu">
       <a class="dropdown-item" href="details">Account Details</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="AccountStatement.jsp">Account Statement</a>
+      <a class="dropdown-item" href="accountStatementPage">Account Statement</a>
  <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="summary">Account Summary</a>
       
@@ -414,10 +416,99 @@ ${changeTransactionPassword }
             </div>
             
             </c:if>
-              
+            
+            
+            
+            
+              <c:if test="${not empty AccountStatementView}">
+                            <div align="center">
+                            
+                         <h3>Account Statement</h3>
+        <br><div>
+        <form action="AccountStatement">
+            From<input id="fromDate"  type="date" name="from" value="2018-01-06">
+            To <input id="toDate"  type="date" name="to" value="2018-01-06"><br><br>
+            <input type="submit" value="Get Account Statement" class="btn btn-primary dropdown-toggle dropdown-toggle-split">
+
+            <!-- <input type="submit" value="Get Account Statement"><br> -->
+        </form>
+           </div>
+        <br><br>
+                    </div>
+            
+            </c:if>
+            
+            
+            <c:if test="${not empty AccountStatementList}">
+           
+<div align="center">
+                            
+                         <h3>Account Statement</h3>
+        <br><div>
+        <form action="AccountStatement">
+            From<input id="fromDate" value="2018-12-06" type="date" name="from">
+            To <input id="toDate"  value="2018-12-06" type="date" name="to"><br><br>
+            <input type="submit" value="Get Account Statement" class="btn btn-primary dropdown-toggle dropdown-toggle-split">
+
+            <!-- <input type="submit" value="Get Account Statement"><br> -->
+        </form>
+           </div><br>
+
+            <table id="customers" border="1">
+                <thead>
+                    <tr>
+                        <th>Reference ID</th>
+                        <th>Transaction Type</th>
+                        <th>Amount</th>
+                        <th>From Account</th>
+                        <th>To Account</th>
+                        <th>Date</th>
+                        <th>Remark</th>
+                        <th>Transaction Charges</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${AccountStatementList}" var="record">
+                        <tr>
+                            <td>${record.reference_id }</td>
+                            <td>${record.type }</td>
+                            <td>${record.amount }</td>
+                            <td>${record.from_account }</td>
+                            <td>${record.to_account }</td>
+                            <td>${record.timestamp }</td>
+                            <td>${record.remark }</td>
+                            <td>${record.charges }</td>
+                            <td>${record.status }</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+            
+               <a class="btn btn-primary dropdown-toggle dropdown-toggle-split" href="download">Download</a>
         
+        </c:if>
 
 
+           
+                       <c:if test="${not empty statement}">
+            
+              <div align="center">
+  <h3>Account Statement</h3>
+        <br><div>
+        <form action="AccountStatement">
+            From<input value="2018-12-06" id="fromDate" type="date" name="from">
+            To <input value="2018-12-06" id="toDate" type="date" name="to"><br><br>
+            <input type="submit" value="Get Account Statement" class="btn btn-primary dropdown-toggle dropdown-toggle-split">
+
+            <!-- <input type="submit" value="Get Account Statement"><br> -->
+        </form>
+           </div><br>
+           
+              ${statement}
+           
+     </div>
+</c:if>
 
 
 

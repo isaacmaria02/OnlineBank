@@ -111,6 +111,20 @@ public class MapperController {
 	}
 	
 	
+	@RequestMapping("/accountStatementPage")
+	public ModelAndView accountStatement(ModelAndView model) {
+
+		
+		model.addObject("AccountStatementView","not empty");
+		model.setViewName("Dashboard");
+		
+	
+		
+		return model;
+
+	}
+	
+	
 
 	
         
