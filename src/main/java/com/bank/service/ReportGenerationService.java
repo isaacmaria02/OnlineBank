@@ -7,18 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bank.dao.AccountDao;
-import com.bank.dao.IReportGeneration;
-import com.bank.model.Account;
-import com.bank.model.Address;
-import com.bank.model.Customer;
-import com.bank.model.InternetBankingUser;
-import com.bank.model.Login;
-import com.bank.model.Payee;
 import com.bank.model.Transaction;
 
 @Service
-public class ReportGenerationService implements IReportGenerationService{
+public class ReportGenerationService implements IReportGenerationService {
 
 	@Autowired
 	ReportGenerationService rdao;
@@ -32,10 +24,7 @@ public class ReportGenerationService implements IReportGenerationService{
 
 	@Override
 	public void generateReport() {
-		
-		
+
 	}
-
-
 
 }

@@ -1,16 +1,12 @@
 package com.bank.service;
 
 import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.List;
-
-import org.springframework.transaction.annotation.Transactional;
 
 import com.bank.model.Account;
 import com.bank.model.Address;
 import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
 import com.bank.model.Login;
-import com.bank.model.Payee;
 import com.bank.model.Profile;
 
 public interface IAccountService {
@@ -22,32 +18,27 @@ public interface IAccountService {
 	public boolean validateUser(Login login);
 
 	public long getAccountNumber(Login login);
-	
-	public float getBalance(long accountNumber);
-	
-	public Account getSummary(long accountNumber);
-	
 
-	public Profile getDetails(long customerAccountNumber) ;
-	
-	public boolean checkUserId(long customerAccountNumber,String oldId);
+	public float getBalance(long accountNumber);
+
+	public Account getSummary(long accountNumber);
+
+	public Profile getDetails(long customerAccountNumber);
+
+	public boolean checkUserId(long customerAccountNumber, String oldId);
 
 	public int changeUserId(long customerAccountNumber, String newId);
-	
-	public boolean checkLoginPassword(long customerAccountNumber,String oldPassword);
+
+	public boolean checkLoginPassword(long customerAccountNumber, String oldPassword);
 
 	public int changeLoginPassword(long customerAccountNumber, String newPassword);
-	
-	
-	
-	public boolean checkTransactionPassword(long customerAccountNumber,String oldTransactionPassword);
+
+	public boolean checkTransactionPassword(long customerAccountNumber, String oldTransactionPassword);
 
 	public int changeTransactionPassword(long customerAccountNumber, String newTransactionPassword);
 
 	public boolean verifyAccountNumber(InternetBankingUser ibu);
-	
-	public boolean checkDupliateId( String userId);
 
-
+	public boolean checkDupliateId(String userId);
 
 }

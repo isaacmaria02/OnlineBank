@@ -42,6 +42,7 @@
 
 
 
+
 <h1>Thanks for Registering, Your account will be activated soon</h1>
 <h3><a href="index.jsp">Click here to go to homepage</a></h3>
 </body>

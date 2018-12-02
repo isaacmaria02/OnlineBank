@@ -1,7 +1,5 @@
 package com.bank.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class Customer {
 	private int customer_id;
 	private String first_name;

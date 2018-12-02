@@ -1,8 +1,5 @@
 package com.bank.service;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -47,7 +44,7 @@ public class FundTransferService implements IFundTransferService {
 		// CHECKING BALANCE
 		float balance = edao.checkBalance(userAccountNumber);
 
-		if (balance < (tr.getAmount() + charges)) {			
+		if (balance < (tr.getAmount() + charges)) {
 			return false;
 		}
 
@@ -58,10 +55,8 @@ public class FundTransferService implements IFundTransferService {
 		// FINDING PAYEE ACCOUNT NUMBER
 		long accountNumber = tdao.payeeAccountNumber(tr, userAccountNumber);
 		tr.setTo_account(accountNumber);
-		
-		//FINDING PAYEE NAME
-		
-		
+
+		// FINDING PAYEE NAME
 
 		tr.setFrom_account(userAccountNumber);
 
@@ -94,18 +89,13 @@ public class FundTransferService implements IFundTransferService {
 		else if (tr.getType().equals("RTGS")) {
 			if (amount < 500000 && amount > 200000) {
 				charges = (float) (25 + (0.18 * 25));
-				
 
 			} else if (amount > 500000) {
 				charges = (float) (50 + (0.18 * 50));
 			}
 		}
 
-		
 		return charges;
 	}
-
-
-	
 
 }

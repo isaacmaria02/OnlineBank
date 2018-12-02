@@ -1,11 +1,7 @@
 package com.bank.model;
 
-import java.util.List;
-
-
 public class Account {
 
-	
 	private long account_number;
 	private float balance;
 	private String account_type;

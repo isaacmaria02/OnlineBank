@@ -1,8 +1,5 @@
 package com.bank.service;
 
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +10,6 @@ import com.bank.model.Address;
 import com.bank.model.Customer;
 import com.bank.model.InternetBankingUser;
 import com.bank.model.Login;
-import com.bank.model.Payee;
 import com.bank.model.Profile;
 
 @Service
@@ -47,7 +43,6 @@ public class AccountService implements IAccountService {
 		return edao.getAccountNumber(login);
 	}
 
-	
 	@Transactional
 	public float getBalance(long accountNumber) {
 		// TODO Auto-generated method stub
@@ -59,8 +54,8 @@ public class AccountService implements IAccountService {
 	public Account getSummary(long accountNumber) {
 		// TODO Auto-generated method stub
 		return edao.getSummary(accountNumber);
-	}	
-	
+	}
+
 	@Transactional
 	public Profile getDetails(long customerAccountNumber) {
 		// TODO Auto-generated method stub
@@ -74,36 +69,35 @@ public class AccountService implements IAccountService {
 
 		return edao.checkUserId(customerAccountNumber, oldId);
 	}
-	
+
 	@Transactional
 	public boolean checkLoginPassword(long customerAccountNumber, String oldPassword) {
 		// TODO Auto-generated method stub
 
 		return edao.checkLoginPassword(customerAccountNumber, oldPassword);
 	}
-	
+
 	@Transactional
 	public int changeUserId(long customerAccountNumber, String newId) {
 		// TODO Auto-generated method stub
 
 		return edao.changeUserId(customerAccountNumber, newId);
 	}
-	
+
 	@Transactional
 	public int changeLoginPassword(long customerAccountNumber, String newPassword) {
 		// TODO Auto-generated method stub
 
 		return edao.changeLoginPassword(customerAccountNumber, newPassword);
 	}
-	
-	
+
 	@Transactional
 	public boolean checkTransactionPassword(long customerAccountNumber, String oldPassword) {
 		// TODO Auto-generated method stub
 
 		return edao.checkTransactionPassword(customerAccountNumber, oldPassword);
 	}
-	
+
 	@Transactional
 	public int changeTransactionPassword(long customerAccountNumber, String newPassword) {
 		// TODO Auto-generated method stub
@@ -122,5 +116,5 @@ public class AccountService implements IAccountService {
 		// TODO Auto-generated method stub
 		return edao.checkDupliateId(userId);
 	}
-	
+
 }

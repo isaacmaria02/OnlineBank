@@ -3,7 +3,7 @@ package com.bank.model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class InternetBankingUser {
-	
+
 	@Autowired
 	MD5 hash;
 
@@ -44,8 +44,7 @@ public class InternetBankingUser {
 	}
 
 	public void setLogin_password(String login_password) {
-		
-		
+
 		this.login_password = hash.getMd5(login_password);
 	}
 

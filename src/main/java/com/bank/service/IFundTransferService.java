@@ -1,6 +1,5 @@
 package com.bank.service;
 
-import java.sql.Date;
 import java.util.List;
 
 import com.bank.model.Payee;
@@ -15,9 +14,7 @@ public interface IFundTransferService {
 	public List<Payee> displayPayee(long accountNumber);
 
 	public boolean confirmTransaction(Transaction tr, long accountNumber);
-	
-	public  float calculateCharges(Transaction tr);
 
-	//public List<Transaction> getAccountStatement(Date from, Date to);
+	public float calculateCharges(Transaction tr);
 
 }

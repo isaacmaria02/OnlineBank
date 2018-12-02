@@ -10,7 +10,5 @@ public class AccountNumber {
 	public void setAccountNumber(long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
-	
-	
 
 }

@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.bank.model.Payee;
 import com.bank.model.Transaction;
-import com.bank.service.IFundTransferService;
+
 /**
  * 
  * @author Isaac Maria <isaac.maria@lntinfotech.com
@@ -81,7 +81,7 @@ public class FundTransferDao implements IFundTransferDao {
 		i = jdbcTemplate.update(updateCustomerBalance);
 
 		String updatePayeeBalance = "update gr13_accounts set ga_balance=ga_balance+" + tr.getAmount()
-		+ " where ga_account_number=" + tr.getTo_account();
+				+ " where ga_account_number=" + tr.getTo_account();
 		j = jdbcTemplate.update(updatePayeeBalance);
 
 		if (i > 0 && j <= 0) {
@@ -94,7 +94,7 @@ public class FundTransferDao implements IFundTransferDao {
 		} else if (j > 0 && i <= 0) {
 			// ADDED TO PAYEE BUT NOT DEDUCTED FROM CUSTOMER
 			updateCustomerBalance = "update gr13_accounts set ga_balance=ga_balance-" + tr.getAmount()
-			+ " where ga_account_number=" + tr.getTo_account();
+					+ " where ga_account_number=" + tr.getTo_account();
 			i = jdbcTemplate.update(updateCustomerBalance);
 
 			return false;
@@ -124,7 +124,7 @@ public class FundTransferDao implements IFundTransferDao {
 			i = jdbcTemplate.update(updateCustomerBalance);
 
 			updateCustomerBalance = "update gr13_accounts set ga_balance=ga_balance-" + tr.getAmount()
-			+ " where ga_account_number=" + tr.getTo_account();
+					+ " where ga_account_number=" + tr.getTo_account();
 			i = jdbcTemplate.update(updateCustomerBalance);
 
 		}

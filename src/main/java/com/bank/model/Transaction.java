@@ -1,20 +1,9 @@
 package com.bank.model;
 
 import java.sql.Date;
-
-import org.springframework.jdbc.core.JdbcTemplate;
+import java.sql.Timestamp;
 
 public class Transaction {
-
-	JdbcTemplate jdbcTemplate;
-
-	public JdbcTemplate getJdbcTemplate() {
-		return jdbcTemplate;
-	}
-
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
 
 	private long reference_id;
 	private String type;
@@ -26,16 +15,21 @@ public class Transaction {
 	private float charges;
 	private String payee_name;
 	private String status;
-	
-	
-	
+	private Timestamp time;
 
 	@Override
 	public String toString() {
-		return "Transaction [jdbcTemplate=" + jdbcTemplate + ", reference_id=" + reference_id + ", type=" + type
-				+ ", amount=" + amount + ", from_account=" + from_account + ", to_account=" + to_account
-				+ ", timestamp=" + timestamp + ", remark=" + remark + ", charges=" + charges + ", payee_name="
-				+ payee_name + ", status=" + status + "]";
+		return "Transaction [reference_id=" + reference_id + ", type=" + type + ", amount=" + amount + ", from_account="
+				+ from_account + ", to_account=" + to_account + ", timestamp=" + timestamp + ", remark=" + remark
+				+ ", charges=" + charges + ", payee_name=" + payee_name + ", status=" + status + ", time=" + time + "]";
+	}
+
+	public Timestamp getTime() {
+		return time;
+	}
+
+	public void setTime(Timestamp time) {
+		this.time = time;
 	}
 
 	public String getStatus() {
@@ -46,9 +40,6 @@ public class Transaction {
 		this.status = status;
 	}
 
-	
-	
-	
 	public long getFrom_account() {
 		return from_account;
 	}
