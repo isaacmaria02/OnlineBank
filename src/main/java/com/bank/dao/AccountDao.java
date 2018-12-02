@@ -135,7 +135,7 @@ public class AccountDao implements IAccountDao
  * @return int : return positive values when successfully registered for internet banking
  * </p>
  */
-	public int register(InternetBankingUser ibu) throws SQLIntegrityConstraintViolationException
+	public int register(InternetBankingUser ibu) 
 	{
 		int i =0;
 		
@@ -379,6 +379,23 @@ public class AccountDao implements IAccountDao
 		
 	}
 	
+public boolean checkDupliateId( String userId) {
+		
+		
+		String getUserIdQuery="select GIBU_USER_ID from gr13_internet_banking_users where GIBU_USER_ID='"+userId+"'";
+
+		
+		List<InternetBankingUser> users = jdbcTemplate.query(getUserIdQuery, new ChangeIdMapper());
+		
+		if(users.size()>0)
+			return true;
+		
+	
+		
+		return false;
+		
+		
+	}
 	
 public boolean checkLoginPassword(long customerAccountNumber, String oldPassword) {
 		
@@ -449,11 +466,27 @@ public int changeTransactionPassword(long customerAccountNumber, String newPassw
 	
 	
 }
+
+
 @Override
-public void emailAccountNumber(Customer customer, Account account, Address address) {
+public boolean verifyAccountNumber(InternetBankingUser ibu) {
 	// TODO Auto-generated method stub
 	
-}
+	String verifyAccountNumberQuery="select GIBU_USER_ID from gr13_internet_banking_users where GIBU_GA_ACCOUNT_NUMBER="+ibu.getAccount_number();
+
+	
+	List<InternetBankingUser> users = jdbcTemplate.query(verifyAccountNumberQuery, new ChangeIdMapper());
+	
+	if(users.size()>0)
+		return true;
+	
+
+	
+	return false;
+	
+	
+	
+	}
 	
 
 }  

@@ -74,6 +74,7 @@ return true;
     <h1 align="center">Register for Internet Banking</h1>
    <center> <h4>Please fill in the form to avail Internet Banking</h2></center>
     <hr>    
+    <h2>${register_error }</h2>
   <label for="Account No"><b>Account Number *<span class="fa fa-address-card"></span>  :</b></label><br>
     <input type="number" placeholder="Enter your account number" name="account_number" required><br>
 

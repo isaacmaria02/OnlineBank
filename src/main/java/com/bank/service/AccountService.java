@@ -29,7 +29,7 @@ public class AccountService implements IAccountService {
 	}
 
 	@Transactional
-	public int registerOnline(InternetBankingUser ibu) throws SQLIntegrityConstraintViolationException {
+	public int registerOnline(InternetBankingUser ibu) {
 		// TODO Auto-generated method stub
 		return edao.register(ibu);
 	}
@@ -109,6 +109,18 @@ public class AccountService implements IAccountService {
 		// TODO Auto-generated method stub
 
 		return edao.changeTransactionPassword(customerAccountNumber, newPassword);
+	}
+
+	@Override
+	public boolean verifyAccountNumber(InternetBankingUser ibu) {
+		// TODO Auto-generated method stub
+		return edao.verifyAccountNumber(ibu);
+	}
+
+	@Override
+	public boolean checkDupliateId(String userId) {
+		// TODO Auto-generated method stub
+		return edao.checkDupliateId(userId);
 	}
 	
 }

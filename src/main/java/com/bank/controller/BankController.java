@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.ServerException;
+import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -98,12 +99,41 @@ public class BankController {
 	}
 
 	@RequestMapping(value="/register",method = RequestMethod.POST)
-	public ModelAndView register(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
+	public ModelAndView register(ModelAndView model, @ModelAttribute InternetBankingUser ibu){
 
 		
 		
 
 		// REGISTER IF IT EXISTS
+         boolean isAccountRegistered = accountService.verifyAccountNumber(ibu);		
+		
+         if(isAccountRegistered)
+         {
+        	 model.addObject("register_error","This account is already registered");
+        	 model.setViewName("Register");
+        	 return model;
+         }
+         
+         
+        boolean userIdAlreadyExists = accountService.checkDupliateId(ibu.getUser_id());
+     
+        if(userIdAlreadyExists)
+        {
+        	model.addObject("register_error","User ID Already Exists");
+       	 model.setViewName("Register");
+       	 return model;
+        }
+        
+        /*   
+         if())
+         {
+        	 model.addObject("register_error","User ID Already Exists");
+        	 model.setViewName("Register");
+        	 return model;
+         }*/
+        
+		
+		
 		int i;
 		try {
 			i = accountService.registerOnline(ibu);

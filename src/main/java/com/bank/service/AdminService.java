@@ -32,6 +32,9 @@ public class AdminService implements IAdminService {
 	@Autowired
 	AdminDao addao;
 	
+	@Autowired
+	EmailService email;
+	
 
 
 	@Transactional
@@ -69,14 +72,26 @@ public class AdminService implements IAdminService {
 		int isRequestApproved = addao.approve(customerId);
 		Profile user = addao.getProfile(customerId);	
 		
-		System.out.println(user);
-		System.out.println(user.getAccount_number());
+
 		
+		 String emailMessage = "Dear "+user.getFirst_name()+"<br/> Your SBBI Bank Account is Activated"+"<br/><br/>"+
+		 "Please Register to avail the internet banking facility<br/><br/>"
+		 +"Your Account Number is "+user.getAccount_number();
+		 
+		 String emailSubject = "Congratulations ! Your SBBI account has been activated";		
 				
 		if(isRequestApproved>0)
-		sendEmail(user.getEmail_id(), user.getAccount_number(), user);             
 		
+			{
+			try {
+				email.sendEmail(user.getEmail_id(), user, emailSubject, emailMessage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println(e);
+				isRequestApproved=-1;
+			}           
 		
+			}
 		
 		
 			
@@ -84,42 +99,5 @@ public class AdminService implements IAdminService {
 		return isRequestApproved;
 	}
 
-	@Transactional
-	public void sendEmail(String emailId, long accountNumber, Profile user)
-	{
-		final String USER="sbbibank005@gmail.com";//change accordingly  
-		final String PASS="SBBI@2018";  
-		  
-		//1st step) Get the session object    
-		Properties props = new Properties();  
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.port", "587");
-		props.put("mail.smtp.host", "smtp.gmail.com");//change accordingly  
-		props.put("mail.smtp.auth", "true");  
-		  
-		Session session = Session.getDefaultInstance(props,  
-		 new javax.mail.Authenticator() {  
-		  protected PasswordAuthentication getPasswordAuthentication() {  
-		   return new PasswordAuthentication(USER,PASS);  
-		   }  
-		});  
-		//2nd step)compose message  
-		try {  
-		 MimeMessage message = new MimeMessage(session);  
-		 message.setFrom(new InternetAddress(USER));  
-		 message.addRecipient(Message.RecipientType.TO,new InternetAddress(emailId));  
-		 message.setSubject("Congratulations ! Your SBBI account has been activated");  
-		 message.setText("Your Account Number is : "+accountNumber);  
-		   
-		 //3rd step)send message  
-		 Transport.send(message);  
-		  
-		 System.out.println("Done");  
-		  
-		 } catch (MessagingException e) {  
-		    throw new RuntimeException(e);  
-		 }  
-	}
-	
 	
 }

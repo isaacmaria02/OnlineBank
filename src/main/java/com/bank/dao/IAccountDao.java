@@ -32,7 +32,7 @@ public interface IAccountDao {
 	
 	public long createAccount(Customer customer, Account account, Address address);
 	
-	public int register(InternetBankingUser ibu) throws SQLIntegrityConstraintViolationException;
+	public int register(InternetBankingUser ibu) ;
 	
 	public boolean login(Login login);
 
@@ -41,7 +41,6 @@ public interface IAccountDao {
 	
 	public float checkBalance(long customerAccountNumber);
 	
-	public void emailAccountNumber(Customer customer, Account account, Address address);
 	
 	public Account getSummary(long customerAccountNumber);
 	
@@ -62,7 +61,10 @@ public interface IAccountDao {
 	public int changeTransactionPassword(long customerAccountNumber, String newTransactionPassword);
 
 
-		
+	public boolean verifyAccountNumber(InternetBankingUser ibu);
+	
+	public boolean checkDupliateId( String userId);
+
 		
 		
 	

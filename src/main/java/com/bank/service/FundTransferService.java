@@ -25,9 +25,7 @@ public class FundTransferService implements IFundTransferService {
 
 	@Transactional
 	public int addPayee(Payee payee) {
-		System.out.println("yo");
 		// TODO Auto-generated method stub
-		System.out.println(payee.getCustomer_account_number() + "in ser");
 		return tdao.addPayee(payee);
 	}
 
@@ -49,7 +47,7 @@ public class FundTransferService implements IFundTransferService {
 		// CHECKING BALANCE
 		float balance = edao.checkBalance(userAccountNumber);
 
-		if (balance < (tr.getAmount() + charges)) {
+		if (balance < (tr.getAmount() + charges)) {			
 			return false;
 		}
 
@@ -104,7 +102,6 @@ public class FundTransferService implements IFundTransferService {
 		}
 
 		
-		System.out.println(charges+" is the transaction charge");
 		return charges;
 	}
 

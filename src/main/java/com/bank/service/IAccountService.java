@@ -44,5 +44,10 @@ public interface IAccountService {
 
 	public int changeTransactionPassword(long customerAccountNumber, String newTransactionPassword);
 
+	public boolean verifyAccountNumber(InternetBankingUser ibu);
+	
+	public boolean checkDupliateId( String userId);
+
+
 
 }
