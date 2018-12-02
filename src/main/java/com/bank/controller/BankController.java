@@ -217,6 +217,7 @@ public class BankController {
 
 		List<Payee> payeeList = fundTransferService.displayPayee((Long) session.getAttribute("account_number"));
 
+		model.addObject("DisplayPayeeView", "not empty");
 		model.addObject("PayeeList", payeeList);
 		model.setViewName("Dashboard");
 		
@@ -239,7 +240,8 @@ public class BankController {
 		
 		model.addObject("PayeeList", payeeList);
 
-		model.setViewName("FundTransferForm");
+		model.addObject("FundTransferView","not empty");
+		model.setViewName("Dashboard");
 
 		return model;
 
@@ -297,8 +299,8 @@ public class BankController {
          model.addObject("summary", userAccount);
          
          
-         
-         model.setViewName("AccountSummary");
+         model.addObject("AccountSummaryView","not empty");
+         model.setViewName("Dashboard");
        
 
 
@@ -365,7 +367,8 @@ public class BankController {
          
          System.out.println(userProfile);
          
-         model.setViewName("AccountDetails");
+         model.addObject("AccountDetailsView","not empty");
+         model.setViewName("Dashboard");
        
 
 

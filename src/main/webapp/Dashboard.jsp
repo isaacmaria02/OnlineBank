@@ -33,6 +33,53 @@ if(session!=null)
 
 </style>
 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+              $("#searchPayee").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#payeeListTable tr").filter(function() {
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+              });
+              
+              $("#transfer").click(function(){
+            	  $('.hidden').show();
+                  $('#transfer').hide();
+                  
+                  
+                  $('.readonly').prop('disabled', true) 
+            
+            	  
+              });
+              
+              
+              $("#backbtn").click(function(){
+            	  $('.hidden').hide();
+                  $('#transfer').show();
+                  
+                  
+                  $('.readonly').prop('disabled', false) 
+            
+            	  
+              });
+              
+              
+              
+              $('#fundtransfer').on('submit', function() {
+            	    $('.readonly').prop('disabled', false);
+            	});
+              
+              
+              
+            
+              
+            });
+        </script>
+
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   
@@ -278,7 +325,7 @@ if(session!=null)
             
  
            
-            <c:if test="${not empty PayeeList}">
+            <c:if test="${not empty DisplayPayeeView}">
             <div align="center">
                 <br><br>
         <h3>Search</h3>   <input class="form-control" id="searchPayee" type="text" placeholder="Search..">
@@ -512,6 +559,216 @@ ${changeTransactionPassword }
 
 
 
+
+                       <c:if test="${not empty AccountSummaryView}">
+            
+              <div align="center">
+  <h3>Account Summary</h3>
+        <br><div>
+        
+        <table id="customers">
+            <tr>
+              <td>Customer ID</td>
+               <td>${summary.customer_id}</td>
+            </tr>
+            
+     
+            
+              <tr>
+             <td>  Account Number</td>
+                <td>${summary.account_number}</td>
+            </tr>
+            
+              <tr>
+               <td>Balance</td>
+               <td>${summary.balance}</td>
+            </tr>
+            
+     
+              <tr>
+               <td>Type</td>
+               <td>${summary.account_type}</td>
+            </tr>       
+            </table>
+
+        
+        
+           </div><br>
+           
+            
+           
+     </div>
+</c:if>
+
+
+
+
+
+
+            <c:if test="${not empty AccountDetailsView}">
+            
+              <div align="center">
+  <h3>Account Details</h3>
+        <br><div>
+        
+           <table id="customers" >
+            <th colspan="2">Personal Details</th>
+            <tr>
+              <td>Name</td>
+               <td>${user_profile.first_name} ${user_profile.middle_name} ${user_profile.last_name}</td>
+            </tr>
+              <tr>
+              <td>Father's Name</td>
+               <td>${user_profile.father_name}</td>
+            </tr>  <tr>
+              <td>Email ID</td>
+               <td>${user_profile.email_id}</td>
+            </tr>  <tr>
+              <td>Mobile Number</td>
+               <td>${user_profile.mobile_number}</td>
+            </tr><tr>
+              <td>Aadhar Card Number</td>
+               <td>${user_profile.aadhar_card}</td>
+            </tr>       
+            <tr>
+              <td>Date of Birth</td>
+               <td>${user_profile.date_of_birth}</td>
+            </tr>    
+            <tr>
+              <td>Address</td>
+               <td>${user_profile.address_line_1}, ${user_profile.address_line_2}</td>
+            </tr> <tr>
+              <td>Pincode</td>
+               <td>${user_profile.pin_code}</td>
+            </tr>  
+             <tr>
+              <td>City</td>
+               <td>${user_profile.city}</td>
+            </tr>  <tr>
+              <td>State</td>
+               <td>${user_profile.state}</td>
+            </tr>       
+            
+            
+            
+     
+           
+            </table>   
+            
+            <br><br>
+            
+            <table style="margin-top:30px;" id="customers" >
+            <th colspan="2">Account Details</th>
+           <tr>
+              <td>Customer ID</td>
+               <td>${user_profile.customer_id}</td>
+            </tr>
+            
+     
+            
+              <tr>
+             <td>  Account Number</td>
+                <td>${user_profile.account_number}</td>
+            </tr>
+            
+              <tr>
+               <td>Balance</td>
+               <td>${user_profile.balance}</td>
+            </tr>
+            
+     
+              <tr>
+               <td>Type</td>
+               <td>${user_profile.account_type}</td>
+            </tr>       
+            </table>
+            
+
+        
+        
+           </div><br>
+           
+            
+           
+     </div>
+</c:if>
+
+ 
+
+
+
+
+
+                       <c:if test="${not empty FundTransferView}">
+            
+              <div align="center">
+ 
+  <div ng-app="app">
+  
+   <div ng-controller="TimeController">
+    
+    <div>
+  <table>
+         <form id="fundtransfer" action="ConfirmPayment">
+        <tr><td>Select Payee :</td>
+            <td><select class="readonly" name="payee_name" required >
+                <c:forEach items="${PayeeList}" var="payee">
+                    <option value="${payee.getName()}">${payee.getName()}</option>
+                </c:forEach>
+            </select>
+            </td></tr>
+            <tr><td>Transaction Type :</td>   
+            <td><select class="readonly" name="type" ng-change="update_values()" ng-model="selected" required>
+                  <option value="IMPS">IMPS</option>
+                   <option value="RTGS">RTGS</option>
+                  
+            </select>
+            </td></tr>
+            <tr><td>Amount : </td><td>  <input id ="amt" class="readonly" type="number"  min="{{min}}" max="{{max}}" required  name="amount">
+            </td></tr>
+                  <tr><td colspan="2"><span>Please enter amount between {{min}} and {{max}}</span></td></tr>
+            
+            <tr><td>Remarks (Optional) : </td><td><input class="readonly" type="text" name="remark"></td></tr>
+            
+           <tr><td colspan="2"><input class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="transfer" type="button" value="Transfer"></td></tr>
+            <tr><td colspan="2"><p style="display:none;" class="hidden">Enter Transaction Password</p></td><tr>
+            <tr><td colspan="2"><input style="display:none;" type="password" class="hidden" name="transactionPassword" title="Please enter transaction password" required></td></tr>
+            <tr><td colspan="2"><input id="backbtn" class="hidden btn btn-primary dropdown-toggle dropdown-toggle-split" style="display:none;" type="button" value="Back">
+            <input id="submitbtn" class="hidden btn btn-primary dropdown-toggle dropdown-toggle-split" style="display:none;" type="submit" value="Confirm"></td></tr>
+            
+            
+        </form>
+            </table>
+            
+            <script>
+            var app = angular.module('app', []);
+            app.controller('TimeController', function($scope) {
+
+              var vm = $scope;
+              
+              vm.update_values = function() {
+                  if(vm.selected === 'IMPS') {
+                     vm.min = "1";
+                     vm.max = "100000";
+                  } else if(vm.selected === 'RTGS') {
+                     vm.min = "100001";
+                     vm.max = "1000000";
+                  } 
+               }
+
+
+            });
+
+            
+            </script>
+         
+            
+</div>
+
+ 
+ 
+ </div>
+</c:if>
 
 
 
