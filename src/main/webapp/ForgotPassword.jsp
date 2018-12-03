@@ -197,6 +197,8 @@
 
     <h1 align="center">Forgot Password</h1>
    <h3 style="color:red;">${message }</h3>
+      <h3 style="color:red;">${   forgot_password_status
+ }</h3>
    
     <hr>    
   <label for="Account Number"><b>Account Number <span class="fa fa-user"></span> :</b></label><br>

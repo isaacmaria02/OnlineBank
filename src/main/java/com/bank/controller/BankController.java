@@ -219,7 +219,7 @@ public class BankController {
         	else
         	{
         	    model.addObject("forgot_id_status","Incorrect Answer");
-        	 	model.addObject("ForgotIdSecurityQuestionView","not empty");
+        	 	model.addObject("ForgotIdView","not empty");
             	model.setViewName("ForgotId");
             	return model;
         	}
@@ -243,7 +243,7 @@ return model;
         	else
         	{
         	    model.addObject("forgot_password_status","Incorrect Answer");
-        	 	model.addObject("ForgotPasswordSecurityQuestionView","not empty");
+        	 	model.addObject("ForgotPasswordView","not empty");
             	model.setViewName("ForgotPassword");
             	return model;
         	}

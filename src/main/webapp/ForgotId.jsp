@@ -215,6 +215,8 @@
     <h1 align="center">Forgot User ID</h1>
    <h3 style="color:red;">${message }</h3>
    
+      <h3 style="color:red;">${forgot_id_status}</h3>
+   
     <hr>    
   <label for="Account Number"><b>Account Number <span class="fa fa-user"></span> :</b></label><br>
     <input type="number"  autocomplete="off" placeholder="Enter your account number"  name="account_number" required><br>
@@ -234,6 +236,7 @@
     <h2 style="color:red;">${forgot_id_status }</h2>
    <h2>${Question }</h2>
     <hr>
+    
     <input name="account_number" type="number" value=${AccountNumber } style="display:none;"><br>
         
   <label for="Account Number"><b>Security Answer<span class="fa fa-user"></span> :</b></label><br>
