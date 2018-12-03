@@ -434,7 +434,7 @@ public class AccountDao implements IAccountDao {
 		String validateAccountNumberQuery = "select GA_ACCOUNT_NUMBER from gr13_accounts where GA_ACCOUNT_NUMBER="
 				+ ibu.getAccount_number();
 
-		List<Account> users = jdbcTemplate.query(validateAccountNumberQuery, new AccountMapper());
+		List<Account> users = jdbcTemplate.query(validateAccountNumberQuery, new ValidateMapper());
 
 		if (users.size() == 1)
 			return true;

@@ -1,7 +1,10 @@
+<%@ page errorPage="ErrorPage.jsp" %>  
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Hello World</title>
+    <title>Homepage</title>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -50,9 +53,9 @@
     Login/Register <span class="glyphicon glyphicon-user"></span>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <a href="login" class="dropdown-item" type="button">Login</a>
-    <a href="register" class="dropdown-item" type="button">Register for Internet Banking</a>
-    <a href="open" class="dropdown-item" type="button">Open a new Savings Account</a>
+    <a class="dropdown-item"  href="Login.jsp">Login</a>
+    <a class="dropdown-item"  href="Register.jsp">Register for Internet Banking </a>
+    <a class="dropdown-item" href="OpenAccount.jsp">Open a new Savings Account</a>
   </div>
 </div>
                            <!-- <a href="#">Login <span class="glyphicon glyphicon-user"></span></a>-->
@@ -75,7 +78,7 @@
 
                         <nav class="site-navigation d-flex justify-content-end align-items-center">
                             <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
-                                <li class="current-menu-item"><a href="index.html">Home</a></li>
+                                <li class="current-menu-item"><a href="index.jsp">Home</a></li>
                                 <li><a href="about.html">About us</a></li>                              
                                 <li><a href="contact.html">Contact</a></li>
                                 <li><a href="FAQ.html">FAQ's</a></li>
@@ -139,8 +142,8 @@
                                 </div><!-- .entry-content -->
 
                                 <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
-                                    <a href="#" class="btn gradient-bg mr-2">Login</a>
-                                    <a href="#" class="btn orange-border">Apply online for account</a>
+                                    <a href="Login.jsp" class="btn gradient-bg mr-2">Login</a>
+                                    <a href="OpenAccount.jsp" class="btn orange-border">Apply online for account</a>
                                 </footer><!-- .entry-footer -->
                             </div><!-- .col -->
                         </div><!-- .row -->
@@ -165,8 +168,8 @@
                                 </div><!-- .entry-content -->
 
                                 <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
-                                    <a href="#" class="btn gradient-bg mr-2">Login</a>
-                                    <a href="#" class="btn orange-border">Apply online for account</a>
+                                    <a href="Login.jsp" class="btn gradient-bg mr-2">Login</a>
+                                    <a href="OpenAccount.jsp" class="btn orange-border">Apply online for account</a>
                                 </footer><!-- .entry-footer -->
                             </div><!-- .col -->
                         </div><!-- .row -->
@@ -207,7 +210,7 @@
                         </header>
 
                         <div class="entry-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris quis aliquam. </p>
+                            <p> We offer various schemes related to savings account opening at low  rates of account opening charge.</p>
                             <button type="button" class="btn btn-basic">Learn More</button>
                         </div>
                     </div>
@@ -221,11 +224,11 @@
                         </figure>
 
                         <header class="entry-header">
-                            <h3 class="entry-title">Deposits</h3>
+                            <h3 class="entry-title">Fund Transfer</h3>
                         </header>
 
                         <div class="entry-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris quis aliquam. </p>
+                            <p>Transfer funds using IMPS/RTGS modes of payment using our fast and secure fund transfer facility.</p>
 
                             <button type="button" class="btn btn-basic">Learn More</button>
                         </div>
@@ -240,11 +243,11 @@
                         </figure>
 
                         <header class="entry-header">
-                            <h3 class="entry-title">Credit/Debit Cards</h3>
+                            <h3 class="entry-title">Account Statement</h3>
                         </header>
 
                         <div class="entry-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris quis aliquam. </p>
+                            <p>View all of your transactions in a single page using the account statement feature.</p>
                             <button type="button" class="btn btn-basic">Learn More</button>
                         </div>
                     </div>
@@ -311,7 +314,7 @@ SBBI also has the following subsidiaries operating in India: SBBI Securities (In
                             <li><a href="#">Credit Card</a></li>
                             <li><a href="#">Debit Card</a></li>
                             <li><a href="#">Download our App</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
                             
                         </ul>
                     </div><!-- .col -->
@@ -322,7 +325,7 @@ SBBI also has the following subsidiaries operating in India: SBBI Securities (In
 
                             <ul>
                                 <li>
-                                    <h3><a href="#">About Us</a></h3>
+                                    <h3><a href="about.html">About Us</a></h3>
                                     
                                 </li>
 
@@ -332,7 +335,7 @@ SBBI also has the following subsidiaries operating in India: SBBI Securities (In
                                 </li>
 
                                 <li>
-                                    <h3><a href="#">FAQ's</a></h3>
+                                    <h3><a href="FAQ.html">FAQ's</a></h3>
                                     
                                 </li>
                             </ul>
