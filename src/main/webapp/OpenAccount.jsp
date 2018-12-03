@@ -153,40 +153,40 @@
 	</select><br>
 
   <label for="First Name"><b>First Name* <span class="fa fa-user"></span> :</b></label><br>
-    <input type="text" placeholder="Enter First Name" name="first_name" required><br>
+    <input type="text" pattern="[A-Za-z]{}" placeholder="Enter First Name" name="first_name" required><br>
 
     <label for="Middle Name"><b>Middle Name <span class="fa fa-user"></span> :</b></label><br>
-    <input type="text" placeholder="Enter Middle Name" name="middle_name"><br>
+    <input type="text" pattern="[A-Za-z]{}" placeholder="Enter Middle Name" name="middle_name"><br>
 
 <label for="Last Name"><b>Last Name* <span class="fa fa-user"></span> :</b></label><br>
-    <input type="text" placeholder="Enter Last Name" name="last_name" required><br>
+    <input type="text" pattern="[A-Za-z]{}" placeholder="Enter Last Name" name="last_name" required><br>
 
-<label for="Father's Name"><b>Father's Name* <span class="fa fa-user"></span> :</span></b></label><br>
-    <input type="text" placeholder="Enter Father's Name" name="father_name" required><br>
+<label for="Father's Name"><b>Father's Full Name* <span class="fa fa-user"></span> :</span></b></label><br>
+    <input type="text" pattern="[A-Za-z]{}" placeholder="Enter Father's Full Name" name="father_name" required><br>
 
 <label for="Email Id"><b>Email Id <span class = "fa fa-envelope"></span></b></label><br>
-<input type="email" id="Enter Email Id" title="e.g. @gmail.com,@yahoo.com etc." name="email_id" pattern="[a-zA-Z]{1}[a-zA-Z0-9._%+-]+@[a-z.-]+\.[a-z]{2,3}$"></br>
+<input type="email" id="Enter Email Id" title="Please enter a valid email address ending with e.g. @gmail.com,@yahoo.com etc." name="email_id" pattern="[a-zA-Z]{1}[a-zA-Z0-9._%+-]+@[a-z.-]+\.[a-z]{2,3}$"></br>
 
  <label for="Mobile No"><b>Mobile Number* <span class="fa fa-mobile"></span>:</b></label><br>
-<input type="tel" name="mobile_number" pattern="[6-9]{1}[0-9]{9}" title="Please enter a valid mobile number" required>
+<input type="tel" name="mobile_number" pattern="[6-9]{1}[0-9]{9}" maxlength="10"  title="Please enter a valid mobile number" required>
 </br>
 
 <label for="Aadhar Card No"><b>Aadhar Card No* <span class="fa fa-address-card"></span>:</b></label><br>
-    <input type="text" placeholder="Enter Aadhar No" name="aadhar_card" pattern = "[2-9]{1}[0-9]{11}" title="Please enter a 12 digit aadhar number" required><br> 
+    <input type="text" placeholder="Enter Aadhar No" name="aadhar_card"  maxlength="12" pattern = "[2-9]{1}[0-9]{11}" title="Please enter a 12 digit aadhar number" required><br> 
 
 <label for="Date Of Birth"><b>Date Of Birth* <span class="fa fa-calendar"></span>:</b></label><br>
     <input type="date"  name="date_of_birth" value="1990-01-01" required><br>
     
     <label for="Annual_Income"><b>Annual Income* :</b></label><br>
-    <input type="text"  name="annual_income" pattern="[1-9]{4-9}" ><br>
+    <input type="text"  name="annual_income" pattern="[1-9]{1}[0-9]{}" ><br>
 
  <p><b>Address <span class="fa fa-address-card"></span>:</b></p><br>
 
  <label for="Address Line 1"><b>Address Line 1* :</b></label><br>
-    <input type="text"  name="address_line_1" required><br>
+    <input type="text"  pattern="[A-Za-z0-9]{}" name="address_line_1" required><br>
     
 <label for="Address Line 2"><b>Address Line 2* :</b></label><br>
-    <input type="text"  name="address_line_2" required><br>
+    <input type="text"  pattern="[A-Za-z0-9]{}" name="address_line_2" required><br>
     
 <label for="State"><b>State* :</b></label><br>
    <select name="state">
@@ -223,10 +223,10 @@
       </select><br><br>
 
 <label for="City"><b>City* :</b></label><br>
-    <input type="text"  name="city" required><br><br>
+    <input type="text" pattern="[A-Za-z]{}" name="city" required><br><br>
 
 <label for="Pincode"><b>Pincode* :</b></label><br>
-    <input type="text"  name="pin_code" pattern="[0-9]{6}" required><br><br>
+    <input type="text"  name="pin_code" pattern="[1-9]{1}[0-9]{5}" maxlength="6" required><br><br>
 
 <input type="checkbox" name="Agree" value="Agree" required>By creating an account you agree to our terms and conditions.<br>
    

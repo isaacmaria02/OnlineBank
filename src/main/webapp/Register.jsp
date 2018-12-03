@@ -76,10 +76,10 @@ return true;
     <hr>    
     <h2>${register_error }</h2>
   <label for="Account No"><b>Account Number *<span class="fa fa-address-card"></span>  :</b></label><br>
-    <input type="number" placeholder="Enter your account number" name="account_number" required><br>
+    <input type="number" placeholder="Enter your account number" name="account_number" maxlength="12" required><br>
 
     <label for="User Id"><b>Set User Id * <span class="fa fa-user-circle"></span> :</b></label><br>
-    <input type="text" placeholder="Set your user id" name="user_id" required><br>
+    <input type="text" placeholder="Set your user id" pattern="[A-Za-z0-9]{8}" name="user_id" required><br>
 <label for="Password"><b>Enter Login Password* <span class="fa fa-key"></span> :</span></b></label><br>
     <input type="password" id="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number,one uppercase letter and one lowercase letter, and at least 8 or more characters" placeholder="Enter new password" name="login_password" required><br>
     <div id="message">
@@ -232,7 +232,7 @@ myInput.onkeyup = function() {
 </select><br>
 
 <label for="Security Answer "><b>Your Answer * <span class="fa fa-pencil"></span>:</b></label><br>
-<input type="text" placeholder="Enter your security answer" name="security_answers" required><br>
+<input type="text" placeholder="Enter your security answer" pattern=[A-Za-z]{} name="security_answers" required><br>
    
     <input type="submit" class="registerbtn" value="Register">
   
