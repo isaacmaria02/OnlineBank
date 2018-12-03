@@ -170,7 +170,7 @@ if(session!=null)
 
 <div class="pull">
         <ul class="nav navbar-nav pull-right float-right">
-            <li><a href="logout" class="btn btn-outline-light	pull-right">Logout</a></li>
+            <li><a href="logout" class="btn btn-outline-light	pull-right">Logout  <span class="glyphicon glyphicon-off"></span></a></li>
         </ul>     
         
          

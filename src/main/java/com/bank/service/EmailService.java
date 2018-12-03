@@ -26,7 +26,7 @@ public class EmailService {
 		// 1st step) Get the session object
 		Properties props = new Properties();
 		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "25");
 		props.put("mail.smtp.host", "smtp.gmail.com");// change accordingly
 		props.put("mail.smtp.auth", "true");
 

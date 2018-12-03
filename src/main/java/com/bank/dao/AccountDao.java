@@ -42,7 +42,6 @@ public class AccountDao implements IAccountDao {
 	 * The open account form is validated and then inserted into Customers, Accounts
 	 * and Addresses relation
 	 * </p>
-	 * 
 	 * @param customer : Fetches values from the getters of model class Customers
 	 * @param account  : Fetches values from the getters of Model class Accounts
 	 * @param address  : Fetches values from the getters of Model class Addresses
@@ -108,11 +107,8 @@ public class AccountDao implements IAccountDao {
 		i = jdbcTemplate.update("insert into GR13_internet_banking_users values(?,?,?,?,?,?,?,?)",
 				new Object[] { ibu.getUser_id(), ibu.getLogin_password(), ibu.getTransaction_password(), 0, "enabled",
 						ibu.getSecurity_questions(), ibu.getSecurity_answers(), ibu.getAccount_number() });
-
 		return i;
-
 	}
-
 	/**
 	 * MD5 hash is obtained to store the password in the encrypted format
 	 * 
@@ -195,9 +191,7 @@ public class AccountDao implements IAccountDao {
 	@Override
 	public Account getSummary(long customerAccountNumber) {
 		// TODO Auto-generated method stub
-
 		String getSummaryQuery = "select * from gr13_accounts where ga_account_number=" + customerAccountNumber;
-
 		Account userAccount = jdbcTemplate.queryForObject(getSummaryQuery, new AccountMapper());
 
 		return userAccount;
@@ -434,7 +428,7 @@ public class AccountDao implements IAccountDao {
 		String validateAccountNumberQuery = "select GA_ACCOUNT_NUMBER from gr13_accounts where GA_ACCOUNT_NUMBER="
 				+ ibu.getAccount_number();
 
-		List<Account> users = jdbcTemplate.query(validateAccountNumberQuery, new ValidateMapper());
+		List<Account> users = jdbcTemplate.query(validateAccountNumberQuery,new ValidateMapper());
 
 		if (users.size() == 1)
 			return true;
