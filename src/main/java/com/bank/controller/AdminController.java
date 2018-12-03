@@ -92,7 +92,6 @@ public class AdminController {
 		session.removeAttribute("isAdminLoggedIn");
 		session.invalidate();
 
-		System.out.println("invaldated");
 
 		model.setViewName("index");
 

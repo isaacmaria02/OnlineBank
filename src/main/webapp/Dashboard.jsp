@@ -535,7 +535,7 @@ ${changeTransactionPassword }
                 </tbody>
             </table>
             
-               <a class="btn btn-primary dropdown-toggle dropdown-toggle-split" href="download">Download</a>
+               <a class="btn btn-primary"  href="download">Download</a>
         
         </c:if>
 

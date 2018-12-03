@@ -317,6 +317,8 @@ public class BankController {
 
 		String fromDate = request.getParameter("from");
 		String toDate = request.getParameter("to");
+		
+		//handle null pointer
 
 		SimpleDateFormat current = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat requiredFormat = new SimpleDateFormat("dd-MMM-yy");
@@ -485,17 +487,21 @@ public class BankController {
 
 		try {
 
-			File file = ResourceUtils.getFile("classpath:" + userProfile.getAccount_number());
-			session.setAttribute("filePath", file + "\\");
+		/*	File file = ResourceUtils.getFile("classpath:" + userProfile.getAccount_number());
+			session.setAttribute("filePath", file + "\\");*/
 
-			System.out.println(file.toString());
+	         File file = new File("C:\\Users\\AE103_PC7\\Desktop\\a\\"+userProfile.getAccount_number());
+	           session.setAttribute("filePath",file+"\\");
+			//	File file = ResourceUtils.getFile("classpath:" + userProfile.getAccount_number());
+				//session.setAttribute("filePath", file + "\\");
+			
 
 			if (!file.exists()) {
 
 				if (file.mkdir()) {
-					System.out.println("Directory is created!");
+				//	System.out.println("Directory is created!");
 				} else {
-					System.out.println("Failed to create directory!");
+					//System.out.println("Failed to create directory!");
 				}
 			} else {
 				FileUtils.cleanDirectory(file);
