@@ -53,6 +53,8 @@ public interface IAccountDao {
 	public boolean validateAccountNumber(InternetBankingUser ibu) ;
 	
 	public boolean validateAccountNumber(long accountNumber) ;
+	
 	public String getSecurityQuestion(long account_number) ;
 
+	public int changeLoginPassword(InternetBankingUser ibu);
 }

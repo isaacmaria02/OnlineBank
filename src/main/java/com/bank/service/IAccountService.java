@@ -52,5 +52,5 @@ public interface IAccountService {
 	public String getForgottenUserId(long account_number);
 	
 	
-
+	public int changeLoginPassword(InternetBankingUser ibu) ;
 }

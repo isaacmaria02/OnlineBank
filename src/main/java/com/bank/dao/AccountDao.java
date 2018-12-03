@@ -387,6 +387,15 @@ public class AccountDao implements IAccountDao {
 		return jdbcTemplate.update(changeLoginPasswordQuery);
 
 	}
+	
+	public int changeLoginPassword(InternetBankingUser ibu) {
+
+		String changeLoginPasswordQuery = "update gr13_internet_banking_users set GIBU_LOGIN_PASSWORD='"
+				+ ibu.getLogin_password() + "' where GIBU_GA_ACCOUNT_NUMBER=" + ibu.getAccount_number();
+
+		return jdbcTemplate.update(changeLoginPasswordQuery);
+
+	}
 
 	/**
 	 * Returns integer greater than zero if the transaction password is successfully

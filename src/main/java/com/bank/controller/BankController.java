@@ -257,7 +257,7 @@ return model;
       	public ModelAndView setNewPassword(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
 
          
-           int i = accountService.changeLoginPassword(ibu.getAccount_number(), ibu.getLogin_password());   
+           int i = accountService.changeLoginPassword(ibu);   
            
            
            if(i>0)

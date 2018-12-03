@@ -150,6 +150,12 @@ public class AccountService implements IAccountService {
 		
 	}
 
+	@Override
+	public int changeLoginPassword(InternetBankingUser ibu) {
+		// TODO Auto-generated method stub
+		return edao.changeLoginPassword(ibu);
+	}
+
 	
 
 }
