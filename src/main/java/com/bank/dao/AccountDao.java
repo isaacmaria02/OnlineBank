@@ -417,4 +417,18 @@ public class AccountDao implements IAccountDao {
 
 	}
 
+	public boolean validateAccountNumber(InternetBankingUser ibu) {
+		// TODO Auto-generated method stub
+
+		String validateAccountNumberQuery = "select GA_ACCOUNT_NUMBER from gr13_accounts where GA_ACCOUNT_NUMBER="
+				+ ibu.getAccount_number();
+
+		List<Account> users = jdbcTemplate.query(validateAccountNumberQuery, new AccountMapper());
+
+		if (users.size() == 1)
+			return true;
+
+		return false;
+	}
+
 }

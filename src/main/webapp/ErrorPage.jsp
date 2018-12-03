@@ -29,26 +29,7 @@ if(session!=null)
    
    <body>
    
-  <%--     <h1>Oops...</h1>
-      <table width = "100%" border = "1">
-         <tr valign = "top">
-            <td width = "40%"><b>Error:</b></td>
-            <td>${pageContext.exception}</td>
-         </tr>
-            
-         <tr valign = "top">
-            <td><b>URI:</b></td>
-            <td>${pageContext.errorData.requestURI}</td>
-         </tr>
-            
-         <tr valign = "top">
-            <td><b>Status code:</b></td>
-            <td>${pageContext.errorData.statusCode}</td>
-         </tr>
-            
        
-      </table> --%>
-     
       <div class="clear"  id="notfound">
 		<div class="notfound">
 			<div class="notfound-404">

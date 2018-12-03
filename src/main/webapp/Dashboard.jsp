@@ -24,6 +24,9 @@ if(session!=null)
 <html lang="en">
 
   <head>
+  <title>
+  Dashboard
+  </title>
   <style type="text/css">
 	.pull{
 

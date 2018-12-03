@@ -41,4 +41,6 @@ public interface IAccountService {
 
 	public boolean checkDupliateId(String userId);
 
+	public boolean validateAccountNumber(InternetBankingUser ibu);
+
 }

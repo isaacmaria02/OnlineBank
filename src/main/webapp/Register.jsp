@@ -25,10 +25,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
- <link rel="stylesheet" href="registration.css">
- <link rel="stylesheet" href="addbtn.css">
- <link rel="stylesheet" href="passwordShow.css">
- <link rel="stylesheet" href="Button.css">
+ <link rel="stylesheet" href="css/registration.css">
+ <link rel="stylesheet" href="css/addbtn.css">
+ <link rel="stylesheet" href="css/passwordShow.css">
+ <link rel="stylesheet" href="css/Button.css">
 <script type="text/javascript">
 
 function Validate(){
@@ -79,7 +79,7 @@ return true;
     <input type="number" placeholder="Enter your account number" name="account_number" maxlength="12" required><br>
 
     <label for="User Id"><b>Set User Id * <span class="fa fa-user-circle"></span> :</b></label><br>
-    <input type="text" placeholder="Set your user id" pattern="[A-Za-z0-9]{8}" name="user_id" required><br>
+    <input type="text" placeholder="Set your user id" pattern="[A-Za-z0-9]{}"  maxlength="8" name="user_id" required><br>
 <label for="Password"><b>Enter Login Password* <span class="fa fa-key"></span> :</span></b></label><br>
     <input type="password" id="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number,one uppercase letter and one lowercase letter, and at least 8 or more characters" placeholder="Enter new password" name="login_password" required><br>
     <div id="message">
@@ -152,7 +152,7 @@ myInput.onkeyup = function() {
 <label for="Confirm New Password"><b>Confirm New Password* :</b></label><br>
 <input type="password" id="ConfirmPassword" onblur="return Validate()" placeholder="Confirm New Password" name="LOGIN_PASSWORD" required></br>
    
-  <label for="Password"><b>Enter Transaction Password* <span class="fa fa-key"></span> :</span></b></label><br>
+  <label for="Trans Password"><b>Enter Transaction Password* <span class="fa fa-key"></span> :</span></b></label><br>
     <input type="password" id="TransactionPass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number,one uppercase letter and one lowercase letter, and at least 8 or more characters" placeholder="Enter new password" name="transaction_password" required><br>
     <div id="message">
   <h3>Password must contain the following:</h3>

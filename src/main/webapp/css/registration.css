@@ -13,7 +13,7 @@ body {
 }
 
 /* Full-width input fields */
-input[type=text],input[type=date],input[type=select],input[type=tel],input[type=email] ,input[type=password]{
+input[type=text],input[type=date],input[type=select],input[type=tel],input[type=email] ,input[type=password],input[type=number]{
     width: 60%;
     padding: 15px;
     margin: 5px 0 22px 0;

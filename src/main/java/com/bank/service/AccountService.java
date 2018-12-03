@@ -117,4 +117,10 @@ public class AccountService implements IAccountService {
 		return edao.checkDupliateId(userId);
 	}
 
+	@Override
+	public boolean validateAccountNumber(InternetBankingUser ibu) {
+		// TODO Auto-generated method stub
+		return edao.validateAccountNumber(ibu);
+	}
+
 }

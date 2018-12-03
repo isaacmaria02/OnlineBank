@@ -79,6 +79,14 @@ public class BankController {
 	public ModelAndView register(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
 
 		// REGISTER IF IT EXISTS
+		boolean isAccountValid = accountService.validateAccountNumber(ibu);
+
+		if (!isAccountValid) {
+			model.addObject("register_error", "Please enter correct account number");
+			model.setViewName("Register");
+			return model;
+		}
+
 		boolean isAccountRegistered = accountService.verifyAccountNumber(ibu);
 
 		if (isAccountRegistered) {
