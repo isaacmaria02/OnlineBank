@@ -49,5 +49,10 @@ public interface IAccountDao {
 	public boolean verifyAccountNumber(InternetBankingUser ibu);
 
 	public boolean checkDupliateId(String userId);
+	
+	public boolean validateAccountNumber(InternetBankingUser ibu) ;
+	
+	public boolean validateAccountNumber(long accountNumber) ;
+
 
 }

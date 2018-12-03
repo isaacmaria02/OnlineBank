@@ -222,6 +222,17 @@ public class AccountDao implements IAccountDao {
 		}
 
 	}
+	
+	class ValidateMapper implements RowMapper<Account> {
+		public Account mapRow(ResultSet rs, int arg1) throws SQLException {
+			Account user = new Account();
+
+			user.setAccount_number(rs.getLong(1));
+
+			return user;
+		}
+
+	}
 
 	/**
 	 * 
@@ -427,6 +438,21 @@ public class AccountDao implements IAccountDao {
 
 		if (users.size() == 1)
 			return true;
+
+		return false;
+	}
+
+	@Override
+	public boolean validateAccountNumber(long accountNumber) {
+		// TODO Auto-generated method stub
+		String validateAccountNumberQuery = "select GA_ACCOUNT_NUMBER from gr13_accounts where GA_ACCOUNT_NUMBER="
+				+ accountNumber;
+
+		List<Account> users= jdbcTemplate.query(validateAccountNumberQuery, new ValidateMapper());
+
+		if (users.size() == 1)
+			return true;
+
 
 		return false;
 	}

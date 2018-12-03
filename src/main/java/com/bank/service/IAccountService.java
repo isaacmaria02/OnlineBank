@@ -43,4 +43,6 @@ public interface IAccountService {
 
 	public boolean validateAccountNumber(InternetBankingUser ibu);
 
+	public boolean validateAccountNumber(long accountNumber);
+
 }

@@ -1,119 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>SBBI Bank</title>
-<meta charset="UTF-8">
+<head>
+    <title>Hello World</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-.fa-anchor,.fa-coffee {font-size:200px}
-</style>
-<body  bgcolor="#E6E6FA">
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 
-<!-- Navbar -->
-<div class="w3-top">
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="css/elegant-fonts.css">
 
-  <div class="w3-bar w3-indigo w3-card w3-left-align w3-large">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-  <!--   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 1</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 2</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 3</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 4</a> -->
-  </div>
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="css/themify-icons.css">
 
-  <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 4</a>
-  </div>
-</div>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="css/swiper.min.css">
 
-<!-- Header -->
-<header class="w3-container w3-blue w3-center" style="padding:128px 16px">
-  <h1 class="w3-margin w3-jumbo">SBBI BANK</h1>
-  <p class="w3-xlarge">Your Perfect Banking Partner </p>
-   <a href="Login.jsp" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Login</a>
-<!--     <a  href="Register.jsp" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">New Here? Register</a>
- -->      <a  href="OpenAccount.jsp"  class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Apply Online for Account</a>
-</header>
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="top-header-bar">
+            <div class="container">
+                <div class="row flex-wrap justify-content-center justify-content-lg-between align-items-lg-center">
+                    <div class="col-12 col-lg-8 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
+                        <div class="header-bar-email">
+                            MAIL: <a href="#">sbbi@outlook.com</a>
+                        </div><!-- .header-bar-email -->
 
-<!-- First Grid -->
-<div class="w3-row-padding w3-padding-64 w3-container">
-  <div class="w3-content">
-    <div class="w3-twothird">
-      <h1>Lorem Ipsum</h1>
-      <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
+                        <div class="header-bar-text">
+                            <p>PHONE: <span>+91 02226501509</span></p>
+                        </div><!-- .header-bar-text -->
+                    </div><!-- .col -->
 
-      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
 
-    <div class="w3-third w3-center">
-      <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>
-    </div>
+                    <div class="col-12 col-lg-4 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
+                        <div class="donate-btn">
+                            <div class="dropdown">
+  <button class="btn btn-default btn-group-sm navbar-btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Login/Register <span class="glyphicon glyphicon-user"></span>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <a href="login" class="dropdown-item" type="button">Login</a>
+    <a href="register" class="dropdown-item" type="button">Register for Internet Banking</a>
+    <a href="open" class="dropdown-item" type="button">Open a new Savings Account</a>
   </div>
 </div>
+                           <!-- <a href="#">Login <span class="glyphicon glyphicon-user"></span></a>-->
+                        </div><!-- .donate-btn -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .top-header-bar -->
 
-<!-- Second Grid -->
-<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
-  <div class="w3-content">
-    <div class="w3-third w3-center">
-      <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
-    </div>
+        <div class="nav-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
+                        <div class="site-branding d-flex align-items-center"><br><br><br><br><br>
+                            <h1 > SBBI Bank</h1>   
 
+                         <!--  <a class="d-block" href="index.html" rel="home"><img class="d-block" src="images/logo.png" alt="logo" ></a>-->
+                        </div>
+                        <!-- .site-branding -->
 
-<!--   <a href="OpenAccount.jsp">Open an Account</a><br>
-    <a href="Register.jsp">Register</a><br>
-    <a href="Login.jsp">Login</a> -->
+                        <nav class="site-navigation d-flex justify-content-end align-items-center">
+                            <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
+                                <li class="current-menu-item"><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About us</a></li>                              
+                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="FAQ.html">FAQ's</a></li>
+                            </ul>
+                        </nav><!-- .site-navigation -->
 
-  <h1><a href="email">EMAIL</a></h1>
+                        <div class="hamburger-menu d-lg-none">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div><!-- .hamburger-menu -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .nav-bar -->
+    </header><!-- .site-header -->
 
-    <div class="w3-twothird">
-      <h1>Lorem Ipsum</h1>
-      <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
+    <div class="swiper-container hero-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide hero-content-wrap">
+                <img src="images/bb2.jpg" alt="">
 
-      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-  </div>
-</div>
+                <div class="hero-content-overlay position-absolute w-100 h-100">
+                    <div class="container h-100">
+                        <div class="row h-100">
+                            <div class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start">
+                                <header class="entry-header">
+                                    <h1>SBBI BANK</h1>
+                                    <h4>"The name you can bank on!"</h4>
+                                </header><!-- .entry-header -->
 
-<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-    <h1 class="w3-margin w3-xlarge">Quote of the day: live life</h1>
-</div>
+                                <div class="entry-content mt-4">
+                                    <p>As a leading international bank, we strive to help people and businesses prosper across Asia, Africa and the Middle East</p>
+                                </div><!-- .entry-content -->
 
+                                <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
+                                    <a href="Login.jsp" class="btn gradient-bg mr-2">Login</a>
+                                    <a href="OpenAccount.jsp" class="btn orange-border">Apply online for account </a>
+                                </footer><!-- .entry-footer -->
+                            </div><!-- .col -->
+                        </div><!-- .row -->
+                    </div><!-- .container -->
+                </div><!-- .hero-content-overlay -->
+            </div><!-- .hero-content-wrap -->
 
+            <div class="swiper-slide hero-content-wrap">
+                <img src="images/bb1.jpg" alt="">
 
+                <div class="hero-content-overlay position-absolute w-100 h-100">
+                    <div class="container h-100">
+                        <div class="row h-100">
+                            <div class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start">
+                                <header class="entry-header">
+                                    <h1>SBBI Bank</h1>
+                                    <h4>"The name you can bank on!"</h4>
+                                </header><!-- .entry-header -->
 
+                                <div class="entry-content mt-4">
+                                    <p>As a leading international bank, we strive to help people and businesses prosper across Asia, Africa and the Middle East</p>
+                                </div><!-- .entry-content -->
 
-<script>
-// Used to toggle the menu on small screens when clicking on the menu button
-function myFunction() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else { 
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-</script>
+                                <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
+                                    <a href="#" class="btn gradient-bg mr-2">Login</a>
+                                    <a href="#" class="btn orange-border">Apply online for account</a>
+                                </footer><!-- .entry-footer -->
+                            </div><!-- .col -->
+                        </div><!-- .row -->
+                    </div><!-- .container -->
+                </div><!-- .hero-content-overlay -->
+            </div><!-- .hero-content-wrap -->
 
+            <div class="swiper-slide hero-content-wrap">
+                <img src="images/bb.jpg" alt="">
 
-  
-  
-      
+                <div class="hero-content-overlay position-absolute w-100 h-100">
+                    <div class="container h-100">
+                        <div class="row h-100">
+                            <div class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start">
+                                <header class="entry-header">
+                                    <h1>SBBI Bank</h1>
+                                    <h4>"The name you can bank on!"</h4>
+                                </header><!-- .entry-header -->
 
+                                <div class="entry-content mt-4">
+                                    <p>As a leading international bank, we strive to help people and businesses prosper across Asia, Africa and the Middle East</p>
+                                </div><!-- .entry-content -->
+
+                                <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
+                                    <a href="#" class="btn gradient-bg mr-2">Login</a>
+                                    <a href="#" class="btn orange-border">Apply online for account</a>
+                                </footer><!-- .entry-footer -->
+                            </div><!-- .col -->
+                        </div><!-- .row -->
+                    </div><!-- .container -->
+                </div><!-- .hero-content-overlay -->
+            </div><!-- .hero-content-wrap -->
+        </div><!-- .swiper-wrapper -->
+
+        <div class="pagination-wrap position-absolute w-100">
+            <div class="container">
+                <div class="swiper-pagination"></div>
+            </div><!-- .container -->
+        </div><!-- .pagination-wrap -->
+
+        <!-- Add Arrows -->
+        <div class="swiper-button-next flex justify-content-center align-items-center">
+            <span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"/></svg></span>
+        </div>
+
+        <div class="swiper-button-prev flex justify-content-center align-items-center">
+            <span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z"/></svg></span>
+        </div>
+    </div><!-- .hero-slider -->
+    <br><br><br>
+<h1 align="center">Services </h1>
+    <div class="home-page-icon-boxes">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4 mt-4 mt-lg-0">
+                    <div class="icon-box ">
+                        <figure class="d-flex justify-content-center">
+                            <img src="images/hands-gray.png" alt="">
+                            <img src="images/hands-white.png" alt="">
+                        </figure>
+
+                        <header class="entry-header">
+                            <h3 class="entry-title">Savings Account</h3>
+                        </header>
+
+                        <div class="entry-content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris quis aliquam. </p>
+                            <button type="button" class="btn btn-basic">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-4 mt-lg-0">
+                    <div class="icon-box">
+                        <figure class="d-flex justify-content-center">
+                            <img src="images/donation-gray.png" alt="">
+                            <img src="images/donation-white.png" alt="">
+                        </figure>
+
+                        <header class="entry-header">
+                            <h3 class="entry-title">Deposits</h3>
+                        </header>
+
+                        <div class="entry-content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris quis aliquam. </p>
+
+                            <button type="button" class="btn btn-basic">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-4 mt-lg-0">
+                    <div class="icon-box">
+                        <figure class="d-flex justify-content-center">
+                            <img src="images/charity-gray.png" alt="">
+                            <img src="images/charity-white.png" alt="">
+                        </figure>
+
+                        <header class="entry-header">
+                            <h3 class="entry-title">Credit/Debit Cards</h3>
+                        </header>
+
+                        <div class="entry-content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris quis aliquam. </p>
+                            <button type="button" class="btn btn-basic">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .home-page-icon-boxes -->
+
+    <div class="home-page-welcome">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 order-2 order-lg-1">
+                    <div class="welcome-content">
+                        <header class="entry-header">
+                            <h2 class="entry-title">Welcome to  SBBI Bank</h2>
+                        </header><!-- .entry-header -->
+
+                        <div class="entry-content mt-5">
+                            <p>SBBI Bank is India’s largest international bank with 100 branches in 43 cities, and we have been operating here since 1858. Key clients segments include Corporate & Institutional Banking, Commercial & Private Banking as well as Retail Banking. 
+
+SBBI also has the following subsidiaries operating in India: SBBI Securities (India) Ltd; SBBI Private Equity Advisory (India) Private Limited; SBBI Investments and Loans (India) Limited; SBBI Finance limited and SBBI Global Business Services Pvt. Ltd. </p>
+                        </div><!-- .entry-content -->
+
+                        <div class="entry-footer mt-5">
+                            <a href="#" class="btn gradient-bg mr-2">Read More</a>
+                        </div><!-- .entry-footer -->
+                    </div><!-- .welcome-content -->
+                </div><!-- .col -->
+
+                <div class="col-12 col-lg-6 mt-4 order-1 order-lg-2">
+                    <img src="images/welcome.jfif" alt="welcome">
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .home-page-icon-boxes -->
+
+    <br><br><br>
+    <footer class="site-footer">
+        <div class="footer-widgets">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="foot-about">
+                            <!--<h2><a class="foot-logo" href="#"><img src="images/foot-logo.png" alt=""></a></h2>-->
+
+                            <p>SBBI Bank is a multinational banking and financial services company headquartered in Mumbai, India. It operates a network of more than 1,200 branches and outlets (including subsidiaries, associates and joint ventures) across more than 70 countries and employs around 87,000 people.</p>
+
+                            <ul class="d-flex flex-wrap align-items-center">
+                                <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div><!-- .foot-about -->
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-md-6 col-lg-3 mt-5 mt-md-0">
+                        <h2>Useful Links</h2>
+
+                        <ul>
+                            <li><a href="#">Savings Account</a></li>
+                            <li><a href="#">Credit Card</a></li>
+                            <li><a href="#">Debit Card</a></li>
+                            <li><a href="#">Download our App</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            
+                        </ul>
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-md-6 col-lg-3 mt-5 mt-md-0">
+                        <div class="foot-latest-news">
+                            <h2>Media Center</h2>
+
+                            <ul>
+                                <li>
+                                    <h3><a href="#">About Us</a></h3>
+                                    
+                                </li>
+
+                                <li>
+                                    <h3><a href="#">Careers </a></h3>
+                                    
+                                </li>
+
+                                <li>
+                                    <h3><a href="#">FAQ's</a></h3>
+                                    
+                                </li>
+                            </ul>
+                        </div><!-- .foot-latest-news -->
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-md-6 col-lg-3 mt-5 mt-md-0">
+                        <div class="foot-contact">
+                            <h2>Contact</h2>
+
+                            <ul>
+                                <li><i class="fa fa-phone"></i><span>+91 022 26501509</span></li>
+                                <li><i class="fa fa-envelope"></i><span>sbbi@outlook.com</span></li>
+                                <li><i class="fa fa-map-marker"></i><span>Main Street, Opp Hypercity Mall,Thane(West) Mumbai,Maharashtra</span></li>
+                            </ul>
+                        </div><!-- .foot-contact -->
+
+                        <div class="subscribe-form">
+                            <form class="d-flex flex-wrap align-items-center">
+                                <input type="email" placeholder="Your email">
+                                <input type="submit" value="send">
+                            </form><!-- .flex -->
+                        </div><!-- .search-widget -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .footer-widgets -->
+
+        <div class="footer-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div><!-- .col-12 -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .footer-bar -->
+    </footer><!-- .site-footer -->
+
+    <script type='text/javascript' src='js/jquery.js'></script>
+    <script type='text/javascript' src='js/jquery.collapsible.min.js'></script>
+    <script type='text/javascript' src='js/swiper.min.js'></script>
+    <script type='text/javascript' src='js/jquery.countdown.min.js'></script>
+    <script type='text/javascript' src='js/circle-progress.min.js'></script>
+    <script type='text/javascript' src='js/jquery.countTo.min.js'></script>
+    <script type='text/javascript' src='js/jquery.barfiller.js'></script>
+    <script type='text/javascript' src='js/custom.js'></script>
 
 </body>
 </html>

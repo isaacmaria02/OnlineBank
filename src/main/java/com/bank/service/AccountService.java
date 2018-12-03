@@ -123,4 +123,10 @@ public class AccountService implements IAccountService {
 		return edao.validateAccountNumber(ibu);
 	}
 
+	@Override
+	public boolean validateAccountNumber(long accountNumber) {
+		// TODO Auto-generated method stub
+		return edao.validateAccountNumber(accountNumber);
+	}
+
 }

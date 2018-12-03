@@ -167,9 +167,25 @@ public class BankController {
 	@RequestMapping("/addPayee")
 	public ModelAndView addPayee(ModelAndView model, @ModelAttribute Payee payee, HttpSession session) {
 
-		System.out.println(payee);
 		payee.setCustomer_account_number((Long) session.getAttribute("account_number"));
 
+		long payeeAccountNumber = payee.getPayee_account_number();
+		boolean isPayeeAccountNumberValid=accountService.validateAccountNumber(payeeAccountNumber);
+		
+		//now check for duplicate
+		
+		//check for payee duplicate
+		
+		
+		
+		if(!isPayeeAccountNumberValid)
+		{
+			model.addObject("payee_status","Please enter a valid account number");
+		    model.addObject("AddPayeeView","not empty");
+			model.setViewName("Dashboard");
+			return model;
+		}
+		
 		int i = fundTransferService.addPayee(payee);
 
 		if (i > 0) {
