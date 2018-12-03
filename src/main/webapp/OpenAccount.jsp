@@ -267,6 +267,9 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+     <script language="Javascript" src="jquery.js"></script>
+    <script type="text/JavaScript" src='state.js'></script>
+    <link rel="stylesheet" type="text/css" href="state.css">
 </head>
 <body class="single-page about-page">
 <header class="site-header">
@@ -344,7 +347,7 @@
     <hr>
 
     <label for="Title"><b>Title* <span class="fas fa-hand-point-down"> :</span></b></label><br>
-    <select name="Title">
+    <select name="Title" required>
         <option value="select">Select</option>
         <option value="Mr.">Mr.</option>
 	<option value="Ms.">Ms.</option>
@@ -352,16 +355,16 @@
 	</select><br>
 
   <label for="First Name"><b>First Name* <span class="fa fa-user"></span> :</b></label><br>
-    <input type="text" pattern="[A-Za-z]{}" placeholder="Enter First Name" name="first_name" required><br>
+    <input type="text" pattern="[A-Za-z]{3,}" title="Minimum 3 characters"   placeholder="Enter First Name" name="first_name" required><br>
 
     <label for="Middle Name"><b>Middle Name <span class="fa fa-user"></span> :</b></label><br>
-    <input type="text" pattern="[A-Za-z]{}" placeholder="Enter Middle Name" name="middle_name"><br>
+    <input type="text" pattern="[A-Za-z]{3,}" placeholder="Enter Middle Name" name="middle_name"><br>
 
 <label for="Last Name"><b>Last Name* <span class="fa fa-user"></span> :</b></label><br>
-    <input type="text" pattern="[A-Za-z]{}" placeholder="Enter Last Name" name="last_name" required><br>
+    <input type="text" pattern="[A-Za-z]{3,}"  placeholder="Enter Last Name" name="last_name" required><br>
 
 <label for="Father's Name"><b>Father's Full Name* <span class="fa fa-user"></span> :</span></b></label><br>
-    <input type="text" pattern="[A-Za-z]{}" placeholder="Enter Father's Full Name" name="father_name" required><br>
+    <input type="text" pattern="[A-Za-z A-Za-z A-Za-z]{8,}"  placeholder="Enter Father's Full Name" name="father_name" required><br>
 
 <label for="Email Id"><b>Email Id <span class = "fa fa-envelope"></span></b></label><br>
 <input type="email" id="Enter Email Id" title="Please enter a valid email address ending with e.g. @gmail.com,@yahoo.com etc." name="email_id" pattern="[a-zA-Z]{1}[a-zA-Z0-9._%+-]+@[a-z.-]+\.[a-z]{2,3}$"></br>
@@ -374,56 +377,34 @@
     <input type="text" placeholder="Enter Aadhar No" name="aadhar_card"  maxlength="12" pattern = "[2-9]{1}[0-9]{11}" title="Please enter a 12 digit aadhar number" required><br> 
 
 <label for="Date Of Birth"><b>Date Of Birth* <span class="fa fa-calendar"></span>:</b></label><br>
-    <input type="date"  name="date_of_birth" value="1990-01-01" required><br>
+    <input type="date"  name="date_of_birth" value="1990-01-01" min="1960-01-01" required><br>
     
     <label for="Annual_Income"><b>Annual Income* :</b></label><br>
-    <input type="text"  name="annual_income" pattern="[1-9]{1}[0-9]{}" ><br>
+    <input type="number"  name="annual_income" pattern="[1-9]{1}[0-9]+" min="10000" max="100000000" ><br>
 
  <p><b>Address <span class="fa fa-address-card"></span>:</b></p><br>
 
  <label for="Address Line 1"><b>Address Line 1* :</b></label><br>
-    <input type="text"  pattern="[A-Za-z0-9]{}" name="address_line_1" required><br>
+    <input type="text"  pattern="[A-Za-z0-9]+" name="address_line_1" required><br>
     
 <label for="Address Line 2"><b>Address Line 2* :</b></label><br>
-    <input type="text"  pattern="[A-Za-z0-9]{}" name="address_line_2" required><br>
+    <input type="text"  pattern="[A-Za-z0-9]+" name="address_line_2" required><br>
     
-<label for="State"><b>State* :</b></label><br>
-   <select name="state">
-        <option value="State">Select</option>
-        <option value="Andhra Pradesh">Andhra Pradesh</option>
-        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-        <option value="Assam">Assam</option>
-        <option value="Bihar">Bihar</option>
-        <option value="Chattisgarh">Chattisgarh</option>
-        <option value="Goa">Goa</option>
-        <option value="Gujrat">Gujrat</option>
-        <option value="Haryana">Haryana</option>
- <option value="Himachal Pradesh">Himachal Pradesh</option>
-        <option value="Jammu & Kashmir">Jammu & Kashmir</option>
-        <option value="Jharkhand">Jharkhand</option>
-        <option value="Karnatka">Karnatka</option>
-<option value="Kerala">Kerala</option>
-        <option value="Madhya Pradesh">Madhya Pradesh</option>
-        <option value="Maharashtra">Maharashtra</option>
-        <option value="Manipur">Manipur</option>
-<option value="Meghalaya">Meghalaya</option>
-        <option value="Mizoram">Mizoram</option>
-        <option value="Nagaland">Nagaland</option>
-        <option value="Orissa">Orissa</option>
-<option value="Punjab">Punjab</option>
-        <option value="Rajasthan">Rajasthan</option>
-        <option value="Sikkim">Sikkim</option>
-        <option value="Tamil Nadu">Tamil Nadu</option>
-<option value="Telangana">Telangana</option>
-        <option value="Tripura">Tripura</option>
-        <option value="Uttarakhand">Uttarakhand</option>
-        <option value="Uttar Pradesh">Uttar Pradesh</option>
-<option value="West Bengal">West Bengal</option> <br> <br>
-      </select><br><br>
+ <div class='resp_code frms'>
 
-<label for="City"><b>City* :</b></label><br>
-    <input type="text" pattern="[A-Za-z]{}" name="city" required><br><br>
-
+      <div id="selection">
+        <b>State* :</b> <br>
+      <select name="state" id="listBox" onchange='selct_district(this.value)'></select>
+                     <br><b>City* :</b> <br>
+       
+        <select name="city" id='secondlist'></select>
+      </div>
+      
+      <div id="dumdiv" align="center" style=" font-size: 10px;color: #dadada;">
+        <a id="dum" style="padding-right:0px; text-decoration:none;color: green;text-align:center;" ></a>
+      </div>
+    </div>
+    
 <label for="Pincode"><b>Pincode* :</b></label><br>
     <input type="text"  name="pin_code" pattern="[1-9]{1}[0-9]{5}" maxlength="6" required><br><br>
 
@@ -433,20 +414,6 @@
   
   </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
   <div class="container" align = "center">
     <p><i>First Time User?</i> <a href="Register.jsp"><b>Register</b></a></p>
@@ -455,16 +422,6 @@
   </div>
 </form>
 
-
-
-
-
-
-
-
-
-
-
     <footer class="site-footer">
         <div class="footer-widgets">
             <div class="container">
@@ -472,7 +429,6 @@
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="foot-about">
                            
-
                             <p>SBBI Bank is a multinational banking and financial services company headquartered in Mumbai, India. It operates a network of more than 1,200 branches and outlets (including subsidiaries, associates and joint ventures) across more than 70 countries and employs around 87,000 people.</p>
 
                             <ul class="d-flex flex-wrap align-items-center">
@@ -568,4 +524,3 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 </body>
 </html>
-
