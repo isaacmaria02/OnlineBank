@@ -145,6 +145,134 @@ public class BankController {
 		return model;
 
 	}
+	
+	
+	@RequestMapping(value = "/forgotuserid", method = RequestMethod.POST)
+	public ModelAndView forgotUserId(ModelAndView model, @ModelAttribute Account account) {
+
+        boolean isAccountValid =  accountService.validateAccountNumber(account.getAccount_number());		
+
+        if(isAccountValid)
+        {
+        	   String question  = accountService.getSecurityQuestion(account.getAccount_number());
+        	   
+        	   model.addObject("AccountNumber",account.getAccount_number());
+        	   model.addObject("Question",question);
+        	   model.addObject("ForgotIdSecurityQuestionView","not empty");
+           	  model.setViewName("ForgotId");
+           	  return model;
+        	   
+        }
+        else
+        {
+        	model.addObject("message","Please enter a valid account number !");
+        	model.addObject("ForgotIdView","not empty");
+        	model.setViewName("ForgotId");
+        	return model;
+        }
+        
+	}
+	
+	
+	@RequestMapping(value = "/forgotpassword", method = RequestMethod.POST)
+	public ModelAndView forgotPassword(ModelAndView model, @ModelAttribute Account account) {
+
+        boolean isAccountValid =  accountService.validateAccountNumber(account.getAccount_number());		
+
+        if(isAccountValid)
+        {
+        	   String question  = accountService.getSecurityQuestion(account.getAccount_number());
+        	   
+        	   model.addObject("AccountNumber",account.getAccount_number());
+        	   model.addObject("Question",question);
+        	   model.addObject("ForgotPasswordSecurityQuestionView","not empty");
+           	  model.setViewName("ForgotPassword");
+           	  return model;
+        	   
+        }
+        else
+        {
+        	model.addObject("message","Please enter a valid account number !");
+        	model.addObject("ForgotPasswordView","not empty");
+        	model.setViewName("ForgotPassword");
+        	return model;
+        }
+        
+	}
+	
+	
+	
+	
+	
+	
+        @RequestMapping(value = "/checksecurityquestion", method = RequestMethod.POST)
+    	public ModelAndView checkSecurityQuestion(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
+
+        	boolean isAnswerVerified = accountService.verifySecurityAnswer(ibu);
+           
+        	if(isAnswerVerified)
+        	{
+        	   String userid =  accountService.getForgottenUserId(ibu.getAccount_number());
+        	   model.addObject("user_id",userid);        	   
+        	   model.setViewName("ForgotId");
+        	}
+        	else
+        	{
+        	    model.addObject("forgot_id_status","Incorrect Answer");
+        	 	model.addObject("ForgotIdSecurityQuestionView","not empty");
+            	model.setViewName("ForgotId");
+            	return model;
+        	}
+		
+        	
+return model;
+	}
+
+        
+        @RequestMapping(value = "/checkpasswordquestion", method = RequestMethod.POST)
+    	public ModelAndView checkSecurityQuestionForPassword(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
+
+        	boolean isAnswerVerified = accountService.verifySecurityAnswer(ibu);
+           
+        	if(isAnswerVerified)
+        	{
+        	     model.addObject("AccountNumber", ibu.getAccount_number()); 
+        		model.addObject("ChangePasswordView","not empty");
+        	   model.setViewName("ForgotPassword");
+        	}
+        	else
+        	{
+        	    model.addObject("forgot_password_status","Incorrect Answer");
+        	 	model.addObject("ForgotPasswordSecurityQuestionView","not empty");
+            	model.setViewName("ForgotPassword");
+            	return model;
+        	}
+		
+        	
+return model;
+	}
+        
+        
+        @RequestMapping(value = "/setnewpassword", method = RequestMethod.POST)
+      	public ModelAndView setNewPassword(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
+
+         
+           int i = accountService.changeLoginPassword(ibu.getAccount_number(), ibu.getLogin_password());   
+           
+           
+           if(i>0)
+           {
+        	   model.setViewName("ForgotPassword");
+
+        	  model.addObject("changepassword", "Password updated");
+        	  return model;
+           }else
+           {
+        	   model.setViewName("ForgotPassword");
+         	  model.addObject("changepassword", "Password cannot be changed");   
+            return model;
+           }
+  	}
 
 	/**
 	 * 

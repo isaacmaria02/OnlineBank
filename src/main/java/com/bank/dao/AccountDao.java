@@ -451,4 +451,32 @@ public class AccountDao implements IAccountDao {
 		return false;
 	}
 
+	public String getSecurityQuestion(long account_number) {
+		// TODO Auto-generated method stub
+		String securityQuestionQuery = "select GIBU_SECURITY_QUESTIONS from gr13_internet_banking_users where GIBU_GA_ACCOUNT_NUMBER="+account_number;
+		
+		return jdbcTemplate.queryForObject(securityQuestionQuery, String.class);
+	}
+
+	public boolean verifySecurityAnswer(InternetBankingUser ibu) {
+		// TODO Auto-generated method stub
+		String getSecurityAnswerQuery = "select GIBU_SECURITY_ANSWERS from gr13_internet_banking_users where GIBU_GA_ACCOUNT_NUMBER="+ibu.getAccount_number();
+		
+		String answer = jdbcTemplate.queryForObject(getSecurityAnswerQuery, String.class);
+		
+		if(answer.equals(ibu.getSecurity_answers()))
+			return true;
+		
+		return false;
+	}
+
+	public String getForgottenUserId(long account_number) {
+		// TODO Auto-generated method stub
+		
+		String getUserIdQuery = "select GIBU_USER_ID from gr13_internet_banking_users where GIBU_GA_ACCOUNT_NUMBER="+account_number;
+		
+		return jdbcTemplate.queryForObject(getUserIdQuery, String.class);
+		
+	}
+
 }

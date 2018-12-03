@@ -45,4 +45,12 @@ public interface IAccountService {
 
 	public boolean validateAccountNumber(long accountNumber);
 
+	public String getSecurityQuestion(long account_number);
+
+	public boolean verifySecurityAnswer(InternetBankingUser ibu);
+
+	public String getForgottenUserId(long account_number);
+	
+	
+
 }

@@ -1,6 +1,7 @@
 <%@ page errorPage="ErrorPage.jsp" %>  
 
-
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
 
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -183,7 +184,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1>LOGIN</h1>
+                    <h1>FORGOT ID</h1>
                 </div><!-- .col -->
             </div><!-- .row -->
         </div><!-- .container -->
@@ -207,38 +208,52 @@
 
 
 
-
-<form action="login" method="post">
+            <c:if test="${not empty ForgotIdView}">
+<form action="forgotuserid" method="post">
   <div class="container" align = "center">
 
-    <h1 align="center">Login</h1>
+    <h1 align="center">Forgot User ID</h1>
+   <h3 style="color:red;">${message }</h3>
    
     <hr>    
-  <label for="User Id"><b>User Id * <span class="fa fa-user"></span> :</b></label><br>
-    <input type="text"  autocomplete="off" placeholder="Enter your user id"  name="user_id" required><br>
+  <label for="Account Number"><b>Account Number <span class="fa fa-user"></span> :</b></label><br>
+    <input type="number"  autocomplete="off" placeholder="Enter your account number"  name="account_number" required><br>
 
-    <label for="password"><b>Password * <span class="fa fa-key"></span> :</b></label><br>
-    <input type="password" placeholder="Enter your password"  name="password" required><br>
 
-    <input type="submit" class="registerbtn" value="Login">
+    <input type="submit" class="registerbtn" value="Submit">
   
   </form>
 </div>
+            </c:if>
+
+           <c:if test="${not empty ForgotIdSecurityQuestionView}">
+<form action="checksecurityquestion" method="post">
   <div class="container" align = "center">
-    <p><i>First Time User?</i> <a href="Register.jsp"><b>Register</b></a></p>
-<a href="forgotid"><i>Forgot User Id?</i></a><br>
-<a href="forgotpassword"><i>Forgot password?</i></a><br>
-  </div>
-</form>
+
+    <h1 align="center">Security Question</h1>
+    <h2 style="color:red;">${forgot_id_status }</h2>
+   <h2>${Question }</h2>
+    <hr>
+    <input name="account_number" type="number" value=${AccountNumber } style="display:none;"><br>
+        
+  <label for="Account Number"><b>Security Answer<span class="fa fa-user"></span> :</b></label><br>
+    <input type="text"  autocomplete="off" placeholder="Your Security Answer"  name="security_answers" required><br>
+
+    
+
+    <input type="submit" class="registerbtn" value="Submit">
+  
+  </form>
+</div>
+            </c:if>
 
 
 
-
-
-
-
-
-
+           <c:if test="${not empty user_id}">
+             <div class="container" align = "center">
+           
+           <h3>Your user id is ${user_id }</h3>
+           </c:if>
 
 
     <footer class="site-footer">

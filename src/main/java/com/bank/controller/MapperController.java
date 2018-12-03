@@ -2,6 +2,7 @@ package com.bank.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -74,6 +75,27 @@ public class MapperController {
 
 		model.addObject("AccountStatementView", "not empty");
 		model.setViewName("Dashboard");
+
+		return model;
+
+	}
+	
+	
+	@RequestMapping("/forgotid")
+	public ModelAndView ForgotId(ModelAndView model) {
+
+		model.addObject("ForgotIdView", "not empty");
+		model.setViewName("ForgotId");
+
+		return model;
+
+	}
+	
+	@RequestMapping("/forgotpassword")
+	public ModelAndView ForgotPassword(ModelAndView model) {
+
+		model.addObject("ForgotPasswordView", "not empty");
+		model.setViewName("ForgotPassword");
 
 		return model;
 

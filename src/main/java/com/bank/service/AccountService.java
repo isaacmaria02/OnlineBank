@@ -129,4 +129,27 @@ public class AccountService implements IAccountService {
 		return edao.validateAccountNumber(accountNumber);
 	}
 
+	@Override
+	public String getSecurityQuestion(long account_number) {
+		// TODO Auto-generated method stub
+		
+		return edao.getSecurityQuestion(account_number);
+	}
+
+	@Override
+	public boolean verifySecurityAnswer(InternetBankingUser ibu) {
+		// TODO Auto-generated method stub
+		return edao.verifySecurityAnswer(ibu);
+	}
+
+	public String getForgottenUserId(long account_number) {
+		// TODO Auto-generated method stub
+		
+		return edao.getForgottenUserId(account_number);
+	
+		
+	}
+
+	
+
 }
