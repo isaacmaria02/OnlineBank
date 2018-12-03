@@ -262,11 +262,10 @@ public class BankController {
 			model.setViewName("Dashboard");
 
 		} else {
-			System.out.println(tr.getFrom_account());
 			System.out.println(fundTransferService.calculateCharges(tr));
 
 			if (accountService
-					.getBalance(tr.getFrom_account()) < (tr.getAmount() + fundTransferService.calculateCharges(tr))) {
+					.getBalance((Long) session.getAttribute("account_number")) < (tr.getAmount() + tr.getCharges())) {
 				model.addObject("transaction", "Insufficient Balance");
 			} else
 				model.addObject("transaction", "Transaction Failure");
