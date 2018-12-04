@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <h1>Account Number : ${userInfo.account_number }</h1>
 <input type="button" value="Print" onclick="window.print()" /> 
 </body>
