@@ -22,7 +22,6 @@ import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -145,141 +144,115 @@ public class BankController {
 		return model;
 
 	}
-	
-	
+
 	@RequestMapping(value = "/forgotuserid", method = RequestMethod.POST)
 	public ModelAndView forgotUserId(ModelAndView model, @ModelAttribute Account account) {
 
-        boolean isAccountValid =  accountService.validateAccountNumber(account.getAccount_number());		
+		boolean isAccountValid = accountService.validateAccountNumber(account.getAccount_number());
 
-        if(isAccountValid)
-        {
-        	   String question  = accountService.getSecurityQuestion(account.getAccount_number());
-        	   
-        	   model.addObject("AccountNumber",account.getAccount_number());
-        	   model.addObject("Question",question);
-        	   model.addObject("ForgotIdSecurityQuestionView","not empty");
-           	  model.setViewName("ForgotId");
-           	  return model;
-        	   
-        }
-        else
-        {
-        	model.addObject("message","Please enter a valid account number !");
-        	model.addObject("ForgotIdView","not empty");
-        	model.setViewName("ForgotId");
-        	return model;
-        }
-        
+		if (isAccountValid) {
+			String question = accountService.getSecurityQuestion(account.getAccount_number());
+
+			model.addObject("AccountNumber", account.getAccount_number());
+			model.addObject("Question", question);
+			model.addObject("ForgotIdSecurityQuestionView", "not empty");
+			model.setViewName("ForgotId");
+			return model;
+
+		} else {
+			model.addObject("message", "Please enter a valid account number !");
+			model.addObject("ForgotIdView", "not empty");
+			model.setViewName("ForgotId");
+			return model;
+		}
+
 	}
-	
-	
+
 	@RequestMapping(value = "/forgotpassword", method = RequestMethod.POST)
 	public ModelAndView forgotPassword(ModelAndView model, @ModelAttribute Account account) {
 
-        boolean isAccountValid =  accountService.validateAccountNumber(account.getAccount_number());		
+		boolean isAccountValid = accountService.validateAccountNumber(account.getAccount_number());
 
-        if(isAccountValid)
-        {
-        	   String question  = accountService.getSecurityQuestion(account.getAccount_number());
-        	   
-        	   model.addObject("AccountNumber",account.getAccount_number());
-        	   model.addObject("Question",question);
-        	   model.addObject("ForgotPasswordSecurityQuestionView","not empty");
-           	  model.setViewName("ForgotPassword");
-           	  return model;
-        	   
-        }
-        else
-        {
-        	model.addObject("message","Please enter a valid account number !");
-        	model.addObject("ForgotPasswordView","not empty");
-        	model.setViewName("ForgotPassword");
-        	return model;
-        }
-        
-	}
-	
-	
-	
-	
-	
-	
-        @RequestMapping(value = "/checksecurityquestion", method = RequestMethod.POST)
-    	public ModelAndView checkSecurityQuestion(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
+		if (isAccountValid) {
+			String question = accountService.getSecurityQuestion(account.getAccount_number());
 
-        	boolean isAnswerVerified = accountService.verifySecurityAnswer(ibu);
-           
-        	if(isAnswerVerified)
-        	{
-        	   String userid =  accountService.getForgottenUserId(ibu.getAccount_number());
-        	   model.addObject("user_id",userid);        	   
-        	   model.setViewName("ForgotId");
-        	}
-        	else
-        	{
-        	    model.addObject("forgot_id_status","Incorrect Answer");
-        	 	model.addObject("ForgotIdView","not empty");
-            	model.setViewName("ForgotId");
-            	return model;
-        	}
-		
-        	
-return model;
+			model.addObject("AccountNumber", account.getAccount_number());
+			model.addObject("Question", question);
+			model.addObject("ForgotPasswordSecurityQuestionView", "not empty");
+			model.setViewName("ForgotPassword");
+			return model;
+
+		} else {
+			model.addObject("message", "Please enter a valid account number !");
+			model.addObject("ForgotPasswordView", "not empty");
+			model.setViewName("ForgotPassword");
+			return model;
+		}
+
 	}
 
-        
-        @RequestMapping(value = "/checkpasswordquestion", method = RequestMethod.POST)
-    	public ModelAndView checkSecurityQuestionForPassword(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
+	@RequestMapping(value = "/checksecurityquestion", method = RequestMethod.POST)
+	public ModelAndView checkSecurityQuestion(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
 
-        	boolean isAnswerVerified = accountService.verifySecurityAnswer(ibu);
-           
-        	if(isAnswerVerified)
-        	{
-        	     model.addObject("AccountNumber", ibu.getAccount_number()); 
-        		model.addObject("ChangePasswordView","not empty");
-        	   model.setViewName("ForgotPassword");
-        	}
-        	else
-        	{
-        	    model.addObject("forgot_password_status","Incorrect Answer");
-        	 	model.addObject("ForgotPasswordView","not empty");
-            	model.setViewName("ForgotPassword");
-            	return model;
-        	}
-		
-        	
-return model;
+		boolean isAnswerVerified = accountService.verifySecurityAnswer(ibu);
+
+		if (isAnswerVerified) {
+			String userid = accountService.getForgottenUserId(ibu.getAccount_number());
+			model.addObject("user_id", userid);
+			model.setViewName("ForgotId");
+		} else {
+			model.addObject("forgot_id_status", "Incorrect Answer");
+			model.addObject("ForgotIdView", "not empty");
+			model.setViewName("ForgotId");
+			return model;
+		}
+
+		return model;
 	}
-        
-        
-        @RequestMapping(value = "/setnewpassword", method = RequestMethod.POST)
-      	public ModelAndView setNewPassword(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
 
-         
-           int i = accountService.changeLoginPassword(ibu);   
-           
-           
-           if(i>0)
-           {
-        	   model.setViewName("ForgotPassword");
+	@RequestMapping(value = "/checkpasswordquestion", method = RequestMethod.POST)
+	public ModelAndView checkSecurityQuestionForPassword(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
 
-        	  model.addObject("changepassword", "Password updated");
-        	  return model;
-           }else
-           {
-        	   model.setViewName("ForgotPassword");
-         	  model.addObject("changepassword", "Password cannot be changed");   
-            return model;
-           }
-  	}
+		boolean isAnswerVerified = accountService.verifySecurityAnswer(ibu);
+
+		if (isAnswerVerified) {
+			model.addObject("AccountNumber", ibu.getAccount_number());
+			model.addObject("ChangePasswordView", "not empty");
+			model.setViewName("ForgotPassword");
+		} else {
+			model.addObject("forgot_password_status", "Incorrect Answer");
+			model.addObject("ForgotPasswordView", "not empty");
+			model.setViewName("ForgotPassword");
+			return model;
+		}
+
+		return model;
+	}
+
+	@RequestMapping(value = "/setnewpassword", method = RequestMethod.POST)
+	public ModelAndView setNewPassword(ModelAndView model, @ModelAttribute InternetBankingUser ibu) {
+
+		int i = accountService.changeLoginPassword(ibu);
+
+		if (i > 0) {
+			model.setViewName("ForgotPassword");
+
+			model.addObject("changepassword", "Password updated");
+			return model;
+		} else {
+			model.setViewName("ForgotPassword");
+			model.addObject("changepassword", "Password cannot be changed");
+			return model;
+		}
+	}
 
 	/**
 	 * 
 	 * @param model
-	 * @param session : It has IsLoggedSession set to true which will be invalidated
-	 *                when logout button is pressed and customer will be redirected
-	 *                to the homepage
+	 * @param session
+	 *            : It has IsLoggedSession set to true which will be invalidated
+	 *            when logout button is pressed and customer will be redirected to
+	 *            the homepage
 	 * @return
 	 */
 	@RequestMapping(value = "/logout")
@@ -298,22 +271,19 @@ return model;
 		payee.setCustomer_account_number((Long) session.getAttribute("account_number"));
 
 		long payeeAccountNumber = payee.getPayee_account_number();
-		boolean isPayeeAccountNumberValid=accountService.validateAccountNumber(payeeAccountNumber);
-		
-		//now check for duplicate
-		
-		//check for payee duplicate
-		
-		
-		
-		if(!isPayeeAccountNumberValid)
-		{
-			model.addObject("payee_status","Please enter a valid account number");
-		    model.addObject("AddPayeeView","not empty");
+		boolean isPayeeAccountNumberValid = accountService.validateAccountNumber(payeeAccountNumber);
+
+		// now check for duplicate
+
+		// check for payee duplicate
+
+		if (!isPayeeAccountNumberValid) {
+			model.addObject("payee_status", "Please enter a valid account number");
+			model.addObject("AddPayeeView", "not empty");
 			model.setViewName("Dashboard");
 			return model;
 		}
-		
+
 		int i = fundTransferService.addPayee(payee);
 
 		if (i > 0) {
@@ -330,8 +300,6 @@ return model;
 	@RequestMapping("/DeletePayee")
 	public ModelAndView deletePayee(HttpServletRequest request, HttpServletResponse response, ModelAndView model,
 			HttpSession session) {
-
-		System.out.println("in controller " + session.getAttribute("account_number"));
 
 		int i = fundTransferService.deletePayee(request.getParameter("payee_name"),
 				(Long) session.getAttribute("account_number"));
@@ -372,8 +340,6 @@ return model;
 
 		List<Payee> payeeList = fundTransferService.displayPayee((Long) session.getAttribute("account_number"));
 
-		// System.out.println(payeeList.size());
-
 		model.addObject("PayeeList", payeeList);
 
 		model.addObject("FundTransferView", "not empty");
@@ -390,8 +356,6 @@ return model;
 		boolean checkTransactionPassword = accountService.checkTransactionPassword(
 				(Long) session.getAttribute("account_number"), request.getParameter("transactionPassword"));
 
-		System.out.println("is transaction password same " + checkTransactionPassword);
-
 		if (!checkTransactionPassword) {
 			model.addObject("transaction", "Transaction Password does not match");
 			model.setViewName("Dashboard");
@@ -406,7 +370,6 @@ return model;
 			model.setViewName("Dashboard");
 
 		} else {
-			System.out.println(fundTransferService.calculateCharges(tr));
 
 			if (accountService
 					.getBalance((Long) session.getAttribute("account_number")) < (tr.getAmount() + tr.getCharges())) {
@@ -488,8 +451,6 @@ return model;
 
 		model.addObject("user_profile", userProfile);
 
-		System.out.println(userProfile);
-
 		model.addObject("AccountDetailsView", "not empty");
 		model.setViewName("Dashboard");
 
@@ -507,22 +468,17 @@ return model;
 		long accountNumber = (Long) session.getAttribute("account_number");
 
 		boolean isUserId = accountService.checkUserId(accountNumber, oldUserId);
-		
-		
-
 
 		if (isUserId) {
-			
+
 			boolean isNewUserIdDuplicate = accountService.checkDupliateId(newUserId);
 
-			if(isNewUserIdDuplicate)
-			{
-				model.addObject("changeId","User ID already exists");
+			if (isNewUserIdDuplicate) {
+				model.addObject("changeId", "User ID already exists");
 				model.addObject("ChangeIdView", "not empty");
 				model.setViewName("Dashboard");
 				return model;
 			}
-			
 
 			int isUserIdUpdated = accountService.changeUserId(accountNumber, newUserId);
 
@@ -572,7 +528,7 @@ return model;
 			model.setViewName("Dashboard");
 
 		} else {
-			model.addObject("ChangePasswordView","not empty");
+			model.addObject("ChangePasswordView", "not empty");
 			model.addObject("changePassword", "Please enter correct Login Password");
 			model.setViewName("Dashboard");
 		}
@@ -607,7 +563,7 @@ return model;
 			model.setViewName("Dashboard");
 
 		} else {
-			model.addObject("ChangeTransactionPasswordView","not empty");
+			model.addObject("ChangeTransactionPasswordView", "not empty");
 			model.addObject("changeTransactionPassword", "Please enter correct Transaction Password");
 			model.setViewName("Dashboard");
 		}
@@ -629,21 +585,16 @@ return model;
 		XWPFDocument document = new XWPFDocument();
 
 		try {
-           File file = new File("C:\\Users\\AE103_PC7\\Desktop\\a\\"+userProfile.getAccount_number());
-           session.setAttribute("filePath",file+"\\");
-		//	File file = ResourceUtils.getFile("classpath:" + userProfile.getAccount_number());
-			//session.setAttribute("filePath", file + "\\");
-           
-           System.out.println(ResourceUtils.getFile("classpath;"));
-
-			System.out.println(file.toString());
+			File file = new File("C:\\Users\\AE103_PC7\\Desktop\\a\\" + userProfile.getAccount_number());
+			session.setAttribute("filePath", file + "\\");
+			// File file = ResourceUtils.getFile("classpath:" +
+			// userProfile.getAccount_number());
+			// session.setAttribute("filePath", file + "\\");
 
 			if (!file.exists()) {
 
 				if (file.mkdir()) {
-					System.out.println("Directory is created!");
 				} else {
-					System.out.println("Failed to create directory!");
 				}
 			} else {
 				FileUtils.cleanDirectory(file);
@@ -730,7 +681,6 @@ return model;
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("Not successful");
 			System.exit(-1);
 		}
 

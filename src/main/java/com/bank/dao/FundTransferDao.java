@@ -28,15 +28,12 @@ public class FundTransferDao implements IFundTransferDao {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-	
-	
+
 	@Autowired
 	private IAccountService accountService;
 
 	public int addPayee(Payee payee) {
 		int i = 0;
-		
-        
 
 		String addPayeeQuery = "insert into GR13_payee values(" + payee.getPayee_account_number() + ",'"
 				+ payee.getName() + "','" + payee.getNick_name() + "'," + payee.getCustomer_account_number() + ")";
@@ -58,7 +55,6 @@ public class FundTransferDao implements IFundTransferDao {
 	public List<Payee> displayPayee(long accountNumber) {
 		// TODO Auto-generated method stub
 
-		
 		String getPayeeQuery = "select * from gr13_payee where GP_GC_CUSTOMER_ACCOUNT_NUMBER=" + accountNumber;
 
 		return jdbcTemplate.query(getPayeeQuery, new RowMapper<Payee>() {
@@ -77,7 +73,6 @@ public class FundTransferDao implements IFundTransferDao {
 		// TODO Auto-generated method stub
 
 		int i = 0, j = 0, k = 0;
-		System.out.println(tr);
 		// String getPayeeQuery="select * from gr13_payee where
 		// GP_GC_CUSTOMER_ACCOUNT_NUMBER="+tr.getFrom_account();
 
@@ -140,14 +135,11 @@ public class FundTransferDao implements IFundTransferDao {
 
 	public long payeeAccountNumber(Transaction tr, long accountNumber) {
 
-		System.out.println(tr.getPayee_name() + " inside dao");
 		// TODO Auto-generated method stub
 		String getPayeeQuery = "select GP_PAYEE_ACCOUNT_NUMBER from gr13_payee where GP_GC_CUSTOMER_ACCOUNT_NUMBER="
 				+ accountNumber + " and gp_name='" + tr.getPayee_name() + "'";
 
 		long payeeAccountNumber = jdbcTemplate.queryForObject(getPayeeQuery, Long.class);
-
-		System.out.println("inside fund transfer dao " + payeeAccountNumber);
 
 		return payeeAccountNumber;
 	}

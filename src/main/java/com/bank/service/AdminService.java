@@ -51,7 +51,6 @@ public class AdminService implements IAdminService {
 				email.sendEmail(user.getEmail_id(), user, emailSubject, emailMessage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				System.out.println(e);
 				isRequestApproved = -1;
 			}
 

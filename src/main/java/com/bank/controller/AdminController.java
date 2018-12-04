@@ -31,9 +31,12 @@ public class AdminController {
 
 	/**
 	 * 
-	 * @param model   model it a type of ModelAndView
-	 * @param admin   it is POJO class to store admin credentials
-	 * @param session to remember the admin's login sessio
+	 * @param model
+	 *            model it a type of ModelAndView
+	 * @param admin
+	 *            it is POJO class to store admin credentials
+	 * @param session
+	 *            to remember the admin's login sessio
 	 * @return Dashboard view if successsully authenticated else it redirects back
 	 *         to the login page
 	 */
@@ -43,8 +46,6 @@ public class AdminController {
 
 		if (admin.getAdminId().equals("admin") && admin.getAdminPassword().equals("admin123")) {
 			session.setAttribute("isAdminLoggedIn", true);
-
-			System.out.println(session.getAttribute("isAdminLoggedIn"));
 
 			/*
 			 * List<Profile> accountOpeningRequests = adminService.displayRequests();
@@ -64,7 +65,8 @@ public class AdminController {
 
 	/**
 	 * 
-	 * @param model It is of type ModelAndView
+	 * @param model
+	 *            It is of type ModelAndView
 	 * @return fetches all the requests and displays it on admin dashboard
 	 */
 	@RequestMapping(value = "/display")
@@ -82,8 +84,10 @@ public class AdminController {
 
 	/**
 	 * 
-	 * @param model   is of type ModelAndView
-	 * @param session is used to invalidate the admin's login ses
+	 * @param model
+	 *            is of type ModelAndView
+	 * @param session
+	 *            is used to invalidate the admin's login ses
 	 * @return to Bank Homepage aftr logout
 	 */
 	@RequestMapping(value = "/adminlogout")
@@ -91,7 +95,6 @@ public class AdminController {
 
 		session.removeAttribute("isAdminLoggedIn");
 		session.invalidate();
-
 
 		model.setViewName("index");
 
@@ -101,7 +104,8 @@ public class AdminController {
 
 	/**
 	 * 
-	 * @param id It is the customer Id that needs to be rejected
+	 * @param id
+	 *            It is the customer Id that needs to be rejected
 	 * @return It returns the name of the view i.e. the display view is returned
 	 */
 	@RequestMapping(value = "/reject/{id}", method = RequestMethod.GET)
@@ -120,7 +124,8 @@ public class AdminController {
 
 	/**
 	 * 
-	 * @param id It is the customer Id that needs to be approved
+	 * @param id
+	 *            It is the customer Id that needs to be approved
 	 * @return The display view is redirected after approval
 	 */
 	@RequestMapping(value = "/approve/{id}", method = RequestMethod.GET)

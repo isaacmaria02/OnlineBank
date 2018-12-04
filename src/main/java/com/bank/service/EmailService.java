@@ -49,8 +49,6 @@ public class EmailService {
 			// 3rd step)send message
 			Transport.send(message);
 
-			System.out.println("Done");
-
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
