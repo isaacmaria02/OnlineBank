@@ -90,6 +90,7 @@ public class AdminController {
 	 *            is used to invalidate the admin's login ses
 	 * @return to Bank Homepage aftr logout
 	 */
+
 	@RequestMapping(value = "/adminlogout")
 	public ModelAndView adminLogout(ModelAndView model, HttpSession session) {
 
@@ -135,7 +136,7 @@ public class AdminController {
 		if (i > 0) {
 
 		} else {
-
+			return "ErrorPage";
 		}
 
 		return "redirect:/display";

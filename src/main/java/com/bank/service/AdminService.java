@@ -41,20 +41,21 @@ public class AdminService implements IAdminService {
 		String emailMessage = "Dear " + user.getFirst_name() + "<br/> Your SBBI Bank Account is Activated"
 				+ "<br/><br/>" + "Please Register to avail the internet banking facility<br/><br/>"
 				+ "Your Account Number is " + user.getAccount_number();
-
-		String emailSubject = "Congratulations ! Your SBBI account has been activated";
-
-		if (isRequestApproved > 0)
-
-		{
-			try {
-				email.sendEmail(user.getEmail_id(), user, emailSubject, emailMessage);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				isRequestApproved = -1;
-			}
-
-		}
+		/**
+		 * EMAIL FUNCTIONALITY COMMENTED
+		 */
+		/*
+		 * String emailSubject =
+		 * "Congratulations ! Your SBBI account has been activated";
+		 * 
+		 * if (isRequestApproved > 0)
+		 * 
+		 * { try { email.sendEmail(user.getEmail_id(), user, emailSubject,
+		 * emailMessage); } catch (Exception e) { // TODO Auto-generated catch block
+		 * isRequestApproved = -1; }
+		 * 
+		 * }
+		 */
 
 		return isRequestApproved;
 	}
