@@ -373,10 +373,10 @@ if(session!=null)
                             
                             <h3>Change User Id</h3>
             <table>
-          <form action="checkId" method="post">
-<tr><td>Old ID</td><td><input type="text" name="old" pattern="[A-Za-z0-9]+"></td></tr>
-<tr><td>New User ID</td><td><input type="text" name="new" pattern="[A-Za-z0-9]+" id="UserId"></td></tr>
-<tr><td>Confirm User ID</td><td><input type="text" name="confirm" pattern="[A-Za-z0-9]" id="ConUserId" onblur="ValidateUserId()"></td></tr>
+          <form action="checkId" method="post" onsubmit=" return ValidateUserId()">
+<tr><td>Old ID</td><td><input type="text" name="old" pattern="[A-Za-z0-9]"></td></tr>
+<tr><td>New User ID</td><td><input type="text" name="new" pattern="[A-Za-z0-9]" id="UserId"></td></tr>
+<tr><td>Confirm User ID</td><td><input type="text" name="confirm" pattern="[A-Za-z0-9]" id="ConUserId" ></td></tr>
 <tr><td colspan="2"><input type="submit" class="btn btn-primary dropdown-toggle dropdown-toggle-split" value="Change User Id"></td></tr>
 </form>
 
@@ -406,10 +406,10 @@ ${changePassword }
                             
                             <h3>Change Transaction Password</h3>
            <table>
-              <form action="checkTransactionPassword" method="post">
+              <form action="checkTransactionPassword" method="post" onsubmit="return ValidateTran()">
 <tr><td>Old Transaction Password</td><td><input type="password" name="old"></td></tr>
-<tr><td>New Transaction Password</td><td><input type="password" id="TransactionPass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number,one uppercase letter and one lowercase letter, and at least 8 or more characters" ></td></tr>
-<tr><td>Confirm Transaction Password</td><td><input type="password" name="confirm" id="ConTransactionPass" onblur="return ValidateTran()"></td></tr>
+<tr><td>New Transaction Password</td><td><input name="new" type="password" id="TransactionPass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number,one uppercase letter and one lowercase letter, and at least 8 or more characters" ></td></tr>
+<tr><td>Confirm Transaction Password</td><td><input type="password" name="confirm" id="ConTransactionPass" ></td></tr>
 <tr><td colspan="2"><input type="submit" class="btn btn-primary dropdown-toggle dropdown-toggle-split" value="Change Password"></td></tr>
 </form>
 </table>
