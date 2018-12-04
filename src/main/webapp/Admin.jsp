@@ -4,14 +4,6 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/adminlogin.css">
-
-
-<style>
-
-$('.message a').click(function(){
-   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-});
-</style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Admin Homepage</title>
 </head>
@@ -20,8 +12,7 @@ $('.message a').click(function(){
 
 
 
-
-
+       <h1 align="center" style="color:white;">Admin Portal</h1>
 
 <div class="login-page">
   <div class="form">

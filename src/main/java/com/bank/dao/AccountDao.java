@@ -42,13 +42,17 @@ public class AccountDao implements IAccountDao {
 	 * The open account form is validated and then inserted into Customers, Accounts
 	 * and Addresses relation
 	 * </p>
-	 * @param customer : Fetches values from the getters of model class Customers
-	 * @param account  : Fetches values from the getters of Model class Accounts
-	 * @param address  : Fetches values from the getters of Model class Addresses
+	 * 
+	 * @param customer
+	 *            : Fetches values from the getters of model class Customers
+	 * @param account
+	 *            : Fetches values from the getters of Model class Accounts
+	 * @param address
+	 *            : Fetches values from the getters of Model class Addresses
 	 * @return long : return the account number if the record is updated
 	 */
 	public long createAccount(Customer customer, Account account, Address address) {
-		int i = 0, j = 0, k = 0;
+		int i = 0;
 
 		String getCustomerId = "select GR13_customers_seq.nextval from dual";
 		long customerId = getCustomerSeq(getCustomerId);
@@ -95,8 +99,9 @@ public class AccountDao implements IAccountDao {
 	 * opening request. The customer can use the account number for availing
 	 * internet banking.
 	 * 
-	 * @param InternetBankingUser : It is a model class obtained from Internet
-	 *                            Banking registation form.
+	 * @param InternetBankingUser
+	 *            : It is a model class obtained from Internet Banking registation
+	 *            form.
 	 * @return int : return positive values when successfully registered for
 	 *         internet banking
 	 *         </p>
@@ -109,6 +114,7 @@ public class AccountDao implements IAccountDao {
 						ibu.getSecurity_questions(), ibu.getSecurity_answers(), ibu.getAccount_number() });
 		return i;
 	}
+
 	/**
 	 * MD5 hash is obtained to store the password in the encrypted format
 	 * 
@@ -126,8 +132,9 @@ public class AccountDao implements IAccountDao {
 	}
 
 	/**
-	 * @param login It is used to obtain the account number of the user id mentioned
-	 *              in the Login Model
+	 * @param login
+	 *            It is used to obtain the account number of the user id mentioned
+	 *            in the Login Model
 	 * @return It returns the account number which is in Long format
 	 */
 	public long getAccountNumber(Login login) {
@@ -143,7 +150,8 @@ public class AccountDao implements IAccountDao {
 	}
 
 	/**
-	 * @param query It is the SQL query of sequences using dual table
+	 * @param query
+	 *            It is the SQL query of sequences using dual table
 	 * @return Returns the sequence numbers for Account, Customer and Addresses
 	 */
 	public long getCustomerSeq(String query) {
@@ -170,7 +178,8 @@ public class AccountDao implements IAccountDao {
 	}
 
 	/**
-	 * @param customerAccountNumber It is the account number of the customer
+	 * @param customerAccountNumber
+	 *            It is the account number of the customer
 	 * @return the balance in floating point of the customer's account number
 	 *         mentioned in the customerAccountNumber parameter
 	 */
@@ -184,8 +193,9 @@ public class AccountDao implements IAccountDao {
 	}
 
 	/**
-	 * @param customerAccountNumber : It is used as a parameter to obtain summary
-	 *                              information of the customer
+	 * @param customerAccountNumber
+	 *            : It is used as a parameter to obtain summary information of the
+	 *            customer
 	 * @return Account : returns the Account Summary Model object
 	 */
 	@Override
@@ -216,7 +226,7 @@ public class AccountDao implements IAccountDao {
 		}
 
 	}
-	
+
 	class ValidateMapper implements RowMapper<Account> {
 		public Account mapRow(ResultSet rs, int arg1) throws SQLException {
 			Account user = new Account();
@@ -387,7 +397,7 @@ public class AccountDao implements IAccountDao {
 		return jdbcTemplate.update(changeLoginPasswordQuery);
 
 	}
-	
+
 	public int changeLoginPassword(InternetBankingUser ibu) {
 
 		String changeLoginPasswordQuery = "update gr13_internet_banking_users set GIBU_LOGIN_PASSWORD='"
@@ -437,7 +447,7 @@ public class AccountDao implements IAccountDao {
 		String validateAccountNumberQuery = "select GA_ACCOUNT_NUMBER from gr13_accounts where GA_ACCOUNT_NUMBER="
 				+ ibu.getAccount_number();
 
-		List<Account> users = jdbcTemplate.query(validateAccountNumberQuery,new ValidateMapper());
+		List<Account> users = jdbcTemplate.query(validateAccountNumberQuery, new ValidateMapper());
 
 		if (users.size() == 1)
 			return true;
@@ -451,41 +461,43 @@ public class AccountDao implements IAccountDao {
 		String validateAccountNumberQuery = "select GA_ACCOUNT_NUMBER from gr13_accounts where GA_ACCOUNT_NUMBER="
 				+ accountNumber;
 
-		List<Account> users= jdbcTemplate.query(validateAccountNumberQuery, new ValidateMapper());
+		List<Account> users = jdbcTemplate.query(validateAccountNumberQuery, new ValidateMapper());
 
 		if (users.size() == 1)
 			return true;
-
 
 		return false;
 	}
 
 	public String getSecurityQuestion(long account_number) {
 		// TODO Auto-generated method stub
-		String securityQuestionQuery = "select GIBU_SECURITY_QUESTIONS from gr13_internet_banking_users where GIBU_GA_ACCOUNT_NUMBER="+account_number;
-		
+		String securityQuestionQuery = "select GIBU_SECURITY_QUESTIONS from gr13_internet_banking_users where GIBU_GA_ACCOUNT_NUMBER="
+				+ account_number;
+
 		return jdbcTemplate.queryForObject(securityQuestionQuery, String.class);
 	}
 
 	public boolean verifySecurityAnswer(InternetBankingUser ibu) {
 		// TODO Auto-generated method stub
-		String getSecurityAnswerQuery = "select GIBU_SECURITY_ANSWERS from gr13_internet_banking_users where GIBU_GA_ACCOUNT_NUMBER="+ibu.getAccount_number();
-		
+		String getSecurityAnswerQuery = "select GIBU_SECURITY_ANSWERS from gr13_internet_banking_users where GIBU_GA_ACCOUNT_NUMBER="
+				+ ibu.getAccount_number();
+
 		String answer = jdbcTemplate.queryForObject(getSecurityAnswerQuery, String.class);
-		
-		if(answer.equals(ibu.getSecurity_answers()))
+
+		if (answer.equals(ibu.getSecurity_answers()))
 			return true;
-		
+
 		return false;
 	}
 
 	public String getForgottenUserId(long account_number) {
 		// TODO Auto-generated method stub
-		
-		String getUserIdQuery = "select GIBU_USER_ID from gr13_internet_banking_users where GIBU_GA_ACCOUNT_NUMBER="+account_number;
-		
+
+		String getUserIdQuery = "select GIBU_USER_ID from gr13_internet_banking_users where GIBU_GA_ACCOUNT_NUMBER="
+				+ account_number;
+
 		return jdbcTemplate.queryForObject(getUserIdQuery, String.class);
-		
+
 	}
 
 }

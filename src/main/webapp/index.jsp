@@ -109,7 +109,7 @@
                                 </header><!-- .entry-header -->
 
                                 <div class="entry-content mt-4">
-                                    <p>As a leading international bank, we strive to help people and businesses prosper across Asia, Africa and the Middle East</p>
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As a leading international bank, we strive to help people and businesses prosper across Asia, Africa and the Middle East</p>
                                 </div><!-- .entry-content -->
 
                                 <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
@@ -137,7 +137,7 @@
                                 </header><!-- .entry-header -->
 
                                 <div class="entry-content mt-4">
-                                    <p>As a leading international bank, we strive to help people and businesses prosper across Asia, Africa and the Middle East</p>
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspAs a leading international bank, we strive to help people and businesses prosper across Asia, Africa and the Middle East</p>
                                 </div><!-- .entry-content -->
 
                                 <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
@@ -164,7 +164,7 @@
                                 </header><!-- .entry-header -->
 
                                 <div class="entry-content mt-4">
-                                    <p>As a leading international bank, we strive to help people and businesses prosper across Asia, Africa and the Middle East</p>
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspAs a leading international bank, we strive to help people and businesses prosper across Asia, Africa and the Middle East</p>
                                 </div><!-- .entry-content -->
 
                                 <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">

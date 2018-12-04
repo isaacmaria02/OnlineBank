@@ -82,6 +82,32 @@ public class AdminController {
 
 	}
 
+	@RequestMapping(value = "/show/{id}")
+	public String show(@PathVariable int id, HttpSession session) {
+
+		List<Profile> accountOpeningRequests = adminService.displayRequests();
+
+		Profile user = new Profile();
+		for (int i = 0; i < accountOpeningRequests.size(); i++) {
+			if (accountOpeningRequests.get(i).getCustomer_id() == id) {
+				user = accountOpeningRequests.get(i);
+			}
+		}
+
+		session.setAttribute("userInfo", user);
+
+		return "redirect:/accountdetailspage";
+	}
+
+	@RequestMapping(value = "/accountdetailspage")
+	public ModelAndView printInfo(ModelAndView model, HttpSession session) {
+
+		model.addObject(session.getAttribute("userInfo"));
+
+		model.setViewName("printaccountdetails");
+		return model;
+	}
+
 	/**
 	 * 
 	 * @param model
@@ -116,6 +142,7 @@ public class AdminController {
 		if (i > 0) {
 
 		} else {
+			return "ErrorPage";
 
 		}
 
