@@ -19,8 +19,6 @@ if(session!=null)
 <%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-
-
 <html lang="en">
 
   <head>
@@ -37,8 +35,6 @@ if(session!=null)
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
-  
-  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
             $(document).ready(function(){
@@ -51,35 +47,18 @@ if(session!=null)
               
               $("#transfer").click(function(){
             	  $('.hidden').show();
-                  $('#transfer').hide();
-                  
-                  
-                  $('.readonly').prop('disabled', true) 
-            
-            	  
-              });
-              
-              
+                  $('#transfer').hide();                                    
+                  $('.readonly').prop('disabled', true)        	  
+              });                            
               $("#backbtn").click(function(){
             	  $('.hidden').hide();
-                  $('#transfer').show();
-                  
-                  
+                  $('#transfer').show();                          
                   $('.readonly').prop('disabled', false) 
-            
-            	  
-              });
-              
-              
-              
+        });
+ 
               $('#fundtransfer').on('submit', function() {
             	    $('.readonly').prop('disabled', false);
             	});
-              
-              
-              
-            
-              
             });
         </script>
 
@@ -95,17 +74,37 @@ if(session!=null)
                   $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
               });
-              
-             
-                
-           
-            });
-            
-            
-            
-            
-        </script>
-
+   });
+       </script>
+       <script>
+       function Validate(){
+    	   var loginpassword = document.getElementById("Password").value;
+    	   var conloginpass = document.getElementById("ConfirmPassword").value;
+    	   	if(loginpassword != conloginpass){
+    	   alert ("Login Password do not match.");
+    	   return false;
+    	   }
+    	   return true;
+    	   }	
+    	   	function ValidateTran(){
+    	   var TranPass = document.getElementById("TransactionPass").value;
+    	   var conTranPass = document.getElementById("ConTransactionPass").value;
+    	   	if(TranPass != conTranPass){
+    	   alert ("Transaction Password do not match.");
+    	   return false;
+    	   }
+    	   return true;
+    	   }
+       function ValidateUserId(){
+		var userId = document.getElementById("UserId").value;
+		var conUserId = document.getElementById("ConUserId").value;
+			if(userId != conUserId){
+		alert ("User Id's do not match.");
+		return false;
+		}
+		return true;
+		}	
+</script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -163,16 +162,10 @@ if(session!=null)
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
       </button>
-
-      
- 
-
-
 <div class="pull">
         <ul class="nav navbar-nav pull-right float-right">
             <li><a href="logout" class="btn btn-outline-light	pull-right">Logout  <span class="glyphicon glyphicon-off"></span></a></li>
         </ul>     
-        
          
 </div>
     </nav>
@@ -258,9 +251,6 @@ if(session!=null)
       
    </div>
 </div>
-
-
-
             </div>
             <div class="col-xl-4 col-sm-6 mb-3">
               <div class="card text-white bg-warning o-hidden h-10">
@@ -269,10 +259,7 @@ if(session!=null)
                     <i class="fas fa-fw fa-list"></i>
                   </div>
                   <div class="mr-5">Fund Transfer</div>
-                </div>
-                
-                
-                
+                </div>             
               </div>
 
 <!-- .dropright -->
@@ -291,11 +278,6 @@ if(session!=null)
    
    </div>
 </div>
-
-
-
-
-
             </div>
             <div class="col-xl-4 col-sm-6 mb-3">
               <div class="card text-white bg-success o-hidden h-10">
@@ -323,11 +305,7 @@ if(session!=null)
       <a class="dropdown-item" href="changeTransactionPasswordPage">Change Transaction Password</a>
    </div>
 </div>
-
             </div>
-            
- 
-           
             <c:if test="${not empty DisplayPayeeView}">
             <div align="center">
                 <br><br>
@@ -354,42 +332,28 @@ if(session!=null)
                 </div>
             </c:if>
         </div>
-            
-                      
-                      
-            
-            
-            
             ${transaction}
             ${payee_status}            
             ${changeId }
             ${changePassword}
             ${changeTransactionPassword }
             ${fundTransfer }
-            
-            
-            
             <c:if test="${not empty AddPayeeView}">
-            
-                
+                            
                 <div align="center">
                              <h3>Add Payee</h3>
                 
          <form action="addPayee" >
          <table>
             <input style="display:none;" type="number" value="${account_number}" name="customer_account_number">
-             <tr><td>Payee Account Number : </td><td><input type="number" name="payee_account_number"></td><tr>
-            <tr><td>Name :</td><td> <input type="text" name="name"></td></tr>
-            <tr><td>NickName: </td><td><input type="text" name="nick_name"></td></tr>
+             <tr><td>Payee Account Number : </td><td><input type="number" pattern="[1]{1}[0-9]{11}" max="12" name="payee_account_number"></td><tr>
+            <tr><td>Name :</td><td> <input type="text" name="name" pattern="[A-Za-z A-Za-z]+"></td></tr>
+            <tr><td>NickName: </td><td><input type="text" name="nick_name" pattern=[A-Za-z]+></td></tr>
             <tr><td colspan="2"><input value="Add Payee" class="btn btn-primary dropdown-toggle dropdown-toggle-split"  type="submit"></td></tr>
        </table>
         </form>
             </div>
             </c:if>
-            
-            
-            
-            
              <c:if test="${not empty DeletePayeeView}">
                             <div align="center">
             
@@ -397,49 +361,39 @@ if(session!=null)
         <form action="DeletePayee">
         <table>
          <tr><td>Delete Payee by Name</td><td> <input type="text" name="payee_name"></td></tr>
-            
-             
+                         
             <tr><td colspan="2"><input value="Delete Payee" class="btn btn-primary dropdown-toggle dropdown-toggle-split"  type="submit"></td><tr>
         </table>
         </form>
             </div>
             
             </c:if>
-            
-            
-      
              <c:if test="${not empty ChangeIdView}">
                             <div align="center">
                             
                             <h3>Change User Id</h3>
             <table>
-          
-          
           <form action="checkId" method="post">
-<tr><td>Old ID</td><td><input type="text" name="old"></td></tr>
-<tr><td>New User ID</td><td><input type="text" name="new"></td></tr>
-<tr><td>Confirm User ID</td><td><input type="text" name="confirm"></td></tr>
+<tr><td>Old ID</td><td><input type="text" name="old" pattern="[A-Za-z0-9]+"></td></tr>
+<tr><td>New User ID</td><td><input type="text" name="new" pattern="[A-Za-z0-9]+" id="UserId"></td></tr>
+<tr><td>Confirm User ID</td><td><input type="text" name="confirm" pattern="[A-Za-z0-9]" id="ConUserId" onblur="ValidateUserId()"></td></tr>
 <tr><td colspan="2"><input type="submit" class="btn btn-primary dropdown-toggle dropdown-toggle-split" value="Change User Id"></td></tr>
 </form>
 
 </table>
-${changeId }
-          
+${changeId }          
             </div>
             
             </c:if>
-            
-            
-            
                <c:if test="${not empty ChangePasswordView}">
                             <div align="center">
                             
                             <h3>Change Password</h3>
            <table>
-              <form action="checkPassword" method="post">
+              <form action="checkPassword" method="post" onsubmit="return Validate()">
 <tr><td>Old Password</td><td><input type="password" name="old"></td></tr>
-<tr><td>New Login Password</td><td><input type="password" name="new"></td></tr>
-<tr><td>Confirm Login Password</td><td><input type="password" name="confirm"></td></tr>
+<tr><td>New Login Password</td><td><input type="password" name="new" id="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number,one uppercase letter and one lowercase letter, and at least 8 or more characters" placeholder="Enter new password" required></td></tr>
+<tr><td>Confirm Login Password</td><td><input type="password" id="ConfirmPassword" name="confirm"></td></tr>
 <tr><td colspan="2"><input type="submit" class="btn btn-primary dropdown-toggle dropdown-toggle-split" value="Change Password"></td></tr>
 </form>
 </table>
@@ -447,30 +401,22 @@ ${changePassword }
             </div>
             
             </c:if>
-            
-            
-            
                <c:if test="${not empty ChangeTransactionPasswordView}">
                             <div align="center">
                             
                             <h3>Change Transaction Password</h3>
            <table>
               <form action="checkTransactionPassword" method="post">
-<tr><td>Old Password</td><td><input type="password" name="old"></td></tr>
-<tr><td>New Login Password</td><td><input type="password" name="new"></td></tr>
-<tr><td>Confirm Login Password</td><td><input type="password" name="confirm"></td></tr>
+<tr><td>Old Transaction Password</td><td><input type="password" name="old"></td></tr>
+<tr><td>New Transaction Password</td><td><input type="password" id="TransactionPass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number,one uppercase letter and one lowercase letter, and at least 8 or more characters" ></td></tr>
+<tr><td>Confirm Transaction Password</td><td><input type="password" name="confirm" id="ConTransactionPass" onblur="return ValidateTran()"></td></tr>
 <tr><td colspan="2"><input type="submit" class="btn btn-primary dropdown-toggle dropdown-toggle-split" value="Change Password"></td></tr>
 </form>
 </table>
 ${changeTransactionPassword }
-            </div>
-            
+            </div>           
             </c:if>
-            
-            
-            
-            
-              <c:if test="${not empty AccountStatementView}">
+ <c:if test="${not empty AccountStatementView}">
                             <div align="center">
                             
                          <h3>Account Statement</h3>
@@ -487,9 +433,7 @@ ${changeTransactionPassword }
                     </div>
             
             </c:if>
-            
-            
-            <c:if test="${not empty AccountStatementList}">
+         <c:if test="${not empty AccountStatementList}">
            
 <div align="center">
                             
@@ -538,10 +482,7 @@ ${changeTransactionPassword }
                <a class="btn btn-primary"  href="download">Download</a>
         
         </c:if>
-
-
-           
-                       <c:if test="${not empty statement}">
+ <c:if test="${not empty statement}">
             
               <div align="center">
   <h3>Account Statement</h3>
@@ -559,11 +500,7 @@ ${changeTransactionPassword }
            
      </div>
 </c:if>
-
-
-
-
-                       <c:if test="${not empty AccountSummaryView}">
+  <c:if test="${not empty AccountSummaryView}">
             
               <div align="center">
   <h3>Account Summary</h3>
@@ -574,10 +511,7 @@ ${changeTransactionPassword }
               <td>Customer ID</td>
                <td>${summary.customer_id}</td>
             </tr>
-            
-     
-            
-              <tr>
+   <tr>
              <td>  Account Number</td>
                 <td>${summary.account_number}</td>
             </tr>
@@ -586,29 +520,15 @@ ${changeTransactionPassword }
                <td>Balance</td>
                <td>${summary.balance}</td>
             </tr>
-            
-     
-              <tr>
+   <tr>
                <td>Type</td>
                <td>${summary.account_type}</td>
             </tr>       
             </table>
-
-        
-        
-           </div><br>
-           
-            
-           
-     </div>
+ </div><br>
+  </div>
 </c:if>
-
-
-
-
-
-
-            <c:if test="${not empty AccountDetailsView}">
+ <c:if test="${not empty AccountDetailsView}">
             
               <div align="center">
   <h3>Account Details</h3>
@@ -651,11 +571,7 @@ ${changeTransactionPassword }
               <td>State</td>
                <td>${user_profile.state}</td>
             </tr>       
-            
-            
-            
      
-           
             </table>   
             
             <br><br>
@@ -666,9 +582,7 @@ ${changeTransactionPassword }
               <td>Customer ID</td>
                <td>${user_profile.customer_id}</td>
             </tr>
-            
-     
-            
+                        
               <tr>
              <td>  Account Number</td>
                 <td>${user_profile.account_number}</td>
@@ -677,32 +591,16 @@ ${changeTransactionPassword }
               <tr>
                <td>Balance</td>
                <td>${user_profile.balance}</td>
-            </tr>
-            
-     
+            </tr>                 
               <tr>
                <td>Type</td>
                <td>${user_profile.account_type}</td>
             </tr>       
             </table>
-            
-
-        
-        
            </div><br>
-           
-            
-           
      </div>
 </c:if>
-
- 
-
-
-
-
-
-                       <c:if test="${not empty FundTransferView}">
+ <c:if test="${not empty FundTransferView}">
             
               <div align="center">
  
@@ -761,7 +659,7 @@ ${changeTransactionPassword }
                   
             </select>
             </td></tr>
-            <tr><td>Amount : </td><td>  <input id ="amt" class="readonly" type="number"  min=1  required  name="amount" oninput="validity.valid||(value='');">
+            <tr><td>Amount : </td><td>  <input id ="amt" class="readonly" type="number"  min="1"  required  name="amount" oninput="validity.valid||(value='');">
             </td></tr>
                   <tr><td colspan="2"><span>Please enter amount between {{min}} and {{max}}</span></td></tr>
             
@@ -771,8 +669,7 @@ ${changeTransactionPassword }
             <tr><td colspan="2"><p style="display:none;" class="hidden">Enter Transaction Password</p></td><tr>
             <tr><td colspan="2"><input style="display:none;" type="password" class="hidden" name="transactionPassword" title="Please enter transaction password" required></td></tr>
             <tr><td colspan="2"><input id="backbtn" class="hidden btn btn-primary dropdown-toggle dropdown-toggle-split" style="display:none;" type="button" value="Back">
-            <input id="submitbtn" class="hidden btn btn-primary dropdown-toggle dropdown-toggle-split" style="display:none;" type="submit" value="Confirm"></td></tr>
-            
+            <input id="submitbtn" class="hidden btn btn-primary dropdown-toggle dropdown-toggle-split" style="display:none;" type="submit" value="Confirm"></td></tr>            
             
         </form>
             </table>
@@ -792,25 +689,13 @@ ${changeTransactionPassword }
                      vm.max = "1000000";
                   } 
                }
-
-
             });
-
-            
-            </script>
-         
-            
+  </script>
+  
 </div>
 
- 
- 
  </div>
 </c:if>
-
-
-
-
-
 
         <!-- /.container-fluid -->
 
@@ -871,7 +756,6 @@ ${changeTransactionPassword }
     <!-- Demo scripts for this page-->
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/demo/chart-area-demo.js"></script>
-
+    
   </body>
-
 </html>

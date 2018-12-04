@@ -1,10 +1,7 @@
-<%@ page errorPage="ErrorPage.jsp" %>  
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Homepage</title>
+    <title>Hello World</title>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -47,25 +44,25 @@
 
 
                     <div class="col-12 col-lg-4 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
-                        <div class="donate-btn">
+                      <!--   <div class="donate-btn">
                             <div class="dropdown">
   <button class="btn btn-default btn-group-sm navbar-btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Login/Register <span class="glyphicon glyphicon-user"></span>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <a class="dropdown-item"  href="Login.jsp">Login</a>
-    <a class="dropdown-item"  href="Register.jsp">Register for Internet Banking </a>
-    <a class="dropdown-item" href="OpenAccount.jsp">Open a new Savings Account</a>
+    <a class="dropdown-item" type="button" href="login.html">Login</a>
+    <a class="dropdown-item" type="button" href="login.html">Register for Internet Banking </a>
+    <a class="dropdown-item" type="button" href="login.html">Open a new Savings Account</a>
   </div>
 </div>
-                           <!-- <a href="#">Login <span class="glyphicon glyphicon-user"></span></a>-->
-                        </div><!-- .donate-btn -->
+                           <a href="#">Login <span class="glyphicon glyphicon-user"></span></a>
+                        </div>.donate-btn -->
                     </div><!-- .col -->
                 </div><!-- .row -->
             </div><!-- .container -->
         </div><!-- .top-header-bar -->
 
-        <div class="nav-bar">
+        <div class="nav-bar  navbar-inverse ">
             <div class="container">
                 <div class="row">
                     <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
@@ -78,7 +75,7 @@
 
                         <nav class="site-navigation d-flex justify-content-end align-items-center">
                             <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
-                                <li class="current-menu-item"><a href="index.jsp">Home</a></li>
+                                <li class="current-menu-item"><a href="index.html">Home</a></li>
                                 <li><a href="about.html">About us</a></li>                              
                                 <li><a href="contact.html">Contact</a></li>
                                 <li><a href="FAQ.html">FAQ's</a></li>
@@ -118,6 +115,8 @@
                                 <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
                                     <a href="Login.jsp" class="btn gradient-bg mr-2">Login</a>
                                     <a href="OpenAccount.jsp" class="btn orange-border">Apply online for account </a>
+                                    <a href="Register.jsp" class="btn orange-border">Register for Internet Banking</a>
+                                    
                                 </footer><!-- .entry-footer -->
                             </div><!-- .col -->
                         </div><!-- .row -->
@@ -142,8 +141,9 @@
                                 </div><!-- .entry-content -->
 
                                 <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
-                                    <a href="Login.jsp" class="btn gradient-bg mr-2">Login</a>
-                                    <a href="OpenAccount.jsp" class="btn orange-border">Apply online for account</a>
+                                     <a href="Login.jsp" class="btn gradient-bg mr-2">Login</a>
+                                    <a href="OpenAccount.jsp" class="btn orange-border">Apply online for account </a>
+                                    <a href="Register.jsp" class="btn orange-border">Register for Internet Banking</a>
                                 </footer><!-- .entry-footer -->
                             </div><!-- .col -->
                         </div><!-- .row -->
@@ -169,7 +169,8 @@
 
                                 <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
                                     <a href="Login.jsp" class="btn gradient-bg mr-2">Login</a>
-                                    <a href="OpenAccount.jsp" class="btn orange-border">Apply online for account</a>
+                                    <a href="OpenAccount.jsp" class="btn orange-border">Apply online for account </a>
+                                    <a href="Register.jsp" class="btn orange-border">Register for Internet Banking</a>
                                 </footer><!-- .entry-footer -->
                             </div><!-- .col -->
                         </div><!-- .row -->
