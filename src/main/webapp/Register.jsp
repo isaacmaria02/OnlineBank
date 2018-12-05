@@ -179,13 +179,13 @@ return true;
     <hr>    
     <h2>${register_error }</h2>
   <label for="Account No"><b>Account Number *<span class="fa fa-address-card"></span>  :</b></label><br>
-    <input type="number" placeholder="Enter your account number" name="account_number" pattern="[1]{1}[0-9]{11}" maxlength="12" required><br>
+    <input type="tel"  placeholder="Enter your account number" name="account_number" pattern="[1]{1}[0-9]{11}" maxlength="12" required><br>
 
     <label for="User Id"><b>Set User Id * <span class="fa fa-user-circle"></span> :</b></label><br>
     <input type="text"  id="UserId" placeholder="Set your user id" pattern="[A-Za-z0-9]+"  maxlength="8" name="user_id" required><br>
 
  <label for="Confirm User Id"><b>Confirm User Id * <span class="fa fa-user-circle"></span> :</b></label><br>
-    <input type="text"  id="ConUserId" placeholder="Confirm user id" onblur="return ValidateUserId()" name="user_id" required><br>
+    <input type="text"  id="ConUserId" placeholder="Confirm user id" onblur="return ValidateUserId()" name="con_user_id" required><br>
     
 <label for="Password"><b>Enter Login Password* <span class="fa fa-key"></span> :</span></b></label><br>
     <input type="password" id="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number,one uppercase letter and one lowercase letter, and at least 8 or more characters" placeholder="Enter new password" name="login_password" required><br>
@@ -339,7 +339,7 @@ myInput.onkeyup = function() {
 </select><br>
 
 <label for="Security Answer "><b>Your Answer * <span class="fa fa-pencil"></span>:</b></label><br>
-<input type="text" placeholder="Enter your security answer" pattern=[A-Za-z]+ name="security_answers" required><br>
+<input type="text" placeholder="Enter your security answer"  name="security_answers" required><br>
    
     <input type="submit" onclick="return ValidatePass()" class="registerbtn" value="Register">
   <div class="container loginin">

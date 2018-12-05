@@ -346,9 +346,9 @@ if(session!=null)
          <form action="addPayee" >
          <table>
             <input style="display:none;" type="number" value="${account_number}" name="customer_account_number">
-             <tr><td>Payee Account Number : </td><td><input type="number" pattern="[1]{1}[0-9]{11}" max="12" name="payee_account_number"></td><tr>
-            <tr><td>Name :</td><td> <input type="text" name="name" pattern="[A-Za-z A-Za-z]+"></td></tr>
-            <tr><td>NickName: </td><td><input type="text" name="nick_name" pattern=[A-Za-z]+></td></tr>
+             <tr><td>Payee Account Number : </td><td><input type="tel" pattern="[1]{1}[0-9]{11}" maxlength="12" name="payee_account_number"></td><tr>
+            <tr><td>Name :</td><td> <input type="text" name="name" required></td></tr>
+            <tr><td>NickName: </td><td><input type="text" name="nick_name"  required></td></tr>
             <tr><td colspan="2"><input value="Add Payee" class="btn btn-primary dropdown-toggle dropdown-toggle-split"  type="submit"></td></tr>
        </table>
         </form>
@@ -374,9 +374,9 @@ if(session!=null)
                             <h3>Change User Id</h3>
             <table>
           <form action="checkId" method="post" onsubmit=" return ValidateUserId()">
-<tr><td>Old ID</td><td><input type="text" name="old" pattern="[A-Za-z0-9]"></td></tr>
-<tr><td>New User ID</td><td><input type="text" name="new" pattern="[A-Za-z0-9]" id="UserId"></td></tr>
-<tr><td>Confirm User ID</td><td><input type="text" name="confirm" pattern="[A-Za-z0-9]" id="ConUserId" ></td></tr>
+<tr><td>Old ID</td><td><input type="text" name="old" ></td></tr>
+<tr><td>New User ID</td><td><input type="text" name="new" id="UserId"></td></tr>
+<tr><td>Confirm User ID</td><td><input type="text" name="confirm"  id="ConUserId" ></td></tr>
 <tr><td colspan="2"><input type="submit" class="btn btn-primary dropdown-toggle dropdown-toggle-split" value="Change User Id"></td></tr>
 </form>
 

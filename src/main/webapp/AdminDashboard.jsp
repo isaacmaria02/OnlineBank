@@ -59,7 +59,7 @@ if(session!=null)
    <td>${request.date_of_birth }</td>  
    <td><a  class="btn btn-success" href="approve/${request.customer_id}">Approve<span class="glyphicon glyphicon-ok-circle"></span></a></td>  
    <td><a class="btn btn-danger" href="reject/${request.customer_id}">Reject<span class="glyphicon glyphicon-remove-circle"></span></button></a></td>  
-              <td><a class="btn btn-danger" href="show/${request.customer_id}">Show<span class="glyphicon glyphicon-remove-circle"></span></button></a></td>  
+              <td><a class="btn btn-info" href="show/${request.customer_id}">Show<span class="glyphicon glyphicon-remove-circle"></span></button></a></td>  
             
       </tr> 
    </c:forEach>  

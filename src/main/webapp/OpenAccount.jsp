@@ -127,16 +127,16 @@
 	</select><br>
 
   <label for="First Name"><b>First Name* <span class="fa fa-user"></span> :</b></label><br>
-    <input type="text" pattern="[A-Za-z]{3,20}" title="Minimum 3 characters, No special Characters Allowed, No spaces allowed"   placeholder="Enter First Name" name="first_name" required><br>
+    <input type="text" pattern="[A-Za-z]{3,20}"  maxlength="20"  title="Minimum 3 characters, No special Characters Allowed, No spaces allowed"   placeholder="Enter First Name" name="first_name" required><br>
 
     <label for="Middle Name"><b>Middle Name <span class="fa fa-user"></span> :</b></label><br>
-    <input type="text" pattern="[A-Za-z]{3,20}"  title="Minimum 3 characters, No special Characters Allowed" placeholder="Enter Middle Name" name="middle_name"><br>
+    <input type="text" pattern="[A-Za-z]{3,20}"  maxlength="20"  title="Minimum 3 characters, No special Characters Allowed" placeholder="Enter Middle Name" name="middle_name"><br>
 
 <label for="Last Name"><b>Last Name* <span class="fa fa-user"></span> :</b></label><br>
-    <input type="text" pattern="[A-Za-z]{3,20}"   title="Minimum 3 characters, No special Characters Allowed" placeholder="Enter Last Name" title="Minimum 3 characters" name="last_name" required><br>
+    <input type="text" pattern="[A-Za-z]{3,20}"  maxlength="20"  title="Minimum 3 characters, No special Characters Allowed" placeholder="Enter Last Name" title="Minimum 3 characters" name="last_name" required><br>
 
 <label for="Father's Name"><b>Father's Full Name* <span class="fa fa-user"></span> :</span></b></label><br>
-    <input type="text" pattern="[a-zA-Z][a-zA-Z\s]*{8,30}"  placeholder="Enter Father's Full Name" name="father_name" title="Please enter " required><br>
+    <input type="text" pattern="[a-zA-Z][a-zA-Z\s]*{8,30}"  maxlength="30"  placeholder="Enter Father's Full Name" name="father_name" title="Please enter " required><br>
 
 <label for="Email Id"><b>Email Id <span class = "fa fa-envelope"></span></b></label><br>
 <input type="email" id="Enter Email Id" title="Please enter a valid email address ending with e.g. @gmail.com,@yahoo.com etc." name="email_id" pattern="[a-zA-Z]{1}[a-zA-Z0-9._%+-]+@[a-z.-]+\.[a-z]{2,3}$"></br>
@@ -149,7 +149,7 @@
     <input type="text" placeholder="Enter Aadhar No" name="aadhar_card"  maxlength="12" pattern = "[2-9]{1}[0-9]{11}" title="Please enter a 12 digit aadhar number, not starting with 0 or 1" required><br> 
 
 <label for="Date Of Birth"><b>Date Of Birth* <span class="fa fa-calendar"></span>:</b></label><br>
-    <input type="date"  name="date_of_birth" value="1990-01-01" min="1960-01-01" max="2000-01-01" required><br>
+    <input type="date"  name="date_of_birth"  min="1960-01-01" max="2000-01-31" required><br>
     
     <label for="Annual_Income"><b>Annual Income* :</b></label><br>
     <input type="number"  name="annual_income" pattern="[1-9]{1}[0-9]+" min="10000" max="100000000" ><br>
@@ -157,10 +157,10 @@
  <p><b>Address <span class="fa fa-address-card"></span>:</b></p><br>
 
  <label for="Address Line 1"><b>Address Line 1* :</b></label><br>
-    <input type="text"  pattern="[A-Za-z0-9]+" name="address_line_1" required><br>
+    <input type="text"    maxlength="30" name="address_line_1" required><br>
     
 <label for="Address Line 2"><b>Address Line 2* :</b></label><br>
-    <input type="text"  pattern="[A-Za-z0-9]+" name="address_line_2" required><br>
+    <input type="text"   maxlength="30" name="address_line_2" required><br>
     
  <div class='resp_code frms'>
 

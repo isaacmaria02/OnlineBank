@@ -44,19 +44,7 @@
 
 
                     <div class="col-12 col-lg-4 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
-                      <!--   <div class="donate-btn">
-                            <div class="dropdown">
-  <button class="btn btn-default btn-group-sm navbar-btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Login/Register <span class="glyphicon glyphicon-user"></span>
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <a class="dropdown-item" type="button" href="login.html">Login</a>
-    <a class="dropdown-item" type="button" href="login.html">Register for Internet Banking </a>
-    <a class="dropdown-item" type="button" href="login.html">Open a new Savings Account</a>
-  </div>
-</div>
-                           <a href="#">Login <span class="glyphicon glyphicon-user"></span></a>
-                        </div>.donate-btn -->
+                     
                     </div><!-- .col -->
                 </div><!-- .row -->
             </div><!-- .container -->

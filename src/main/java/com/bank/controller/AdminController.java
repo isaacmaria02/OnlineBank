@@ -47,14 +47,6 @@ public class AdminController {
 		if (admin.getAdminId().equals("admin") && admin.getAdminPassword().equals("admin123")) {
 			session.setAttribute("isAdminLoggedIn", true);
 
-			/*
-			 * List<Profile> accountOpeningRequests = adminService.displayRequests();
-			 * 
-			 * model.addObject("requests",accountOpeningRequests);
-			 * 
-			 * model.setViewName("AdminDashboard");
-			 */
-
 			model.setViewName("redirect:/display");
 		} else {
 			model.setViewName("Admin");
